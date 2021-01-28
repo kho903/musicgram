@@ -8,20 +8,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div>
-	<form action="comment/create" method="post">
-		<label>댓글<input type="text"></label>
-		<input type="submit" value="작성"/>
+
+	<form action="comments/create" method="post">
+		<label for="comment">댓글: <input id="comment" type="text" placeholder="댓글을 입력하세요" name="comment_text"></label>
+		<input type="submit" value="작성">
+		<input type="hidden" name="content_no" value="${comment.content_no}">
+		<input type="hidden" name="user_id" value="${comment.user_id}">
 	</form>
-</div>
+
 
 <ul>
 <c:forEach items="${comments}" var="comments">
-	<li>
-		<p>${comments.user_id }: ${comments.comment_text }
-		<a href="comment/delete/${comments.comment_no}">삭제</a>
-		</p>
-	</li>
+	<table>
+		<tr>
+		<td>${comments.user_id}: ${comments.comment_text }</td>
+		<td><button onclick="location.href='delete/${comments.content_no}'">삭제</button></td>
+		</tr>
+	</table>
 </c:forEach>
 </ul>
 
