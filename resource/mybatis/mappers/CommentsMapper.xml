@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="samsung.spring.musicgram.dao.CommentsMapper">
+	
+	<!-- 댓글 조회 -->
+	<select id="getComments" resultType="samsung.spring.musicgram.dto.Comments">
+		select
+			comment_no, content_no, user_id, comment_text, create_date
+		from comments
+		where content_no = #{content_no}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="createComments" parameterType="samsung.spring.musicgram.dto.Comments">
+		insert into comments 
+			values (comment_seq.nextval, #{content_no}, #{user_id}, #{comment_text}, sysdate)
+	</insert>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComments" parameterType="java.lang.Integer">
+		delete from comments
+		where comment_no = #{comment_no}
+			and content_no = ${content_no}
+	</delete>
+</mapper>
