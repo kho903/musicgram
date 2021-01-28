@@ -68,6 +68,7 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
+	@GetMapping()
 	public String getContents(ModelMap model) {
 		model.addAttribute("contentList", contentsService.getContents());
 		return "feed/mainFeed";
