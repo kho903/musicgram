@@ -4,7 +4,7 @@
 	
 	<!-- 댓글 조회 -->
 	<select id="getComments" resultType="samsung.spring.musicgram.dto.Comments">
-		select * from comments where content_no = #{content_no}
+		select * from comments where content_no = #{content_no} order by create_date asc
 	</select>
 	
 	<!-- 댓글 작성 -->
