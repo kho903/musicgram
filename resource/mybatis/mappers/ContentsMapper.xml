@@ -3,31 +3,40 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="samsung.spring.musicgram.dao.ContentsMapper">
 
-<select id="getGenreContents" resultType="samsung.spring.musicgram.dto.Contents">
-	select content_no, user_id, youtube_url, text, genre, tag, like_count, create_date 
-	from contents where genre=#{genre}
-</select>
+	<select id="getGenreContents"
+		resultType="samsung.spring.musicgram.dto.Contents">
+		select content_no, user_id, youtube_url, text, genre, tag, like_count,
+		create_date
+		from contents where genre=#{genre}
+	</select>
 
-<select id="getTagContents" resultType="samsung.spring.musicgram.dto.Contents">
-	select content_no, user_id, youtube_url, text, genre, tag, like_count, create_date 
-	from contents where tag=#{tag}
-</select>
+	<select id="getTagContents"
+		resultType="samsung.spring.musicgram.dto.Contents">
+		select content_no, user_id, youtube_url, text, genre, tag, like_count,
+		create_date
+		from contents where tag=#{tag}
+	</select>
 
-<update id="pressLike" parameterType="samsung.spring.musicgram.dto.Contents">
-	update contents set like_count = like_count+1 where content_no = #{content_no}
-</update>
+	<update id="pressLike"
+		parameterType="samsung.spring.musicgram.dto.Contents">
+		update contents set like_count = like_count+1 where content_no =
+		#{content_no}
+	</update>
 
-<update id="cancelLike" parameterType="samsung.spring.musicgram.dto.Contents">
-	update contents set like_count = like_count-1 where content_no = #{content_no}
-</update>
+	<update id="cancelLike"
+		parameterType="samsung.spring.musicgram.dto.Contents">
+		update contents set like_count = like_count-1 where content_no =
+		#{content_no}
+	</update>
 
-<select id="getLike" resultType="Integer">
-	select like_count
-	from contents where content_no=#{content_no}
-</select>
+	<select id="getLike" resultType="Integer">
+		select like_count
+		from contents where content_no=#{content_no}
+	</select>
 
 	<select id="getContent" resultType="contents">
-		select * from contents where content_no = #{content_no}
+		select * from contents where
+		content_no = #{content_no}
 	</select>
 
 	<select id="getContents" resultType="contents">
@@ -35,22 +44,25 @@
 	</select>
 
 	<delete id="deleteContent" parameterType="java.lang.Integer">
-		delete from contents where content_no = #{content_no}
+		delete from contents
+		where content_no = #{content_no}
 	</delete>
 
 	<update id="updateContent" parameterType="contents">
-		update contents	set 
+		update contents set
 		youtube_url = #{youtube_url},
 		text = #{text},
 		genre = #{genre},
-		tag = #{tag}
+		tag =
+		#{tag}
 		where content_no = #{content_no}
 	</update>
 
 	<insert id="createContent" parameterType="contents">
-		insert into contents values(
-		content_seq.nextval, 
-		#{user_id}, 
+		insert into contents
+		values(
+		content_seq.nextval,
+		#{user_id},
 		#{youtube_url},
 		#{text},
 		#{genre},
