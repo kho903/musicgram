@@ -30,21 +30,21 @@ public class ContentsController {
 	public String getGenreContents(@PathVariable(name="genre") String genre, Model model) {
 		//장르별로 검색했을때 메인 피드에 다시 뿌려줌
 		List<Contents> genreContentsList = contentsService.getGenreContents(genre);
-		model.addAttribute("genreContentsList", genreContentsList);
+		model.addAttribute("contentList", genreContentsList);
 		return "feed/mainFeed";
 	}
 	
 	@GetMapping("/tag/{tag}")
 	public String getTagContents(@PathVariable(name="tag") String tag, Model model) {
 		List<Contents> tagContentsList = contentsService.getTagContents(tag);
-		model.addAttribute("tagContentsList", tagContentsList);
+		model.addAttribute("contentList", tagContentsList);
 		return "feed/mainFeed";
 	}
 	
 	@GetMapping("/pressLike/{content_no}") //메인 피드에서 좋아요 누를 경우
 	public String pressLike(@PathVariable(name="content_no") int content_no) {
 		contentsService.pressLike(content_no);
-		return "feed/mainFeed";
+		return "redirect:/content";
 	}
 	
 	@GetMapping("pressLikeDetail/{content_no}") //상세 페이지에서 좋아요 누를 경우
