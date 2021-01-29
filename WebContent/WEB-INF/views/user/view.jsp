@@ -7,12 +7,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#photo {
-		padding: 0px;
-		vertical-align: middle;
-		text-align: center;
-		width: 170px;
-		height: 220px;
+	.box {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+	}
+	.profile {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
 	}
 </style>
 </head>
@@ -22,6 +26,9 @@
 	id : ${user.user_id }<br> 
 	email : ${user.email}<br> 
 	description :${user.description }<br>
-	<img src="/musicgram/profile/${user_id}">
+	<div class="box" style="background: #ffffff;">
+		<img class="profile" src="/musicgram/profile/${user_id}"
+			onerror="this.src='../img/default.png'">
+	</div>
 </body>
 </html>
