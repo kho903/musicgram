@@ -17,16 +17,16 @@
 	</form>
 
 
-<ul>
-<c:forEach items="${comments}" var="comments">
-	<table>
-		<tr>
-		<td>${comments.user_id}: ${comments.comment_text }</td>
-		<td><button onclick="location.href='delete/${comments.comment_no}'">삭제</button></td>
-		</tr>
-	</table>
-</c:forEach>
-</ul>
+	<ul>
+		<c:forEach items="${comments}" var="comments">
+			<table>
+				<tr>
+				<td>${comments.user_id}: ${comments.comment_text }</td>
+				<td><button onclick="location.href='delete/${comments.comment_no}'">삭제</button></td>
+				</tr>
+			</table>
+		</c:forEach>
+	</ul>
 
 
 
