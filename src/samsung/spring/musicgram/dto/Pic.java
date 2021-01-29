@@ -8,7 +8,7 @@ public class Pic {
 	private int user_pic_no;
 	private String user_id;
 	private String file_name;
-	private String file_size;
+	private long file_size;
 	private byte[] file_data;
 	
 	private MultipartFile file;
@@ -37,11 +37,11 @@ public class Pic {
 		this.file_name = file_name;
 	}
 
-	public String getFile_size() {
+	public long getFile_size() {
 		return file_size;
 	}
 
-	public void setFile_size(String file_size) {
+	public void setFile_size(long file_size) {
 		this.file_size = file_size;
 	}
 

@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
+	<jsp:include page="/nav.jsp" />
 	<table>
 		<tr>
 			<td>${content.content_no}</td>
