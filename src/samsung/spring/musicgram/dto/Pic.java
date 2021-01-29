@@ -2,12 +2,16 @@ package samsung.spring.musicgram.dto;
 
 import java.util.Arrays;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Pic {
 	private int user_pic_no;
 	private String user_id;
 	private String file_name;
 	private String file_size;
 	private byte[] file_data;
+	
+	private MultipartFile file;
 
 	public int getUser_pic_no() {
 		return user_pic_no;
@@ -49,10 +53,17 @@ public class Pic {
 		this.file_data = file_data;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	@Override
 	public String toString() {
 		return "Pic [user_pic_no=" + user_pic_no + ", user_id=" + user_id + ", file_name=" + file_name + ", file_size="
-				+ file_size + ", file_data=" + Arrays.toString(file_data) + "]";
+				+ file_size + ", file_data=" + Arrays.toString(file_data) + ", file=" + file + "]";
 	}
-
 }

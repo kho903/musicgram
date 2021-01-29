@@ -8,4 +8,5 @@ public interface PicMapper {
 	public int addPic(Pic pic);
 	public Pic getPic(String user_id);
 	public int updatePic(Pic pic);
+	public int deletePic(String user_id);
 }

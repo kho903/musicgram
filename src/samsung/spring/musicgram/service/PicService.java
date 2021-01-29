@@ -23,5 +23,9 @@ public class PicService {
 	public int updatePic(Pic pic) {
 		return picMapper.updatePic(pic);
 	}
+	
+	public int deletePic(String user_id) {
+		return picMapper.deletePic(user_id);
+	}
 
 }
