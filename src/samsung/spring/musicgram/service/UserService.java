@@ -1,8 +1,12 @@
 package samsung.spring.musicgram.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+//import samsung.spring.musicgram.dao.UsersDAO;
 import samsung.spring.musicgram.dao.UsersMapper;
 import samsung.spring.musicgram.dto.Users;
 
@@ -11,17 +15,16 @@ public class UserService {
 	@Autowired
 	private UsersMapper usersMapper;
 	
-	public int join(Users user) {
-		
-		return usersMapper.join(user);
+	
+	@Transactional(readOnly = false)
+	public void userJoin(Users user) {
+		int resultcount = usersMapper.join(user);
 	}
 	
-	public int login(String id, String password) {
-		return usersMapper.login(id, password);
-	}
 	
-	public void logout() {
+	public void logout(HttpSession session) {
 		usersMapper.logout();
+		session.invalidate();
 	}
 	
 	public int updatePassword(Users user) {
