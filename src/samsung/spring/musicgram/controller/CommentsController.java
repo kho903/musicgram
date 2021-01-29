@@ -35,16 +35,19 @@ public class CommentsController {
 		@PostMapping("/create")
 		public String createComment(@ModelAttribute Comments comment) {
 			String res = "";
-			res = commentsService.createComment(comment) == 1 ?  "redirect:/comments/" + comment.getContent_no(): "feed/commentFail";
+			res = commentsService.createComment(comment) == 1 ?  "redirect:/content/" + comment.getContent_no(): "feed/commentFail";
 			return res;
 		}
 		
 				
 		// 댓글 삭제
-		@GetMapping("/delete/{comment_no}")
-		public String deleteComment(@PathVariable("comment_no") int comment_no, ModelMap model) {
+		@GetMapping("/delete/{comment_no}&{content_no}")
+		public String deleteComment(@PathVariable("comment_no") int comment_no, @PathVariable("content_no") int content_no, ModelMap model) {
 			String res = "";
-			res = commentsService.deleteComment(comment_no) == 1 ? "redirect:/comments/1" : "feed/commentFail";
+			System.out.println(comment_no);
+			System.out.println(content_no);
+				
+			res = commentsService.deleteComment(comment_no) == 1 ? "redirect:/content/"+content_no : "feed/commentFail";
 			return res;
 		}
 				
