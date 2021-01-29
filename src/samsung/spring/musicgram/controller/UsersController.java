@@ -54,16 +54,13 @@ public class UsersController {
 	
 	@PostMapping("/login")
 	public String login(@RequestParam(name="user_id", required=true)String user_id, @RequestParam(name="password", required=true) String password, HttpSession session, RedirectAttributes redirectAttributes) {
-		System.out.printf("user_id : %s", user_id);
 		if(userService.getUser(user_id).getPassword().equals(password)) {
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("password", password);
-			System.out.printf("로그인 성공 : %s", password);
 		}else {
-			System.out.println("로그인 실패");
 			return "redirect:/user/loginForm";
 		}
-		return "redirect:/hello";
+		return "redirect:/content";
 	}
 	
 	

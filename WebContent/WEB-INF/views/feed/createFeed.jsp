@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="nav.jsp" />
 	<form action="content/upload" method="post">
 		user_id : <input type="text" name="user_id"><br>
 		youtube_url : <input type="text" name="youtube_url"><br>

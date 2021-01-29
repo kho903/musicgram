@@ -44,9 +44,6 @@ public class CommentsController {
 		@GetMapping("/delete/{comment_no}&{content_no}")
 		public String deleteComment(@PathVariable("comment_no") int comment_no, @PathVariable("content_no") int content_no, ModelMap model) {
 			String res = "";
-			System.out.println(comment_no);
-			System.out.println(content_no);
-				
 			res = commentsService.deleteComment(comment_no) == 1 ? "redirect:/content/"+content_no : "feed/commentFail";
 			return res;
 		}
