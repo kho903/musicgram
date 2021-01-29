@@ -3,11 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<nav>
+	<nav class="navbar navbar-expand-lg">
 	<%
 		if(session.getAttribute("user_id")==null){
 	%>
