@@ -18,7 +18,9 @@
 		<tr>
 			<td>${genreContent.content_no}</td>
 			<td>${genreContent.user_id}</td>
-			<td>${genreContent.youtube_url}</td>
+			<td>
+				<iframe width="560" height="315" src="${genreContent.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
 			<td>${genreContent.text}</td>
 			<td>${genreContent.genre}</td>
 			<td>${genreContent.tag}</td>
@@ -31,7 +33,9 @@
 		<tr>
 			<td>${tagContent.content_no}</td>
 			<td>${tagContent.user_id}</td>
-			<td>${tagContent.youtube_url}</td>
+			<td>
+				<iframe width="560" height="315" src="${tagContent.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</td>
 			<td>${tagContent.text}</td>
 			<td>${tagContent.genre}</td>
 			<td>${tagContent.tag}</td>
@@ -48,7 +52,9 @@
 			<tr>
 				<td>${content.content_no}</td>
 				<td>${content.user_id}</td>
-				<td>${content.youtube_url}</td>
+				<td>
+					<iframe width="560" height="315" src="${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</td>
 				<td>${content.text}</td>
 				<td><a href="content/update/${content.content_no}">수정</a></td>
 				<td><a href="content/delete/${content.content_no}">삭제</a></td>

@@ -31,6 +31,7 @@ public class ContentsService {
 	}
 
 	public int createContent(Contents content) {
+		content.setYoutube_url(getYoutubeParse(content.getYoutube_url()));
 		return contentsMapper.createContent(content);
 	}
 
@@ -52,6 +53,25 @@ public class ContentsService {
 
 	public int cancelLike(int content_no) {
 		return contentsMapper.cancelLike(content_no);
+	}
+
+	public static String getYoutubeParse(String url) {
+		
+		String result = "https://www.youtube.com/embed/";
+		String parsing = "";
+
+		if (url.contains("=")) {
+			int index = url.indexOf("=");
+			parsing = url.substring(index + 1);
+		} else {
+			int index = url.lastIndexOf("/");
+			parsing = url.substring(index + 1);
+		}
+
+		result = result + parsing;
+		
+		return result;
+
 	}
 
 }
