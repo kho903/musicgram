@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="content/upload" method="post">
-		user_id : <input type="text" name="user_id"><br>
+		<input type="hidden" name="user_id" value="${user_id}"><br>
 		youtube_url : <input type="text" name="youtube_url"><br>
 		text : <input type="text" name="text"><br>
 		genre : <input type="text" name="genre"><br>
