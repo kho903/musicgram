@@ -12,6 +12,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="nav.jsp" />
+
 	<c:forEach var="genreContent" items="${genreContentsList}">
 		<tr>
 			<td>${genreContent.content_no}</td>
