@@ -24,6 +24,7 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
+	<a href="/musicgram/user/joinForm">회원가입</a>
 </div>
 	
 </body>

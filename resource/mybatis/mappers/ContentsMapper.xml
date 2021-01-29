@@ -7,14 +7,14 @@
 		resultType="samsung.spring.musicgram.dto.Contents">
 		select content_no, user_id, youtube_url, text, genre, tag, like_count,
 		create_date
-		from contents where genre=#{genre}
+		from contents where genre=#{genre} order by content_no desc
 	</select>
 
 	<select id="getTagContents"
 		resultType="samsung.spring.musicgram.dto.Contents">
 		select content_no, user_id, youtube_url, text, genre, tag, like_count,
 		create_date
-		from contents where tag=#{tag}
+		from contents where tag=#{tag} order by content_no desc
 	</select>
 
 	<update id="pressLike"
@@ -40,7 +40,7 @@
 	</select>
 
 	<select id="getContents" resultType="contents">
-		select * from contents
+		select * from contents order by content_no desc
 	</select>
 
 	<delete id="deleteContent" parameterType="java.lang.Integer">
