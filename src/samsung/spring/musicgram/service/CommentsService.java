@@ -17,8 +17,8 @@ public class CommentsService {
 		return commentsMapper.getComments(content_no);
 	}
 
-	public int deleteComment(int content_no) {
-		return commentsMapper.deleteComment(content_no);
+	public int deleteComment(int comment_no) {
+		return commentsMapper.deleteComment(comment_no);
 	}
 
 	public int createComment(Comments comment) {

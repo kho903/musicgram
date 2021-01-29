@@ -14,6 +14,6 @@
 	
 	<!-- 댓글 삭제 -->
 	<delete id="deleteComment" parameterType="int">
-		delete from comments where content_no = #{content_no}
+		delete from comments where comment_no=#{comment_no}
 	</delete>
 </mapper>
