@@ -15,31 +15,12 @@ public class UserService {
 	@Autowired
 	private UsersMapper usersMapper;
 	
-//	@Autowired
-//	private UsersDAO usersDAO;
 	
 	@Transactional(readOnly = false)
 	public void userJoin(Users user) {
 		int resultcount = usersMapper.join(user);
 	}
 	
-//	public int login(String id, String password) {
-//		return usersMapper.login(id, password);
-//	}
-//	public String login(String id, String password, HttpSession session) {
-//		String name = usersMapper.login(id, password);
-//		if(name!=null) {
-//			session.setAttribute("user_id", id);
-//			session.setAttribute("password", password);
-//		}else {
-//			
-//		}
-//		return name;
-//	}
-	
-//	public Users loginUser(Users user) {
-//		return usersDAO.loginUser(user);
-//	}
 	
 	public void logout(HttpSession session) {
 		usersMapper.logout();
