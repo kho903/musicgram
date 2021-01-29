@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="nav.jsp" />
+	<jsp:include page="/nav.jsp" />
 	<form action="/musicgram/content/update" method="post">
 		<input type="hidden" name="content_no" value="${content.content_no}" readonly="readonly"><br>
 		<input type="hidden" name="user_id" value="${content.user_id}" readonly="readonly"><br>

@@ -41,6 +41,9 @@ create table comments (
 
 create sequence comment_seq;
 
+create sequence pic_seq;
+alter table pic modify file_size number(10);
+
 
 insert into users values('test', '1234', 'test@naver.com','안녕하세요');
 insert into users values('test2', '5678', 'test2@naver.com','안녕하세요~!');
