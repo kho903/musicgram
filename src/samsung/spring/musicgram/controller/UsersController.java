@@ -81,4 +81,9 @@ public class UsersController {
 	}
 
 	
+	@GetMapping("/updateProfile")
+	public String updateProfile() {
+		return "redirect:/profileUpload";
+	}
+	
 }

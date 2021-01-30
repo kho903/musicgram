@@ -10,7 +10,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg">
-	<a href="/musicgram/content"><img src="http://localhost:8080/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
+	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
 </a>
 	<%
 		if(session.getAttribute("user_id")==null){
@@ -21,7 +21,7 @@
 		String user_id = (String)session.getAttribute("user_id");
 		out.println(user_id+"님 반갑습니다.");
 	%>
-		<a href="#" onclick="location.href='/musicgram/profileUpload.jsp'">profile upload</a>
+		<a href="#" onclick="location.href='/musicgram/user/updateProfile'">profile upload</a>
 		<a href="#" onclick="location.href='/musicgram/user/${user_id}'">my page</a>
 		<a href="/musicgram/user/logout">로그아웃</a>
 	<%
