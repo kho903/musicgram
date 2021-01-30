@@ -10,7 +10,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg">
-	<a href="/musicgram/content"><img src="https://fontmeme.com/permalink/210129/2f400f34b615d1a4c0c8be9267ebf59c.png" alt="instagram-type" border="0" width=200px>
+	<a href="/musicgram/content"><img src="http://localhost:8080/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
 </a>
 	<%
 		if(session.getAttribute("user_id")==null){
