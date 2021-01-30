@@ -27,8 +27,8 @@ public class UserService {
 		session.invalidate();
 	}
 	
-	public int updatePassword(Users user) {
-		return usersMapper.updatePassword(user);
+	public int updateUser(Users user) {
+		return usersMapper.updateUser(user);
 	}
 	
 	public int findPassword(String id, String email) {
