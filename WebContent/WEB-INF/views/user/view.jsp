@@ -122,9 +122,9 @@
             <div class="mylist_contents contents_container active">
                 <c:forEach var="content" items="${contentList}">
 	                <div class="pic">
-	                    <a href="#">
-		                	<iframe width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></iframe>
-	                    </a>
+	                    <a href="/musicgram/content/${content.content_no }">
+		                	<img width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></img>
+		                </a>
 	                </div>
 				</c:forEach>
             </div>
