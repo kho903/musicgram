@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import oracle.jdbc.proxy.annotation.GetProxy;
 import samsung.spring.musicgram.dto.Pic;
 import samsung.spring.musicgram.service.PicService;
 
@@ -38,7 +39,11 @@ public class PicController {
 	
 	@RequestMapping("/{user_id}")
 	public ResponseEntity<byte[]> getByteImage(@PathVariable("user_id") String user_id) {
-	       byte[] imageContent = picService.getPic(user_id).getFile_data();
+		byte[] imageContent = null; 
+	       try {
+	    	   imageContent = picService.getPic(user_id).getFile_data();
+	       } catch (Exception e) {
+	       }
 	       final HttpHeaders headers = new HttpHeaders();
 	       headers.setContentType(MediaType.IMAGE_JPEG);
 	       return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
