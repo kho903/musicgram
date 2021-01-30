@@ -44,6 +44,16 @@ create sequence comment_seq;
 create sequence pic_seq;
 alter table pic modify file_size number(10);
 
+create table likes (
+    like_no number(11) primary key not null,
+    content_no number(11) not null,
+    user_id varchar2(20) not null,
+    constraint fk_content_no_likes foreign key(content_no) references contents(content_no) on delete cascade,
+    constraint fk_user_id_likes foreign key(user_id) references users(user_id) on delete cascade
+);
+
+create sequence like_seq;
+
 
 insert into users values('test', '1234', 'test@naver.com','안녕하세요');
 insert into users values('test2', '5678', 'test2@naver.com','안녕하세요~!');
