@@ -78,7 +78,9 @@
 							<p>${content.text}</p>
 
 							<div class="time-log">
-								<span id="diffTime">
+							
+							
+								<%-- <span id="diffTime">
 									<%
     DecimalFormat    capa        = new DecimalFormat("#");
     SimpleDateFormat df          = new SimpleDateFormat("yyyy-MM-dd E");
@@ -118,7 +120,7 @@
     
     
 %>
-								</span>
+								</span> --%>
 							</div>
 						</div>
 						<ul>
