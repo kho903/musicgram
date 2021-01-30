@@ -10,9 +10,12 @@
 </head>
 <body><div class='container'>
 	<nav class="navbar navbar-expand-lg">
-	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
-</a>
-
+	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px></a>
+	
+	<form action="/musicgram/tag/" method="get">
+		<input type="text" placeholder="tag를 검색하세요.">
+	</form>
+	
 	<%
 		if(session.getAttribute("user_id")==null){
 	%>
@@ -27,6 +30,8 @@
 	<%
 		}
 	%>
+	
+	
 	</nav>
 	
 		</div>
