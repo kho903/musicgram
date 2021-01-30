@@ -100,7 +100,7 @@
                     <ul class="middle">
                         <li>
                             <span>게시물</span>
-                            3
+                           3
                         </li>
                         <li>
                             <span>팔로워</span>
@@ -123,7 +123,8 @@
                 <c:forEach var="content" items="${contentList}">
 	                <div class="pic">
 	                    <a href="#">
-		                	<iframe width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></iframe>
+	                    <img src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg">
+		                	<%-- <iframe width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></iframe> --%>
 	                    </a>
 	                </div>
 				</c:forEach>
