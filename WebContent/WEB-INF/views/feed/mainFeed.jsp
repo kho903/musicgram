@@ -13,22 +13,26 @@
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
-
-
 	<a href="#" onclick="location.href='upload.jsp'">upload</a>
 	<div class="container">
 		<div class="row">
 			<div class="col-7">
 					<c:forEach var="content" items="${contentList}">
-						<div class="card">
+						<div class="card"   >
 							<div class="card-header">
 								<td>${content.content_no}</td>
 								<td>${content.user_id}</td>
 								</div>
 							<div class="card-body">
 								<iframe width="560" height="315" src="${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-								<p><a href="content/pressLike/${content.content_no}" class="card-link">좋아요</a></p>
-								<p>좋아요 개수 ${content.like_count }</p>
+									
+									<p><a href="content/pressLike/${content.content_no}" class="card-link">좋아요</a></p>
+									<button onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>
+									
+									<p><a href="content/cancelLike/${content.content_no}" class="card-link">좋아요 취소</a></p>
+									<button onclick="cancelLike(${content.content_no},${content.like_count})">좋아요 취소</button>
+									
+								<p >좋아요 개수 <span id="countLike${content.content_no}">${content.like_count}</span></p>
 								<p>${content.text}</p>
 							</div>
 							<ul>
@@ -43,4 +47,56 @@
 		</div>
 	</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>﻿
+
+<script>
+
+function pressLike(content_no, like_count){
+	$.ajax({
+		url:"content/pressLike",
+		type:"post",
+		data: {"content_no" : content_no},
+		async: false,
+		success : function(result){
+			console.log(result);
+			$('#countLike'+content_no).html(result);
+		},
+		error: function(e){
+			console.log(e);
+		}
+	})
+} 
+
+function cancelLike(content_no, like_count){
+	$.ajax({
+		url:"content/cancelLike",
+		type:"post",
+		data: {"content_no" : content_no},
+		async: false,
+		success : function(result){
+			console.log(result);
+			$('#countLike'+content_no).html(result);
+		},
+		error: function(e){
+			console.log(e);
+		}
+	})
+} 
+
+function isPressLike(content_no){
+	$.ajax({
+		url:"content/isPressLike",
+		type:"post",
+		data: {"content_no" : content_no},
+		async: false,
+		success : function(result){
+			console.log(result);
+		},
+		error: function(e){
+			console.log(e);
+		}
+	})
+}
+
+</script>
 </html>

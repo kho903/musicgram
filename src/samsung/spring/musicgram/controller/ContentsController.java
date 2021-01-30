@@ -2,6 +2,8 @@ package samsung.spring.musicgram.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,19 +12,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import samsung.spring.musicgram.dto.Contents;
 import samsung.spring.musicgram.service.CommentsService;
 import samsung.spring.musicgram.service.ContentsService;
 
 @Controller
-
 @RequestMapping(path = "/content")
 public class ContentsController {
 
 	@Autowired
 	private ContentsService contentsService;
-	
 	@Autowired
 	private CommentsService commentsService;
 		
@@ -41,29 +43,52 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
+	
 	@GetMapping("/pressLike/{content_no}") //메인 피드에서 좋아요 누를 경우
-	public String pressLike(@PathVariable(name="content_no") int content_no) {
-		contentsService.pressLike(content_no);
+	public String pressLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("user_id") String user_id) {
+		contentsService.pressLike(content_no, user_id);
 		return "redirect:/content";
 	}
 	
+	@PostMapping("/pressLike") //ajax
+	@ResponseBody
+	public int pressLike(@SessionAttribute("user_id") String user_id, HttpServletRequest request) {
+		int content_no = Integer.parseInt(request.getParameter("content_no"));
+		return contentsService.pressLike(content_no, user_id);
+	}
+	
 	@GetMapping("pressLikeDetail/{content_no}") //상세 페이지에서 좋아요 누를 경우
-	public String pressLikeDetail(@PathVariable(name="content_no") int content_no) {
-		contentsService.pressLike(content_no);
+	public String pressLikeDetail(@PathVariable(name="content_no") int content_no, @SessionAttribute("user_id") String user_id) {
+		contentsService.pressLike(content_no, user_id);
 		return "feed/detailFeed";
 	}
 	
-	@GetMapping("/cancelLike/{content_no}") //메인 피드에서 좋아요 누를 경우
-	public String cancelLike(@PathVariable(name="content_no") int content_no) {
-		contentsService.cancelLike(content_no);
-		return "feed/mainFeed";
+	@GetMapping("/cancelLike/{content_no}") //메인 피드에서 좋아요취소 누를 경우
+	public String cancelLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("user_id") String user_id) {
+		contentsService.cancelLike(content_no, user_id);
+		return "redirect:/content";
+	}
+	@PostMapping("/cancelLike") //ajax
+	@ResponseBody
+	public int cancelLike(@SessionAttribute("user_id") String user_id, HttpServletRequest request) {
+		int content_no = Integer.parseInt(request.getParameter("content_no"));
+		return contentsService.cancelLike(content_no, user_id);
 	}
 	
-	@GetMapping("/cancelLikeDetail/{content_no}") //메인 피드에서 좋아요 누를 경우
-	public String cancelLikeDetail(@PathVariable(name="content_no") int content_no) {
-		contentsService.cancelLike(content_no);
+	@GetMapping("/cancelLikeDetail/{content_no}") //상세 피드에서 좋아요취소 누를 경우
+	public String cancelLikeDetail(@PathVariable(name="content_no") int content_no,@SessionAttribute("user_id") String user_id ) {
+		contentsService.cancelLike(content_no, user_id);
 		return "feed/detailFeed";
 	}
+	
+	@PostMapping("/isPressLike") //ajax 
+	@ResponseBody
+	public int isPressLike(@SessionAttribute("user_id") String user_id, HttpServletRequest request) {
+		int content_no = Integer.parseInt(request.getParameter("content_no"));
+		return contentsService.isPressLike(content_no, user_id);
+	}
+	
+	
 	
 	@GetMapping("/getLike/{content_no}")
 	public String getLike(@PathVariable(name="content_no") int content_no, Model model) {
