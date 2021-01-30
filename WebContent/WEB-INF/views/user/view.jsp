@@ -93,7 +93,7 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_name">${user.user_id }</div>
-                        <a href="/musicgram/user/updateProfile" class="profile_edit">프로필편집</a>
+                        <a href="/musicgram/user/updateProfileForm" class="profile_edit">프로필편집</a>
                         <a href="/musicgram/user/logout" class="logout">로그아웃</a>
                     </div>
 
