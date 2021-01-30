@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="/nav.jsp"/>
-<h3>pic upload</h3>
+<h3>회원정보 변경</h3>
 
     
 		<form action="updateProfile" method="post" enctype="multipart/form-data">
@@ -23,7 +23,7 @@
 		        </tr>
 		        <tr>
 		        	<td>비밀번호 변경</td>
-		        	<td><input type="text" name="user_password"></td>
+		        	<td><input type="text" name="user_password"  value="${user_password}"></td>
 		        </tr>
 			</table>  
 			<input type="submit" value="Submit">
