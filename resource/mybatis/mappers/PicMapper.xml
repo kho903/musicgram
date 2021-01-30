@@ -20,7 +20,7 @@
 		update pic set
 		file_name = #{file_name},
 		file_size = #{file_size},
-		file_date = #{file_data}
+		file_data = #{file_data}
 		where user_pic_no = #{user_pic_no}
 	</update>
 
@@ -28,7 +28,7 @@
 		update pic set
 		file_name = "default.png"
 		file_size = ""
-		file_date = ""
+		file_data = ""
 		where user_pic_no = #{user_pic_no}
 	</update>
 </mapper>

@@ -13,4 +13,10 @@
 	<select id="loginUser" resultType="samsung.spring.musicgram.dto.Users">
 		select * from users where user_id=#{user_id} and password=#{password}
 	</select>
+	
+	<update id="updateUser" parameterType="samsung.spring.musicgram.dto.Users">
+		update users 
+		set password = #{password}, description = #{description}
+		where user_id=#{user_id}
+	</update>
 </mapper>
