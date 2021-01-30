@@ -93,7 +93,7 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_name">${user.user_id }</div>
-                        <a href="/musicgram/user/updateProfile" class="profile_edit">프로필편집</a>
+                        <a href="/musicgram/user/updateProfileForm" class="profile_edit">프로필편집</a>
                         <a href="/musicgram/user/logout" class="logout">로그아웃</a>
                     </div>
 
@@ -122,10 +122,9 @@
             <div class="mylist_contents contents_container active">
                 <c:forEach var="content" items="${contentList}">
 	                <div class="pic">
-	                    <a href="#">
-	                    <img src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg">
-		                	<%-- <iframe width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></iframe> --%>
-	                    </a>
+	                    <a href="/musicgram/content/${content.content_no }">
+		                	<img width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></img>
+		                </a>
 	                </div>
 				</c:forEach>
             </div>

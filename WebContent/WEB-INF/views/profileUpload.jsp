@@ -11,7 +11,7 @@
 <h3>pic upload</h3>
 
     
-		<form action="profile/upload/${user_id}" method="post" enctype="multipart/form-data">
+		<form action="updateProfile" method="post" enctype="multipart/form-data">
 			<table>
 		        <tr>
 		            <td>사진 변경</td>

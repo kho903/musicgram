@@ -10,9 +10,12 @@
 </head>
 <body><div class='container'>
 	<nav class="navbar navbar-expand-lg">
-	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
-</a>
-
+	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px></a>
+	
+	<form action="/musicgram/tag/" method="get">
+		<input type="text" placeholder="tag를 검색하세요.">
+	</form>
+	
 	<%
 		if(session.getAttribute("user_id")==null){
 	%>
@@ -22,11 +25,15 @@
 		String user_id = (String)session.getAttribute("user_id");
 		out.println(user_id+"님 반갑습니다.");
 	%>
+		<a href="#" onclick="location.href='upload.jsp'">upload</a>
+	
 		<a href="#" onclick="location.href='/musicgram/user/${user_id}'">my page</a>
 		<a href="/musicgram/user/logout">로그아웃</a>
 	<%
 		}
 	%>
+	
+	
 	</nav>
 	
 		</div>

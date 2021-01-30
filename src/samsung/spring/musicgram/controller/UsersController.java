@@ -94,10 +94,16 @@ public class UsersController {
 		return "redirect:/user/loginForm";
 	}
 	
-	@GetMapping("/updateProfile")
+	@GetMapping("/updateProfileForm")
 	public String updateProfile(@SessionAttribute("user_id") String user_id , Model model) {
 		model.addAttribute("user_description", userService.getUser(user_id).getDescription());
 		return "profileUpload";
+	}
+	
+	@PostMapping("/updateProfile")
+	public String updateProfile(@SessionAttribute("user_id") String user_id ) {
+		System.out.println();
+		return "redirect:/user/"+user_id;
 	}
 	
 }
