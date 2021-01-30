@@ -39,6 +39,11 @@
 		content_no = #{content_no}
 	</select>
 
+	<select id="getUserContent" resultType="contents">
+		select * from contents where
+		user_id = #{user_id}
+	</select>
+
 	<select id="getContents" resultType="contents">
 		select * from contents order by content_no desc
 	</select>

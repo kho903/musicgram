@@ -1,8 +1,5 @@
 package samsung.spring.musicgram.controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,8 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import samsung.spring.musicgram.dao.PicMapper;
+import samsung.spring.musicgram.dto.Contents;
 import samsung.spring.musicgram.dto.Users;
+import samsung.spring.musicgram.service.ContentsService;
 import samsung.spring.musicgram.service.PicService;
 import samsung.spring.musicgram.service.UserService;
 
@@ -32,6 +30,9 @@ public class UsersController {
 
 	@Autowired
 	private PicService picService;
+
+	@Autowired
+	private ContentsService contentService;
 
 	// joinForm redirect
 	@GetMapping("/joinForm")
@@ -51,9 +52,10 @@ public class UsersController {
 	@GetMapping("/{user_id}")
 	public String getUser(@PathVariable(name="user_id") String user_id, ModelMap model) {
 		Users user = userService.getUser(user_id);
+		model.addAttribute("user", user);
 //		InputStream pic = new ByteArrayInputStream(picService.getPic(user_id).getFile_data());
 //		model.addAttribute("pic", pic);
-		model.addAttribute("user", user);
+		model.addAttribute("contentList", contentService.getUserContent(user_id));
 		return "user/view";
 	}
 	

@@ -19,4 +19,5 @@ public interface ContentsMapper {
 	public List<Contents> getTagContents(String tag);
 	public int pressLike(int content_no);
 	public int cancelLike(int content_no);
+	public List<Contents> getUserContent(String user_id);
 }
