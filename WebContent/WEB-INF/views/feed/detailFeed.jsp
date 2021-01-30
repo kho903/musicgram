@@ -39,7 +39,7 @@
 			<!-- <td>${content.content_no}</td>-->
 			<td><div class="content_box" style="background: #ffffff;">
 				<img class="profile" src="/musicgram/profile/${content.user_id}"
-					onerror="this.src='../img/default.png'">
+					onerror="this.src='/musicgram/img/default.png'">
 			</div></td>
 			<td>${content.user_id}</td>
 			<td>
@@ -52,7 +52,7 @@
 		<label for="comment">
 			<div class="box" style="background: #ffffff;">
 				<img class="profile" src="/musicgram/profile/${user_id}"
-					onerror="this.src='../img/default.png'">
+					onerror="this.src='/musicgram/img/default.png'">
 			</div>
 			<input id="comment" type="text" placeholder="댓글을 입력하세요" name="comment_text">
 		</label>
@@ -68,7 +68,7 @@
 				<td>
 					<div class="box" style="background: #ffffff;">
 						<img class="profile" src="/musicgram/profile/${comments.user_id}"
-								onerror="this.src='../img/default.png'">
+								onerror="this.src='/musicgram/img/default.png'">
 					</div>
 				</td>
 				<td>${comments.user_id}: ${comments.comment_text }</td>
