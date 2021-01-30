@@ -34,21 +34,23 @@
     <link rel="stylesheet" href="/musicgram/css/common.css">
     <link rel="stylesheet" href="/musicgram/css/style.css">
     <link rel="stylesheet" href="/musicgram/css/profile.css">
-    <link rel="shortcut icon" href="/musicgram/img/logo.png">
+    <!-- <link rel="shortcut icon" href="/musicgram/img/logo.png">-->
 
 </head>
 <body>
 
-<%-- <jsp:include page="/nav.jsp"/> --%>
+<jsp:include page="/nav.jsp"/>
 
 <section id="container">
-
+	<!-- 
     <header id="header">
         <section class="h_inner">
 
             <h1 class="logo">
                 <a href="index.html">
-                    <div class="sprite_insta_icon"></div>
+                    <div class="sprite_insta_icon">
+                    <a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
+                    </div>
                     <div>
                         <div class="sprite_write_logo"></div>
                     </div>
@@ -73,6 +75,7 @@
             </div>
         </section>
     </header>
+    -->
 
 
     <div id="main_container">
@@ -90,8 +93,8 @@
                 <div class="detail">
                     <div class="top">
                         <div class="user_name">${user.user_id }</div>
-                        <a href="profile_edit.html" class="profile_edit">프로필편집</a>
-                        <a href="#" class="logout">로그아웃</a>
+                        <a href="/musicgram/user/updateProfile" class="profile_edit">프로필편집</a>
+                        <a href="/musicgram/user/logout" class="logout">로그아웃</a>
                     </div>
 
                     <ul class="middle">
@@ -120,8 +123,7 @@
                 <c:forEach var="content" items="${contentList}">
 	                <div class="pic">
 	                    <a href="#">
-		                	<iframe width="560" height="315" src="${content.youtube_url}" frameborder="0" align="middle"
-		                		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		                	<iframe width="320" height="180" src="https://img.youtube.com/vi/${content.youtube_url}/mqdefault.jpg"></iframe>
 	                    </a>
 	                </div>
 				</c:forEach>

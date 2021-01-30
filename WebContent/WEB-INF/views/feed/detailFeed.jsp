@@ -43,7 +43,7 @@
 			</div></td>
 			<td>${content.user_id}</td>
 			<td>
-			<iframe width="560" height="315" src="${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</td>
 			<td>${content.text}</td>
 		</tr>
