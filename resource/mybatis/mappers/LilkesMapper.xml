@@ -5,7 +5,7 @@
 <mapper namespace="samsung.spring.musicgram.dao.LikesMapper">
 
 	<insert id="pressLike" parameterType="Hashmap" useGeneratedKeys="true">
-		insert into likes values(like_no.nextval, #{content_no}, #{user_id})
+		insert into likes values(like_seq.nextval, #{content_no}, #{user_id})
 	</insert>
 	
 	<select id="isPressLike" parameterType="hashmap" resultType="Integer">

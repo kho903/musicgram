@@ -44,7 +44,7 @@ public class UsersController {
 	public String join(@ModelAttribute Users user, HttpServletRequest request) {
 		userService.userJoin(user);
 		System.out.println(user);
-		return "redirect:/hello";
+		return "redirect:/user/loginForm";
 	}
 	
 	// 유저정보 출력 (안됨)

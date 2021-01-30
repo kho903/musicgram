@@ -10,6 +10,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+	.box {
+    width: 50px;
+    height: 50px; 
+    border-radius: 70%;
+    overflow: hidden;
+    display: inline-block;
+	}
+	.profile {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	}
+</style>
+
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
@@ -20,9 +36,13 @@
 					<c:forEach var="content" items="${contentList}">
 						<div class="card"   >
 							<div class="card-header">
-								<td>${content.content_no}</td>
-								<td>${content.user_id}</td>
+								<!-- <td>${content.content_no}</td> -->
+								<div class="box" style="background: #ffffff;">
+									<img class="profile" src="/musicgram/profile/${content.user_id}"
+										onerror="this.src='../img/default.png'">
 								</div>
+								<span>${content.user_id}</span>
+							</div>
 							<div class="card-body">
 								<iframe width="560" height="315" src="${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 									
@@ -37,9 +57,12 @@
 							</div>
 							<ul>
 								<a href="content/${content.content_no}" class="card-link">자세히 보기</a>
-								<a href="content/update/${content.content_no}" class="card-link">수정</a>
-								<a href="content/delete/${content.content_no}" class="card-link">삭제</a>
+								<c:if test="${content.user_id eq user_id}">
+									<a href="content/update/${content.content_no}" class="card-link">수정</a>
+									<a href="content/delete/${content.content_no}" class="card-link">삭제</a>
+								</c:if>
 							</ul>
+							
 						</div>
 					<br><br><br>
 					</c:forEach>
