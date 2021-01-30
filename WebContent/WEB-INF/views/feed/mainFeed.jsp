@@ -3,6 +3,8 @@
 <%@ page import="samsung.spring.musicgram.dao.*"%>
 <%@ page import="samsung.spring.musicgram.dto.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.text.DecimalFormat"%>
+<%@ page import="java.text.SimpleDateFormat"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
@@ -77,12 +79,45 @@
 
 							<div class="time-log">
 								<span id="diffTime">
-									<script type="text/javascript">
-										var now = new Date();
-										var create_date = new Date('${content.create_date}');
-										var diff = now.getTime() - create_date.getTime();
-										$("#diffTime").text(diff);
-									</script>
+									<%
+    DecimalFormat    capa        = new DecimalFormat("#");
+    SimpleDateFormat df          = new SimpleDateFormat("yyyy-MM-dd E");
+    SimpleDateFormat dfv         = new SimpleDateFormat("yyyyMMdd");
+    SimpleDateFormat dfh         = new SimpleDateFormat("yyyyMMddHH");
+    SimpleDateFormat dfhm        = new SimpleDateFormat("yyyyMMddHHmm");
+    Calendar cal = Calendar.getInstance();
+ 
+    int yyyy     = cal.get(Calendar.YEAR);    //현재 년도
+    int MM        = cal.get(Calendar.MONTH);   //현재 달
+    int dd        = cal.get(Calendar.DATE);    //현재 날짜
+    int hh        = cal.get(Calendar.HOUR);    //현재 시간
+    cal.set(yyyy, MM, dd); //현재 날짜 세팅
+    
+    /* 시,분까지 계산 */
+    String resdate = "${content.create_date}";    //기준일
+    String today = dfhm.format(cal.getTime());
+    Date beginDate = null;
+    Date endDate = null;
+    
+    long diff = 0;
+    long diffDays = 0;
+    long diffTime = 0;
+    
+  /*   beginDate = dfhm.parse(resdate);  */   //parse: 문자형 날짜 -> Date 형태로 변환
+    endDate = dfhm.parse(today);
+ 
+	diff = endDate.getTime() - beginDate.getTime(); //밀리세컨단위로 계산됨
+    diffDays = diff / (24 * 60 * 60 * 1000);
+    diffTime = diff / (60 * 60 * 1000);
+    
+    //out.println(beginDate+"/");
+    //out.println(endDate+"/");
+    out.println("기준일로부터"+ diffDays +"일 경과<br/>");
+    out.println("기준일로부터"+ diffTime +"시간 경과");
+    
+    
+    
+%>
 								</span>
 							</div>
 						</div>
