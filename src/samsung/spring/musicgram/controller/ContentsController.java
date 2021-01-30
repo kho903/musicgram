@@ -3,8 +3,11 @@ package samsung.spring.musicgram.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.UncategorizedSQLException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -89,8 +92,6 @@ public class ContentsController {
 		return contentsService.isPressLike(content_no, user_id);
 	}
 	
-	
-	
 	@GetMapping("/getLike/{content_no}")
 	public String getLike(@PathVariable(name="content_no") int content_no, Model model) {
 		int count = contentsService.getLike(content_no);
@@ -112,10 +113,15 @@ public class ContentsController {
 	}
 	
 	@PostMapping("/upload")
-	public String createContent(Contents content) {
-		String res = "";
-		res = contentsService.createContent(content) == 1 ? "redirect:/content" : "feed/uploadFail";
-		return res;
+	public String createContent(Contents content, HttpSession session) {
+		try {
+			String res = "";
+			res = contentsService.createContent(content) == 1 ? "redirect:/content" : "redirect:/upload";
+			return res;			
+		}catch (DataIntegrityViolationException e) {
+			session.setAttribute("errMsg", "빈칸을 채워주세요.");
+			return "redirect:/upload.jsp";
+		}
 	}
 	
 	@GetMapping("/update/{content_no}")
@@ -125,10 +131,16 @@ public class ContentsController {
 	}
 	
 	@PostMapping("/update")
-	public String updateContent(Contents content) {
-		String res = "";
-		res = contentsService.updateContent(content) == 1 ? "redirect:/content" : "feed/uploadFail";
-		return res;
+	public String updateContent(Contents content, HttpSession session) {
+		try {
+			String res = "";
+			res = contentsService.updateContent(content) == 1 ? "redirect:/content" : "feed/uploadFail";
+			return res;
+		}catch (UncategorizedSQLException e) {
+			session.setAttribute("errMsg", "빈칸을 채워주세요.");
+			return "redirect:/content/update/" + content.getContent_no();
+		}
+
 	}
 	
 	@GetMapping("/delete/{content_no}")

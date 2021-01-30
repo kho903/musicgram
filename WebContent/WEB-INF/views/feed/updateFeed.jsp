@@ -9,13 +9,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+	String errMsg = (String) session.getAttribute("errMsg");
+	if(errMsg==null) errMsg = "";
+	session.removeAttribute("errMsg");
+%>
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
+	<div class='container'>
 	<form action="/musicgram/content/update" method="post">
 		<input type="hidden" name="content_no" value="${content.content_no}" readonly="readonly"><br>
 		<input type="hidden" name="user_id" value="${content.user_id}" readonly="readonly"><br>
-		youtube_url : <input type="text" name="youtube_url" value="${content.youtube_url}"><br>
+		<input type="hidden" name="youtube_url" value="${content.youtube_url}"><br>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 		text : <input type="text" name="text" value="${content.text}"><br>
 		genre :
 		<select name="genre" id="genre">
@@ -38,5 +45,7 @@
 		tag : <input type="text" name="tag" value="${content.tag}"><br>
 		<input type="submit" value="update"/>
 	</form>
+	<div id="errMsg" style="color:red;"><%=errMsg %></div>
+	</div>
 </body>
 </html>

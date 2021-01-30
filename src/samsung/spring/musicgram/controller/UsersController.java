@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import samsung.spring.musicgram.dto.Pic;
 import samsung.spring.musicgram.dto.Users;
@@ -55,6 +57,9 @@ public class UsersController {
 		}catch(DuplicateKeyException e) {
 			session.setAttribute("errMsg", "이미 존재하는 아이디 입니다.");
 			return "redirect:/user/joinForm";
+		}catch(DataIntegrityViolationException e) {
+			session.setAttribute("errMsg", "빈칸을 채워주세요.");
+			return "redirect:/user/joinForm";
 		}
 	}
 	
@@ -86,6 +91,7 @@ public class UsersController {
 				return "redirect:/user/loginForm";
 			}
 		} catch(NullPointerException e) {
+			System.out.println(e);
 			session.setAttribute("errMsg", "존재하지 않는 아이디 입니다.");
 			return "redirect:/user/loginForm";
 		}
