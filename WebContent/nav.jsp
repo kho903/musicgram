@@ -25,7 +25,7 @@
 		String user_id = (String)session.getAttribute("user_id");
 		out.println(user_id+"님 반갑습니다.");
 	%>
-		<a href="#" onclick="location.href='upload.jsp'">upload</a>
+		<a href="#" onclick="location.href='/musicgram/upload.jsp'">upload</a>
 	
 		<a href="#" onclick="location.href='/musicgram/user/${user_id}'">my page</a>
 		<a href="/musicgram/user/logout">로그아웃</a>
