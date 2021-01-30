@@ -5,6 +5,7 @@
 <%@ page import="java.util.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,18 +13,19 @@
 <title>Insert title here</title>
 
 <style type="text/css">
-	.box {
-    width: 50px;
-    height: 50px; 
-    border-radius: 70%;
-    overflow: hidden;
-    display: inline-block;
-	}
-	.profile {
-	    width: 100%;
-	    height: 100%;
-	    object-fit: cover;
-	}
+.box {
+	width: 50px;
+	height: 50px;
+	border-radius: 70%;
+	overflow: hidden;
+	display: inline-block;
+}
+
+.profile {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 </style>
 
 </head>
@@ -32,46 +34,85 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-7">
-					<c:forEach var="content" items="${contentList}">
-						<div class="card"   >
-							<div class="card-header">
-								<!-- <td>${content.content_no}</td> -->
-								<div class="box" style="background: #ffffff;">
-									<img class="profile" src="/musicgram/profile/${content.user_id}"
-										onerror="this.src='/musicgram/img/default.png'">
-								</div>
-								<span>${content.user_id}</span>
+				<c:forEach var="content" items="${contentList}">
+					<div class="card">
+						<div class="card-header">
+							<!-- <td>${content.content_no}</td> -->
+							<div class="box" style="background: #ffffff;">
+								<img class="profile" src="/musicgram/profile/${content.user_id}"
+									onerror="this.src='/musicgram/img/default.png'">
 							</div>
-							<div class="card-body">
-								<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-									
-									<p><a href="content/pressLike/${content.content_no}" class="card-link">좋아요</a></p>
-									<button onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>
-									
-									<p><a href="content/cancelLike/${content.content_no}" class="card-link">좋아요 취소</a></p>
-									<button onclick="cancelLike(${content.content_no},${content.like_count})">좋아요 취소</button>
-									
-								<p >좋아요 개수 <span id="countLike${content.content_no}">${content.like_count}</span></p>
-								<p>${content.text}</p>
-							</div>
-							<ul>
-								<a href="content/${content.content_no}" class="card-link">자세히 보기</a>
-								<c:if test="${content.user_id eq user_id}">
-									<a href="content/update/${content.content_no}" class="card-link">수정</a>
-									<a href="content/delete/${content.content_no}" class="card-link">삭제</a>
-								</c:if>
-							</ul>
-							
+							<span>${content.user_id}</span> <a
+								href="content/${content.content_no}" class="card-link"> <img
+								class="icon-react icon-more" src="/musicgram/img/more.png"
+								alt="more" align="right">
+							</a>
 						</div>
-					<br><br><br>
-					</c:forEach>
+						<div class="card-body">
+							<iframe width="560" height="315"
+								src="https://www.youtube.com/embed/${content.youtube_url}"
+								frameborder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowfullscreen></iframe>
+
+							<p>
+								<a href="content/pressLike/${content.content_no}"
+									class="card-link">좋아요</a>
+							</p>
+							<button
+								onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>
+
+							<p>
+								<a href="content/cancelLike/${content.content_no}"
+									class="card-link">좋아요 취소</a>
+							</p>
+							<button
+								onclick="cancelLike(${content.content_no},${content.like_count})">좋아요
+								취소</button>
+
+							<p>
+								좋아요 개수 <span id="countLike${content.content_no}">${content.like_count}</span>
+							</p>
+							<p>${content.text}</p>
+
+							<div class="time-log">
+								<span id="diffTime">
+									<script type="text/javascript">
+										var now = new Date();
+										var create_date = new Date('${content.create_date}');
+										var diff = now.getTime() - create_date.getTime();
+										$("#diffTime").text(diff);
+									</script>
+								</span>
+							</div>
+						</div>
+						<ul>
+							<c:if test="${content.user_id eq user_id}">
+								<a href="content/update/${content.content_no}" class="card-link">수정</a>
+								<a href="content/delete/${content.content_no}" class="card-link">삭제</a>
+							</c:if>
+						</ul>
+
+					</div>
+					<br>
+					<br>
+					<br>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
 </body>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>﻿
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+﻿
 
 <script>
+function diffDate(create){
+	var now = new Date();
+	var create_date = new Date('${content.create_date}');
+	var diff = now.getTime() - create_date.getTime();
+	$("#diffTime").text(diff);
+}
+
 
 function pressLike(content_no, like_count){
 	$.ajax({

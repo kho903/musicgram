@@ -100,7 +100,7 @@
                     <ul class="middle">
                         <li>
                             <span>게시물</span>
-                            3
+                           3
                         </li>
                         <li>
                             <span>팔로워</span>

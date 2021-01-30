@@ -56,10 +56,10 @@
 			</div>
 			<input id="comment" type="text" placeholder="댓글을 입력하세요" name="comment_text">
 		</label>
-		<input type="submit" value="작성">
-		<input type="hidden" name="content_no" value="${content.content_no}">
-		<input type="hidden" name="user_id" value="${user_id}">
-	</form>
+			<input type="submit" value="작성">
+			<input type="hidden" name="content_no" value="${content.content_no}">
+			<input type="hidden" name="user_id" value="${user_id}">
+		</form>
 
 	<ul>
 		<c:forEach items="${comments}" var="comments">

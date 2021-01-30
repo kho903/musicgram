@@ -1,5 +1,7 @@
 package samsung.spring.musicgram.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import samsung.spring.musicgram.dto.Contents;
+import samsung.spring.musicgram.dto.Pic;
 import samsung.spring.musicgram.dto.Users;
 import samsung.spring.musicgram.service.ContentsService;
 import samsung.spring.musicgram.service.PicService;
@@ -95,14 +98,30 @@ public class UsersController {
 	}
 	
 	@GetMapping("/updateProfileForm")
-	public String updateProfile(@SessionAttribute("user_id") String user_id , Model model) {
+	public String updateProfileForm(@SessionAttribute("user_id") String user_id , Model model) {
 		model.addAttribute("user_description", userService.getUser(user_id).getDescription());
+		model.addAttribute("user_password", userService.getUser(user_id).getPassword());
 		return "profileUpload";
 	}
 	
 	@PostMapping("/updateProfile")
-	public String updateProfile(@SessionAttribute("user_id") String user_id ) {
-		System.out.println();
+	public String updateProfile(@SessionAttribute("user_id") String user_id, 
+			@RequestParam("user_password") String user_password, @RequestParam("user_description") String user_description,
+			@RequestParam("file") MultipartFile file) throws IOException {
+
+		Users updateUser = userService.getUser(user_id);
+		updateUser.setPassword(user_password);
+		updateUser.setDescription(user_description);
+		userService.updateUser(updateUser);
+		
+		Pic userPic = picService.getPic(user_id);
+		
+		if(file.getSize()!=0) {
+			userPic.setFile_data(file.getBytes());
+			userPic.setFile_name(file.getOriginalFilename());
+			userPic.setFile_size(file.getSize());
+			picService.updatePic(userPic);
+		}
 		return "redirect:/user/"+user_id;
 	}
 	
