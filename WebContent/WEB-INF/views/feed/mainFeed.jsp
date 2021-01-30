@@ -39,7 +39,7 @@
 								<!-- <td>${content.content_no}</td> -->
 								<div class="box" style="background: #ffffff;">
 									<img class="profile" src="/musicgram/profile/${content.user_id}"
-										onerror="this.src='../img/default.png'">
+										onerror="this.src='/musicgram/img/default.png'">
 								</div>
 								<span>${content.user_id}</span>
 							</div>
