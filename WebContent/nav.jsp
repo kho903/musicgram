@@ -12,8 +12,9 @@
 	<nav class="navbar navbar-expand-lg">
 	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px></a>
 	
-	<form action="/musicgram/tag/" method="get">
-		<input type="text" placeholder="tag를 검색하세요.">
+	<!-- 검색창 --> 
+	<form action="/musicgram/content/tag" method="get">
+		<input type="text" placeholder="tag를 검색하세요." name="tag">
 	</form>
 	
 	<%

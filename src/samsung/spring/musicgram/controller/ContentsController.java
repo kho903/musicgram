@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -39,8 +40,8 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
-	@GetMapping("/tag/{tag}")
-	public String getTagContents(@PathVariable(name="tag") String tag, Model model) {
+	@GetMapping("/tag")
+	public String getTagContents(@RequestParam(name="tag") String tag, Model model) {
 		List<Contents> tagContentsList = contentsService.getTagContents(tag);
 		model.addAttribute("contentList", tagContentsList);
 		return "feed/mainFeed";
