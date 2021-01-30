@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%
+	String errMsg = (String) session.getAttribute("errMsg");
+	if(errMsg==null) errMsg = "";
+	session.invalidate();
+%>
+
 </head>
 <body>
 <div class='container'>	
@@ -24,6 +30,7 @@
 		</table>
 		<input type="submit" value="Submit">
 	</form>
+	<div id="errMsg" style="color:red;"><%=errMsg %></div>
 	<a href="/musicgram/user/joinForm">회원가입</a>
 </div>
 	

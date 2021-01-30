@@ -29,8 +29,8 @@
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
-	<a href="#" onclick="location.href='upload.jsp'">upload</a>
 	<div class="container">
+	<a href="#" onclick="location.href='upload.jsp'">upload</a>
 		<div class="row">
 			<div class="col-7">
 					<c:forEach var="content" items="${contentList}">
@@ -44,7 +44,7 @@
 								<span>${content.user_id}</span>
 							</div>
 							<div class="card-body">
-								<iframe width="560" height="315" src="${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 									
 									<p><a href="content/pressLike/${content.content_no}" class="card-link">좋아요</a></p>
 									<button onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>

@@ -90,9 +90,7 @@ public class ContentsService {
 
 	public static String getYoutubeParse(String url) {
 		
-		String result = "https://www.youtube.com/embed/";
 		String parsing = "";
-
 		if (url.contains("=")) {
 			int index = url.indexOf("=");
 			parsing = url.substring(index + 1);
@@ -100,10 +98,7 @@ public class ContentsService {
 			int index = url.lastIndexOf("/");
 			parsing = url.substring(index + 1);
 		}
-
-		result = result + parsing;
-		
-		return result;
+		return parsing;
 
 	}
 

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import samsung.spring.musicgram.dto.Contents;
@@ -42,10 +44,15 @@ public class UsersController {
 	
 	// 회원가입 현재 redirect : 임시로 만든 hello
 	@PostMapping("/join")
-	public String join(@ModelAttribute Users user, HttpServletRequest request) {
-		userService.userJoin(user);
-		System.out.println(user);
-		return "redirect:/user/loginForm";
+	public String join(@ModelAttribute Users user, HttpSession session, HttpServletRequest request) {
+		try {
+			userService.userJoin(user);
+			System.out.println(user);
+			return "redirect:/user/loginForm";
+		}catch(DuplicateKeyException e) {
+			session.setAttribute("errMsg", "이미 존재하는 아이디 입니다.");
+			return "redirect:/user/joinForm";
+		}
 	}
 	
 	// 유저정보 출력 (안됨)
@@ -66,21 +73,31 @@ public class UsersController {
 	
 	@PostMapping("/login")
 	public String login(@RequestParam(name="user_id", required=true)String user_id, @RequestParam(name="password", required=true) String password, HttpSession session, RedirectAttributes redirectAttributes) {
-		if(userService.getUser(user_id).getPassword().equals(password)) {
-			session.setAttribute("user_id", user_id);
-			session.setAttribute("password", password);
-		}else {
+		try {
+			if(userService.getUser(user_id).getPassword().equals(password)) {
+				session.setAttribute("user_id", user_id);
+				session.setAttribute("password", password);
+				return "redirect:/content";
+			}else {
+				session.setAttribute("errMsg", "비밀번호가 틀렸습니다.");
+				return "redirect:/user/loginForm";
+			}
+		} catch(NullPointerException e) {
+			session.setAttribute("errMsg", "존재하지 않는 아이디 입니다.");
 			return "redirect:/user/loginForm";
 		}
-		return "redirect:/content";
 	}
-	
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Users user, Model model, HttpSession session) {
 		session.invalidate();
 		return "redirect:/user/loginForm";
 	}
-
+	
+	@GetMapping("/updateProfile")
+	public String updateProfile(@SessionAttribute("user_id") String user_id , Model model) {
+		model.addAttribute("user_description", userService.getUser(user_id).getDescription());
+		return "profileUpload";
+	}
 	
 }

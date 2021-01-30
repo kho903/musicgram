@@ -41,7 +41,7 @@
 
 	<select id="getUserContent" resultType="contents">
 		select * from contents where
-		user_id = #{user_id}
+		user_id = #{user_id} order by content_no desc
 	</select>
 
 	<select id="getContents" resultType="contents">
