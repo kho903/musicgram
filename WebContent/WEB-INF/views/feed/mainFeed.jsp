@@ -30,7 +30,6 @@
 <body>
 	<jsp:include page="/nav.jsp" />
 	<div class="container">
-	<a href="#" onclick="location.href='upload.jsp'">upload</a>
 		<div class="row">
 			<div class="col-7">
 					<c:forEach var="content" items="${contentList}">
