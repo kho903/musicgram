@@ -37,6 +37,10 @@
 		content_no = #{content_no}
 	</select>
 
+	<select id="countContent" resultType="java.lang.Integer">
+		select count(*) from contents where user_id = #{user_id}
+	</select>
+
 	<select id="getUserContent" resultType="contents">
 		select * from contents where
 		user_id = #{user_id} order by content_no desc
