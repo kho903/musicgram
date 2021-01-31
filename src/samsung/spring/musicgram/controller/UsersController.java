@@ -71,6 +71,7 @@ public class UsersController {
 //		InputStream pic = new ByteArrayInputStream(picService.getPic(user_id).getFile_data());
 //		model.addAttribute("pic", pic);
 		model.addAttribute("contentList", contentService.getUserContent(user_id));
+		model.addAttribute("countContent", contentService.countContent(user_id));
 		return "user/view";
 	}
 	
@@ -107,10 +108,10 @@ public class UsersController {
 	}
 	
 	@GetMapping("/updateProfileForm")
-	public String updateProfileForm(@SessionAttribute("user_id") String user_id , Model model) {
+	public String updateProfileForm(@SessionAttribute("session_id") String user_id , Model model) {
 		model.addAttribute("user_description", userService.getUser(user_id).getDescription());
 		model.addAttribute("user_password", userService.getUser(user_id).getPassword());
-		return "profileUpload";
+		return "user/profileUpload";
 	}
 	
 	@PostMapping("/updateProfile")

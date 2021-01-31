@@ -42,6 +42,10 @@
 	
 	</nav>
 		<div class="container">
+			<div class="btn-group">
+				<div class="btn"
+					onclick="location.href='/musicgram/content/'">전체</div>
+			</div>
 			<c:forEach var="genre" items="${genreList}">
 				<div class="btn-group">
 					<div class="btn"
@@ -49,7 +53,6 @@
 				</div>
 			</c:forEach>
 		</div>
-
 	</div>
 </body>
 </html>

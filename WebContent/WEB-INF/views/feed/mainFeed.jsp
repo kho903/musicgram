@@ -127,7 +127,7 @@
 						</div>
 						<ul>
 
-							<c:if test="${content.key.user_id eq user_id}">
+							<c:if test="${content.key.user_id eq session_id}">
 								<a href="/musicgram/content/update/${content.key.content_no}" class="card-link">수정</a>
 								<a href="/musicgram/content/delete/${content.key.content_no}" class="card-link">삭제</a>
 

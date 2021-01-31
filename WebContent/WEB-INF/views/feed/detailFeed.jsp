@@ -35,7 +35,7 @@
 <body>
 	<!-- nav bar -->
 	<jsp:include page="/nav.jsp" />
-	
+	<div class='container'>
 	<!--  게시물 -->
 	<table>
 		<tr>
@@ -57,14 +57,14 @@
 		<form action="/musicgram/comments/create" method="post">
 		<label for="comment">
 			<div class="box" style="background: #ffffff;">
-				<img class="profile" src="/musicgram/profile/${user_id}"
+				<img class="profile" src="/musicgram/profile/${session_id}"
 					onerror="this.src='/musicgram/img/default.png'">
 			</div>
 			<input id="comment" type="text" placeholder="댓글을 입력하세요" name="comment_text">
 		</label>
 			<input type="submit" value="작성">
 			<input type="hidden" name="content_no" value="${content.content_no}">
-			<input type="hidden" name="user_id" value="${user_id}">
+			<input type="hidden" name="user_id" value="${session_id}">
 		</form>
 
 	<!-- 댓글 리스트 -->
@@ -79,13 +79,13 @@
 					</div>
 				</td>
 				<td><a href="/musicgram/user/${comments.user_id}">${comments.user_id}</a>: ${comments.comment_text }</td>
-				<c:if test="${comments.user_id eq user_id}">
+				<c:if test="${comments.user_id eq session_id}">
 					<td><button onclick="location.href='/musicgram/comments/delete/${comments.comment_no}&${comments.content_no}'">삭제</button></td>
 				</c:if>
 				</tr>
 			</table>
 		</c:forEach>
 	</ul>
-	
+	</div>
 </body>
 </html>
