@@ -15,4 +15,5 @@
 	<delete id="cancelLike" parameterType="Hashmap">
 		delete from likes where content_no = #{content_no} and user_id = #{user_id}
 	</delete>
+	
 </mapper>

@@ -42,41 +42,6 @@
 <jsp:include page="/nav.jsp"/>
 
 <section id="container">
-	<!-- 
-    <header id="header">
-        <section class="h_inner">
-
-            <h1 class="logo">
-                <a href="index.html">
-                    <div class="sprite_insta_icon">
-                    <a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px>
-                    </div>
-                    <div>
-                        <div class="sprite_write_logo"></div>
-                    </div>
-                </a>
-            </h1>
-
-            <div class="search_field">
-                <input type="text" placeholder="검색" tabindex="0">
-
-                <div class="fake_field">
-                    <span class=sprite_small_search_icon></span>
-                    <span>검색</span>
-                </div>
-            </div>
-
-
-            <div class="right_icons">
-                <a href="new_post.html"><div class="sprite_camera_icon"></div></a>
-                <a href="login.html"><div class="sprite_compass_icon"></div></a>
-                <a href="follow.html"><div class="sprite_heart_icon_outline"></div></a>
-                <a href="profile.html"><div class="sprite_user_icon_outline"></div></a>
-            </div>
-        </section>
-    </header>
-    -->
-
 
     <div id="main_container">
 
@@ -91,16 +56,20 @@
                 </div>
 
                 <div class="detail">
-                    <div class="top">
-                        <div class="user_name">${user.user_id }</div>
-                        <a href="/musicgram/user/updateProfileForm" class="profile_edit">프로필편집</a>
-                        <a href="/musicgram/user/logout" class="logout">로그아웃</a>
+                	
+                   <div class="top">
+                    <div class="user_name">${user.user_id}</div>
+	                	<c:if test="${session_id eq user.user_id }" >
+			                        <a href="/musicgram/user/updateProfileForm" class="profile_edit">프로필편집</a>
+			                        <a href="/musicgram/user/logout" class="logout">로그아웃</a>
+	                	</c:if>
                     </div>
+                    
 
                     <ul class="middle">
                         <li>
                             <span>게시물</span>
-                           3
+                           ${countContent }
                         </li>
                         <li>
                             <span>팔로워</span>
