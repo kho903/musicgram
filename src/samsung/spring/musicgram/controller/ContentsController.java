@@ -47,6 +47,7 @@ public class ContentsController {
 	@GetMapping("/tag")
 	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
 		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);
+		model.addAttribute("tag", tag);
 		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
 	}
