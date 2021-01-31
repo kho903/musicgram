@@ -106,19 +106,28 @@ public class ContentsService {
 		return resultMap;
 	}
 
+	
 	public static String getYoutubeParse(String url) {
 		
 		String parsing = "";
-		if (url.contains("=")) {
+		
+		if(url.contains("&")) {
+			int f_index = url.indexOf("=");
+			int l_index = url.indexOf("&");
+			parsing = url.substring(f_index+1, l_index);
+			
+		} else if(url.contains("=")) {
 			int index = url.indexOf("=");
-			parsing = url.substring(index + 1);
+			parsing = url.substring(index+1);
+			
 		} else {
 			int index = url.lastIndexOf("/");
-			parsing = url.substring(index + 1);
+			parsing = url.substring(index+1);
 		}
+		
 		return parsing;
-
 	}
+
 
 	public List<Contents> getUserContent(String user_id) {
 		return contentsMapper.getUserContent(user_id);

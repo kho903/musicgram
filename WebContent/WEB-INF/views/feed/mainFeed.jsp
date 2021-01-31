@@ -33,20 +33,22 @@
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
-	${resultMsg}
+
+	<!-- 게시글 영역 -->
 	<div class="container">
 		<div class="row">
-			<div class="col-7">
+			<div class="col-7" id="feed">
 				<c:forEach var="content" items="${contentList}">
 					<div class="card">
 						<div class="card-header">
 							<div class="box" style="background: #ffffff;">
+                <a href="/musicgram/user/${content.key.user_id}">
 								<img class="profile" src="/musicgram/profile/${content.key.user_id}"
-									onerror="this.src='/musicgram/img/default.png'">
+                     onerror="this.src='/musicgram/img/default.png'"> </a>
 							</div>
-							<span>${content.key.user_id}</span> <a
-								href="content/${content.key.content_no}" class="card-link"> <img
-								class="icon-react icon-more" src="/musicgram/img/more.png"
+              <a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+              <a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
+                <img class="icon-react icon-more" src="/musicgram/img/more.png"
 								alt="more" align="right">
 							</a>
 						</div>
@@ -71,6 +73,7 @@
 								좋아요 개수 <span id="countLike${content.key.content_no}">${content.key.like_count}</span>
 							</p>
 							<p>${content.key.text}</p>
+							<p>#<a href="/musicgram/content/tag?tag=${content.key.tag}">${content.key.tag}</a></p>
 
 							<div class="time-log">
 							
@@ -118,9 +121,11 @@
 							</div>
 						</div>
 						<ul>
+
 							<c:if test="${content.key.user_id eq user_id}">
 								<a href="/musicgram/content/update/${content.key.content_no}" class="card-link">수정</a>
 								<a href="/musicgram/content/delete/${content.key.content_no}" class="card-link">삭제</a>
+
 							</c:if>
 						</ul>
 
@@ -137,6 +142,7 @@
 ﻿
 
 <script>
+
 function diffDate(create){
 	var now = new Date();
 	var create_date = new Date('${content.create_date}');
@@ -144,6 +150,23 @@ function diffDate(create){
 	$("#diffTime").text(diff);
 }
 
+function filterGenre(genre){
+	$.ajax({
+		url:"content/genre",
+		type:"get",
+		data: {"genre" : genre},
+		datatype:'json',
+		success : function(data){
+			$('#feed').empty();
+			var feed = "";
+			$.each(data, function (i, content) {
+            });
+		},
+		error: function(e){
+			console.log(e);
+		}
+	})
+} 
 
 function pressLike(content_no, like_count){
 	$.ajax({

@@ -83,8 +83,11 @@ public class UsersController {
 	public String login(@RequestParam(name="user_id", required=true)String user_id, @RequestParam(name="password", required=true) String password, HttpSession session, RedirectAttributes redirectAttributes) {
 		try {
 			if(userService.getUser(user_id).getPassword().equals(password)) {
-				session.setAttribute("user_id", user_id);
+				session.setAttribute("session_id", user_id);
 				session.setAttribute("password", password);
+				String[] genreList = {"Ballad", "Dance", "Pop", "Acoustic", "Hiphop", "RnB",
+						"Electronic", "Rock", "Jazz", "Indie", "Trot", "CCM"};
+				session.setAttribute("genreList", genreList);
 				return "redirect:/content";
 			}else {
 				session.setAttribute("errMsg", "비밀번호가 틀렸습니다.");

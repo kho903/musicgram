@@ -33,21 +33,27 @@
 </style>
 </head>
 <body>
+	<!-- nav bar -->
 	<jsp:include page="/nav.jsp" />
+	
+	<!--  게시물 -->
 	<table>
 		<tr>
 			<!-- <td>${content.content_no}</td>-->
 			<td><div class="content_box" style="background: #ffffff;">
-				<img class="profile" src="/musicgram/profile/${content.user_id}"
-					onerror="this.src='/musicgram/img/default.png'">
+				<a href="/musicgram/user/${content.user_id}">
+				<img class="profile" src="/musicgram/profile/${content.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
 			</div></td>
-			<td>${content.user_id}</td>
+			<td><a href="/musicgram/user/${content.user_id}">${content.user_id }</a></td>
 			<td>
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</td>
 			<td>${content.text}</td>
+			<td>#<a href="/musicgram/content/tag?tag=${content.tag}">${content.tag}</a></td>
 		</tr>
 	</table>
+	
+	<!-- 댓글 작성 -->
 		<form action="/musicgram/comments/create" method="post">
 		<label for="comment">
 			<div class="box" style="background: #ffffff;">
@@ -61,17 +67,18 @@
 			<input type="hidden" name="user_id" value="${user_id}">
 		</form>
 
+	<!-- 댓글 리스트 -->
 	<ul>
 		<c:forEach items="${comments}" var="comments">
 			<table>
 				<tr>
 				<td>
 					<div class="box" style="background: #ffffff;">
-						<img class="profile" src="/musicgram/profile/${comments.user_id}"
-								onerror="this.src='/musicgram/img/default.png'">
+					<a href="/musicgram/user/${comments.user_id}">
+						<img class="profile" src="/musicgram/profile/${comments.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
 					</div>
 				</td>
-				<td>${comments.user_id}: ${comments.comment_text }</td>
+				<td><a href="/musicgram/user/${comments.user_id}">${comments.user_id}</a>: ${comments.comment_text }</td>
 				<c:if test="${comments.user_id eq user_id}">
 					<td><button onclick="location.href='/musicgram/comments/delete/${comments.comment_no}&${comments.content_no}'">삭제</button></td>
 				</c:if>
