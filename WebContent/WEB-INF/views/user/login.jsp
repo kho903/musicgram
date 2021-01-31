@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class='container'>	
+	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px></a>
 	<h1>로그인 폼이에용</h1>
 	<form action="login" method="post">
 		<table class="table">

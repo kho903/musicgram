@@ -14,6 +14,7 @@
 <body>
 	<jsp:include page="/nav.jsp" />
 	<div class='container'>
+		<h1>업로드 페이지</h1>
 		<form action="content/upload" method="post">
 			<input type="hidden" name="user_id" value="${session_id}"><br>
 			youtube_url : <input type="text" name="youtube_url"><br>

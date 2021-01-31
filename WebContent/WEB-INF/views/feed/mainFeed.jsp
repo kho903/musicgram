@@ -48,11 +48,11 @@
 				<c:forEach var="content" items="${contentList}">
 					<div class="card scrolling" data-bno = "${content.key.content_no }">
 						<div class="card-header ">
-
 							<div class="box" style="background: #ffffff;">
-                <a href="/musicgram/user/${content.key.user_id}">
+                				<a href="/musicgram/user/${content.key.user_id}">
 								<img class="profile" src="/musicgram/profile/${content.key.user_id}"
-                     onerror="this.src='/musicgram/img/default.png'"> </a>
+                     					onerror="this.src='/musicgram/img/default.png'"> 
+                     			</a>
 							</div>
               <a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
               <a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
@@ -146,6 +146,8 @@
 				</c:forEach>
 			</div>
 		</div>
+		<jsp:include page="/footer.jsp" />
+		
 	</div>
 </body>
 ﻿
