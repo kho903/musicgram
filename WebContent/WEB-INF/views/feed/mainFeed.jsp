@@ -11,7 +11,7 @@
 
 <html>
 <head>
-<script type="text/javascript" src="jquery-ui.min.js"></script>
+<script type="text/javascript" src="/musicgram/js/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -238,7 +238,7 @@ $(window).scroll(function(){
 							// 7. 새로운 데ㅐ이터를 갖고 html 형태의 문자열을 만들어준다.
 							function(){
 								console.log(this);
-								str += "<div class='card scrolling' data-bno='" + this.content_no + "'>""
+								str += "<div class='card scrolling' data-bno='" + this.content_no + "'>"
 										+ "<div class='card-header'>"
 										+ "<div class='box' style='background: #ffffff;'>"
 										+ "<img class='profile' src='/musicgram/profile/"+this.user_id+"'"
@@ -269,14 +269,10 @@ $(window).scroll(function(){
 								+	"<p>좋아요 개수 <span id=\"countLike"+this.content_no+"\">"+this.like_count}+"</span></p>"
 								+	"<p>" + this.text +"</p>"
 								+ "</div>"
-								+ "<ul>"
-								
-								+ "</ul>"
 							+ "</div>"
 							+ "<br>"
 							+ "<br>"
-							+ "<br>"
-							+"</div>"
+							+ "<br></div>"
 							});
 						// 8. 이전까지 뿌려졌던 데이터를 비워주고, 지정한 위치 바로 밑에 위에서 만든 str을 뿌려준다.
 						$(".card").empty(); // 이걸 안하면 안지워지지 않을까
