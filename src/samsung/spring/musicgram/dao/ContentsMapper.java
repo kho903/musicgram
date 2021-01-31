@@ -20,4 +20,6 @@ public interface ContentsMapper {
 	public int pressLike(int content_no);
 	public int cancelLike(int content_no);
 	public List<Contents> getUserContent(String user_id);
+	
+	public List<Contents> infiniteScrollDown(Integer no);
 }

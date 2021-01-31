@@ -105,5 +105,9 @@ public class ContentsService {
 	public List<Contents> getUserContent(String user_id) {
 		return contentsMapper.getUserContent(user_id);
 	}
+	
+	public List<Contents> infiniteScrollDown(Integer no){
+		return  contentsMapper.infiniteScrollDown(no);
+	}
 
 }
