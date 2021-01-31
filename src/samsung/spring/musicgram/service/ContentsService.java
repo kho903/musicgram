@@ -1,10 +1,8 @@
 package samsung.spring.musicgram.service;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +24,20 @@ public class ContentsService {
 		return contentsMapper.getContent(content_no);
 	}
 
-	public List<Contents> getContents() {
-		return contentsMapper.getContents();
+	public HashMap<Contents,Integer> getContents(String user_id) {
+		
+		List<Contents> contents = contentsMapper.getContents(); // 모든 게시물을 가져오고
+		LinkedHashMap<Contents, Integer> resultMap = new LinkedHashMap<Contents, Integer>(); //리턴할 linkedhashmap 생성
+		
+		for(int i=0; i<contents.size(); i++) { //모든 게시물에 대해서 user가 좋아요를 눌렀는지 확인하기 위한 검사
+			HashMap<String, Object> map = new HashMap<String, Object>(); // DB조회를 위한 map 생성
+			int content_no = contents.get(i).getContent_no();
+			map.put("content_no", content_no); //게시물 번호
+			map.put("user_id", user_id); //user_id를 저장
+			int result = likesMapper.isPressLike(map); //좋아요를 눌렀는지 확인. 좋아요를 눌렀으면 return 1, 아니면 return 0
+			resultMap.put(contents.get(i),result); // 리턴할 linkedhashmap에 넣기.
+		}
+		return resultMap;
 	}
 
 	public int deleteContent(int content_no) {
@@ -51,8 +61,20 @@ public class ContentsService {
 		return contentsMapper.getGenreContents(genre);
 	}
 
-	public List<Contents> getTagContents(String tag) {
-		return contentsMapper.getTagContents(tag);
+	public HashMap<Contents,Integer> getTagContents(String tag, String user_id) {
+		
+		List<Contents> tagContents = contentsMapper.getTagContents(tag); // 태그로 검색한 게시물을 가져옴
+		LinkedHashMap<Contents, Integer> resultMap = new LinkedHashMap<Contents, Integer>();
+		
+		for(int i=0; i<tagContents.size(); i++) { //getContent와 동일.
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			int content_no = tagContents.get(i).getContent_no();
+			map.put("content_no", content_no);
+			map.put("user_id", user_id);
+			int result = likesMapper.isPressLike(map);
+			resultMap.put(tagContents.get(i),result);
+		}
+		return resultMap;
 	}
 
 	public int isPressLike(int content_no, String user_id) {
@@ -61,31 +83,27 @@ public class ContentsService {
 		map.put("user_id", user_id);
 		return likesMapper.isPressLike(map);
 	}
-	public int pressLike(int content_no, String user_id) { 
-		//사용자가 좋아요를 눌렀을 때, 이전에 좋아요를 눌렀던 게시물인지 아닌지 확인하고
-		//좋아요를 안누른 게시물이였을 경우에 likes 테이블에 정보 추가, contents	테이블에 해당 content의 좋아요 갯수 올리기
-		//좋아요를 누른 게시물이였을때는 안함
-		//최종적으로 jsp에 좋아요 카운트 정보 뿌리기 위해서 getlike값 리턴.
-		
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("content_no", content_no);
-		map.put("user_id", user_id);
-		if(likesMapper.isPressLike(map) == 0) { //좋아요 안누른 경우 
-			likesMapper.pressLike(map);
-			contentsMapper.pressLike(content_no);
-		}
-		return contentsMapper.getLike(content_no);
-	}
+	public HashMap<Integer, Integer> pressLike(int content_no, String user_id) { 
 
-	public int cancelLike(int content_no,  String user_id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
+		int check = 0;
+		HashMap<String, Object> map = new HashMap<String, Object>(); //DB조회를 위한 map 생성
 		map.put("content_no", content_no);
 		map.put("user_id", user_id);
-		if(likesMapper.isPressLike(map) == 1) { //좋아요를 눌렀을 경우 
-			likesMapper.cancelLike(map);
-			contentsMapper.cancelLike(content_no);
+		
+		if(likesMapper.isPressLike(map) == 0) { //좋아요 안누른 경우 
+			likesMapper.pressLike(map); // 유저가 해당 게시물의 좋아요를 눌렀다고 DB에 반영
+			contentsMapper.pressLike(content_no); //해당 게시물 좋아요 수 증가.
+			check = 1;
 		}
-		return contentsMapper.getLike(content_no);
+		else { //좋아요 누른 경우
+			likesMapper.cancelLike(map); //유저가 해당 게시물의 좋아요를 누른 정보 삭제.
+			contentsMapper.cancelLike(content_no); // 해당 게시물 좋아요 수 감소.
+		}
+		int resultLike = contentsMapper.getLike(content_no); 
+		HashMap<Integer, Integer> resultMap = new HashMap<Integer, Integer>();
+		resultMap.put(resultLike, check); // 변경된 좋아요 수랑 바뀐 상태를 mainfeed에 전달 
+		
+		return resultMap;
 	}
 
 	public static String getYoutubeParse(String url) {
