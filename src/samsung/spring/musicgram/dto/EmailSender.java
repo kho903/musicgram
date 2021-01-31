@@ -1,7 +1,7 @@
-package samsung.spring.musicgram.dto;
-
-public class EmailSender {
-	
-	@Autowired
-	
-}
+//package samsung.spring.musicgram.dto;
+//
+//public class EmailSender {
+//	
+//	@Autowired
+//	
+//}
