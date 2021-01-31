@@ -36,18 +36,19 @@ public class ContentsController {
 	private CommentsService commentsService;
 		
 	@GetMapping("/genre")
-	public String getGenreContents(@RequestParam(name="genre") String genre, Model model) {
+	public String getGenreContents(@RequestParam(name="genre") String genre, Model model, @SessionAttribute("session_id") String user_id) {
 		//장르별로 검색했을때 메인 피드에 다시 뿌려줌
-		List<Contents> genreContentsList = contentsService.getGenreContents(genre);
-		model.addAttribute("contentList", genreContentsList);
+		HashMap<Contents, Integer> resultMap = contentsService.getGenreContents(genre, user_id);
+		
+		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
 	}
 	
 	@GetMapping("/tag")
 	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
 		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);
-		model.addAttribute("contentList", contentsService.getTagContents(tag, user_id));
 		model.addAttribute("tag", tag);
+		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
 	}
 	
