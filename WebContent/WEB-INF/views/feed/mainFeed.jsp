@@ -35,6 +35,11 @@
 	<jsp:include page="/nav.jsp" />
 
 	<!-- 게시글 영역 -->
+	<c:if test="${not empty tag}">
+		<p>${tag}으로 검색</p>
+	</c:if>
+	
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-7" id="feed">

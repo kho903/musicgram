@@ -57,8 +57,21 @@ public class ContentsService {
 		return contentsMapper.getLike(content_no);
 	}
 
-	public List<Contents> getGenreContents(String genre) {
-		return contentsMapper.getGenreContents(genre);
+	public HashMap<Contents,Integer> getGenreContents(String genre, String user_id) {
+		
+		List<Contents> genreContents = contentsMapper.getGenreContents(genre);
+		LinkedHashMap<Contents, Integer> resultMap = new LinkedHashMap<Contents, Integer>();
+		
+		for(int i=0; i<genreContents.size(); i++) { //getContent와 동일.
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			int content_no = genreContents.get(i).getContent_no();
+			map.put("content_no", content_no);
+			map.put("user_id", user_id);
+			int result = likesMapper.isPressLike(map);
+			resultMap.put(genreContents.get(i),result);
+		}
+		
+		return resultMap;
 	}
 
 	public HashMap<Contents,Integer> getTagContents(String tag, String user_id) {
