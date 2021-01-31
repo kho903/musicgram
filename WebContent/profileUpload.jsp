@@ -9,7 +9,7 @@
 <body>
 <jsp:include page="nav.jsp"/>
 <h3>pic upload</h3>
-<form action="profile/upload/${user_id}" method="post" enctype="multipart/form-data">
+<form action="profile/upload/${session_id}" method="post" enctype="multipart/form-data">
     <table>
         <tr>
             <td>Select File</td>

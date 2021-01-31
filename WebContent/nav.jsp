@@ -18,17 +18,17 @@
 	</form>
 	
 	<%
-		if(session.getAttribute("user_id")==null){
+		if(session.getAttribute("session_id")==null){
 	%>
 		<a href="/musicgram/user/loginForm">로그인</a> 
 	<%
 		}else{
-		String user_id = (String)session.getAttribute("user_id");
-		out.println(user_id+"님 반갑습니다.");
+		String session_id = (String)session.getAttribute("session_id");
+		out.println(session_id+"님 반갑습니다.");
 	%>
 		<a href="#" onclick="location.href='/musicgram/upload.jsp'">upload</a>
 	
-		<a href="#" onclick="location.href='/musicgram/user/${user_id}'">my page</a>
+		<a href="#" onclick="location.href='/musicgram/user/${session_id}'">my page</a>
 		<a href="/musicgram/user/logout">로그아웃</a>
 	<%
 		}

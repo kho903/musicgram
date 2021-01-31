@@ -33,6 +33,7 @@
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
+	<!-- 게시글 영역 -->
 	<div class="container">
 		<div class="row">
 			<div class="col-7">
@@ -41,13 +42,12 @@
 						<div class="card-header">
 							<!-- <td>${content.content_no}</td> -->
 							<div class="box" style="background: #ffffff;">
-								<img class="profile" src="/musicgram/profile/${content.user_id}"
-									onerror="this.src='/musicgram/img/default.png'">
+								<a href="/musicgram/user/${content.user_id}">
+								<img class="profile" src="/musicgram/profile/${content.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
 							</div>
-							<span>${content.user_id}</span> <a
-								href="content/${content.content_no}" class="card-link"> <img
-								class="icon-react icon-more" src="/musicgram/img/more.png"
-								alt="more" align="right">
+							<a href="/musicgram/user/${content.user_id}">${content.user_id }</a>
+							<a href="/musicgram/content/${content.content_no}" class="card-link">
+								<img class="icon-react icon-more" src="/musicgram/img/more.png" alt="more" align="right">
 							</a>
 						</div>
 						<div class="card-body">
@@ -58,25 +58,23 @@
 								allowfullscreen></iframe>
 
 							<p>
-								<a href="content/pressLike/${content.content_no}"
+								<a href="/musicgram/content/pressLike/${content.content_no}"
 									class="card-link">좋아요</a>
 							</p>
-							<button
-								onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>
+							<button onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>
 
 							<p>
-								<a href="content/cancelLike/${content.content_no}"
+								<a href="/musicgram/content/cancelLike/${content.content_no}"
 									class="card-link">좋아요 취소</a>
 							</p>
-							<button
-								onclick="cancelLike(${content.content_no},${content.like_count})">좋아요
+							<button onclick="cancelLike(${content.content_no},${content.like_count})">좋아요
 								취소</button>
 
 							<p>
 								좋아요 개수 <span id="countLike${content.content_no}">${content.like_count}</span>
 							</p>
 							<p>${content.text}</p>
-
+							<p>#<a href="/musicgram/content/tag?tag=${content.tag}">${content.tag}</a></p>
 							<div class="time-log">
 							
 							
@@ -125,8 +123,8 @@
 						</div>
 						<ul>
 							<c:if test="${content.user_id eq user_id}">
-								<a href="content/update/${content.content_no}" class="card-link">수정</a>
-								<a href="content/delete/${content.content_no}" class="card-link">삭제</a>
+								<a href="/musicgram/content/update/${content.content_no}" class="card-link">수정</a>
+								<a href="/musicgram/content/delete/${content.content_no}" class="card-link">삭제</a>
 							</c:if>
 						</ul>
 
