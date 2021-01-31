@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body><div class='container'>
 	<nav class="navbar navbar-expand-lg">
 	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px></a>
@@ -36,7 +41,15 @@
 	
 	
 	</nav>
-	
+		<div class="container">
+			<c:forEach var="genre" items="${genreList}">
+				<div class="btn-group">
+					<div class="btn"
+						onclick="location.href='/musicgram/content/genre?genre=${genre}'">${genre}</div>
+				</div>
+			</c:forEach>
 		</div>
+
+	</div>
 </body>
 </html>

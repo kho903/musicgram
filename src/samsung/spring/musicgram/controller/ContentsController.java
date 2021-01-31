@@ -32,8 +32,8 @@ public class ContentsController {
 	@Autowired
 	private CommentsService commentsService;
 		
-	@GetMapping("/genre/{genre}")
-	public String getGenreContents(@PathVariable(name="genre") String genre, Model model) {
+	@GetMapping("/genre")
+	public String getGenreContents(@RequestParam(name="genre") String genre, Model model) {
 		//장르별로 검색했을때 메인 피드에 다시 뿌려줌
 		List<Contents> genreContentsList = contentsService.getGenreContents(genre);
 		model.addAttribute("contentList", genreContentsList);
