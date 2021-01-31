@@ -1,5 +1,6 @@
 package samsung.spring.musicgram.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -20,4 +21,5 @@ public interface ContentsMapper {
 	public int pressLike(int content_no);
 	public int cancelLike(int content_no);
 	public List<Contents> getUserContent(String user_id);
+
 }

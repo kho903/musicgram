@@ -28,6 +28,14 @@
 			</table>  
 			<input type="submit" value="Submit">
 		</form>
-
+		
+		<%
+			String updateErrMsg = (String) session.getAttribute("updateErrMsg");
+			if(updateErrMsg != null){ %>
+				<span style="color:red;"><%=updateErrMsg%></span>
+		<%	}
+			session.removeAttribute("updateErrMsg");
+		%>
+	
 </body>
 </html>

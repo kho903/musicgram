@@ -1,6 +1,9 @@
 package samsung.spring.musicgram.controller;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,8 +35,8 @@ public class ContentsController {
 	@Autowired
 	private CommentsService commentsService;
 		
-	@GetMapping("/genre/{genre}")
-	public String getGenreContents(@PathVariable(name="genre") String genre, Model model) {
+	@GetMapping("/genre")
+	public String getGenreContents(@RequestParam(name="genre") String genre, Model model) {
 		//장르별로 검색했을때 메인 피드에 다시 뿌려줌
 		List<Contents> genreContentsList = contentsService.getGenreContents(genre);
 		model.addAttribute("contentList", genreContentsList);
@@ -41,55 +44,31 @@ public class ContentsController {
 	}
 	
 	@GetMapping("/tag")
-	public String getTagContents(@RequestParam(name="tag") String tag, Model model) {
-		List<Contents> tagContentsList = contentsService.getTagContents(tag);
-		model.addAttribute("contentList", tagContentsList);
+	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
+		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);
+		model.addAttribute("contentList", contentsService.getTagContents(tag, user_id));
 		return "feed/mainFeed";
 	}
 	
-	
 	@GetMapping("/pressLike/{content_no}") //메인 피드에서 좋아요 누를 경우
-	public String pressLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("user_id") String user_id) {
+	public String pressLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("session_id") String user_id) {
 		contentsService.pressLike(content_no, user_id);
 		return "redirect:/content";
 	}
 	
-	@PostMapping("/pressLike") //ajax
+	@PostMapping("/pressLike") // 좋아요 ajax
 	@ResponseBody
-	public int pressLike(@SessionAttribute("user_id") String user_id, HttpServletRequest request) {
+
+	public HashMap<Integer, Integer> pressLike(@SessionAttribute("session_id") String user_id, HttpServletRequest request) {
 		int content_no = Integer.parseInt(request.getParameter("content_no"));
+		
 		return contentsService.pressLike(content_no, user_id);
 	}
 	
 	@GetMapping("pressLikeDetail/{content_no}") //상세 페이지에서 좋아요 누를 경우
-	public String pressLikeDetail(@PathVariable(name="content_no") int content_no, @SessionAttribute("user_id") String user_id) {
+	public String pressLikeDetail(@PathVariable(name="content_no") int content_no, @SessionAttribute("session_id") String user_id) {
 		contentsService.pressLike(content_no, user_id);
 		return "feed/detailFeed";
-	}
-	
-	@GetMapping("/cancelLike/{content_no}") //메인 피드에서 좋아요취소 누를 경우
-	public String cancelLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("user_id") String user_id) {
-		contentsService.cancelLike(content_no, user_id);
-		return "redirect:/content";
-	}
-	@PostMapping("/cancelLike") //ajax
-	@ResponseBody
-	public int cancelLike(@SessionAttribute("user_id") String user_id, HttpServletRequest request) {
-		int content_no = Integer.parseInt(request.getParameter("content_no"));
-		return contentsService.cancelLike(content_no, user_id);
-	}
-	
-	@GetMapping("/cancelLikeDetail/{content_no}") //상세 피드에서 좋아요취소 누를 경우
-	public String cancelLikeDetail(@PathVariable(name="content_no") int content_no,@SessionAttribute("user_id") String user_id ) {
-		contentsService.cancelLike(content_no, user_id);
-		return "feed/detailFeed";
-	}
-	
-	@PostMapping("/isPressLike") //ajax 
-	@ResponseBody
-	public int isPressLike(@SessionAttribute("user_id") String user_id, HttpServletRequest request) {
-		int content_no = Integer.parseInt(request.getParameter("content_no"));
-		return contentsService.isPressLike(content_no, user_id);
 	}
 	
 	@GetMapping("/getLike/{content_no}")
@@ -100,8 +79,8 @@ public class ContentsController {
 	}
 	
 	@GetMapping()
-	public String getContents(ModelMap model) {
-		model.addAttribute("contentList", contentsService.getContents());
+	public String getContents(ModelMap model, @SessionAttribute("session_id") String user_id) {
+		model.addAttribute("contentList", contentsService.getContents(user_id));
 		return "feed/mainFeed";
 	}
 	
