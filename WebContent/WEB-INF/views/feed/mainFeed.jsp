@@ -33,9 +33,15 @@
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
+	
+	<script type="text/javascript">
+		var genreList = ['Ballad', 'Dance', 'Pop', 'Acoustic', 'Hiphop', 'RnB',
+						'Electronic', 'Rock', 'Jazz', 'Indie', 'Trot', 'CCM'];
+	</script>			
+
 	<div class="container">
 		<div class="row">
-			<div class="col-7">
+			<div class="col-7" id="feed">
 				<c:forEach var="content" items="${contentList}">
 					<div class="card">
 						<div class="card-header">
@@ -143,6 +149,7 @@
 ﻿
 
 <script>
+
 function diffDate(create){
 	var now = new Date();
 	var create_date = new Date('${content.create_date}');
@@ -150,6 +157,23 @@ function diffDate(create){
 	$("#diffTime").text(diff);
 }
 
+function filterGenre(genre){
+	$.ajax({
+		url:"content/genre",
+		type:"get",
+		data: {"genre" : genre},
+		datatype:'json',
+		success : function(data){
+			$('#feed').empty();
+			var feed = "";
+			$.each(data, function (i, content) {
+            });
+		},
+		error: function(e){
+			console.log(e);
+		}
+	})
+} 
 
 function pressLike(content_no, like_count){
 	$.ajax({
