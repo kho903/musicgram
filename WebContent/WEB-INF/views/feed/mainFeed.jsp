@@ -35,50 +35,47 @@
 	<jsp:include page="/nav.jsp" />
 
 	<!-- 게시글 영역 -->
-
 	<div class="container">
 		<div class="row">
 			<div class="col-7" id="feed">
 				<c:forEach var="content" items="${contentList}">
 					<div class="card">
 						<div class="card-header">
-							<!-- <td>${content.content_no}</td> -->
 							<div class="box" style="background: #ffffff;">
-								<a href="/musicgram/user/${content.user_id}">
-								<img class="profile" src="/musicgram/profile/${content.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
+                <a href="/musicgram/user/${content.key.user_id}">
+								<img class="profile" src="/musicgram/profile/${content.key.user_id}"
+                     onerror="this.src='/musicgram/img/default.png'"> </a>
 							</div>
-							<a href="/musicgram/user/${content.user_id}">${content.user_id }</a>
-							<a href="/musicgram/content/${content.content_no}" class="card-link">
-								<img class="icon-react icon-more" src="/musicgram/img/more.png" alt="more" align="right">
+              <a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+              <a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
+                <img class="icon-react icon-more" src="/musicgram/img/more.png"
+								alt="more" align="right">
 							</a>
 						</div>
 						<div class="card-body">
 							<iframe width="560" height="315"
-								src="https://www.youtube.com/embed/${content.youtube_url}"
+								src="https://www.youtube.com/embed/${content.key.youtube_url}"
 								frameborder="0"
 								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen></iframe>
-
+								allowfullscreen>
+							</iframe><br>
+							<c:if test="${content.value eq 0}">
+								<a id="likeBtn" onclick="pressLike(${content.key.content_no},${content.key.like_count})">
+									<img src="/musicgram/img/heart.png" id="heart${content.key.content_no}">
+								</a>
+							</c:if>
+							<c:if test="${content.value eq 1}">
+								<a id="cancelLikeBtn" onclick="pressLike(${content.key.content_no},${content.key.like_count})">
+									<img src="/musicgram/img/red_heart.png" id="heart${content.key.content_no}">
+								</a>
+							</c:if>
 							<p>
-								<a href="/musicgram/content/pressLike/${content.content_no}"
-									class="card-link">좋아요</a>
+								좋아요 개수 <span id="countLike${content.key.content_no}">${content.key.like_count}</span>
 							</p>
-							<button onclick="pressLike(${content.content_no},${content.like_count})">좋아요</button>
+							<p>${content.key.text}</p>
+							<p>#<a href="/musicgram/content/tag?tag=${content.key.tag}">${content.key.tag}</a></p>
 
-							<p>
-								<a href="/musicgram/content/cancelLike/${content.content_no}"
-									class="card-link">좋아요 취소</a>
-							</p>
-							<button onclick="cancelLike(${content.content_no},${content.like_count})">좋아요
-								취소</button>
-
-							<p>
-								좋아요 개수 <span id="countLike${content.content_no}">${content.like_count}</span>
-							</p>
-							<p>${content.text}</p>
-							<p>#<a href="/musicgram/content/tag?tag=${content.tag}">${content.tag}</a></p>
 							<div class="time-log">
-							
 							
 								<%-- <span id="diffTime">
 									<%
@@ -119,14 +116,16 @@
     
     
     
-%>
+%> 
 								</span> --%>
 							</div>
 						</div>
 						<ul>
-							<c:if test="${content.user_id eq user_id}">
-								<a href="/musicgram/content/update/${content.content_no}" class="card-link">수정</a>
-								<a href="/musicgram/content/delete/${content.content_no}" class="card-link">삭제</a>
+
+							<c:if test="${content.key.user_id eq user_id}">
+								<a href="/musicgram/content/update/${content.key.content_no}" class="card-link">수정</a>
+								<a href="/musicgram/content/delete/${content.key.content_no}" class="card-link">삭제</a>
+
 							</c:if>
 						</ul>
 
@@ -171,50 +170,27 @@ function filterGenre(genre){
 
 function pressLike(content_no, like_count){
 	$.ajax({
-		url:"content/pressLike",
+		url:"/musicgram/content/pressLike",
 		type:"post",
 		data: {"content_no" : content_no},
 		async: false,
 		success : function(result){
-			console.log(result);
-			$('#countLike'+content_no).html(result);
+			resultLike = Object.keys(result);
+			resultStatus = Object.values(result);
+			btn = document.getElementById("likeBtn");
+			if(resultStatus == 1){
+				document.getElementById("heart"+content_no).src = "/musicgram/img/red_heart.png";
+			}
+			else {
+				document.getElementById("heart"+content_no).src = "/musicgram/img/heart.png";
+			}
+			$('#countLike'+content_no).html(resultLike);
 		},
 		error: function(e){
 			console.log(e);
 		}
 	})
 } 
-
-function cancelLike(content_no, like_count){
-	$.ajax({
-		url:"content/cancelLike",
-		type:"post",
-		data: {"content_no" : content_no},
-		async: false,
-		success : function(result){
-			console.log(result);
-			$('#countLike'+content_no).html(result);
-		},
-		error: function(e){
-			console.log(e);
-		}
-	})
-} 
-
-function isPressLike(content_no){
-	$.ajax({
-		url:"content/isPressLike",
-		type:"post",
-		data: {"content_no" : content_no},
-		async: false,
-		success : function(result){
-			console.log(result);
-		},
-		error: function(e){
-			console.log(e);
-		}
-	})
-}
 
 </script>
 </html>
