@@ -12,7 +12,7 @@
 		resultType="samsung.spring.musicgram.dto.Contents">
 		select content_no, user_id, youtube_url, text, genre, tag, like_count,
 		create_date
-		from contents where tag=#{tag} order by content_no desc
+		from contents where tag like #{tag} || '%' or tag like '%' || #{tag} || '%' order by content_no desc
 	</select>
 
 	<update id="pressLike"
