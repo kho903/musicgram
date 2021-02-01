@@ -151,8 +151,17 @@ public class ContentsService {
 		return contentsMapper.countContent(user_id);
 	}
 
-	public Contents getIndexContent(int index) {
-		return contentsMapper.getIndexContent(index);
+
+	public List<Contents> infiniteScrollDown(Integer no){
+		return  contentsMapper.infiniteScrollDown(no);
+	}
+
+	public Contents getContentLoad(int content_no) {
+		return contentsMapper.getContentLoad(content_no);
+	}
+
+	public int getMaxContentNo() {
+		return contentsMapper.getMaxContentNo();
 	}
 
 }
