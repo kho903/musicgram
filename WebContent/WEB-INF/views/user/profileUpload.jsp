@@ -21,9 +21,13 @@
 		        	<td>자기소개 변경</td>
 		        	<td><input type="text" name="user_description" value="${user_description}"></td>
 		        </tr>
+		         <tr>
+		        	<td>현재 비밀번호</td>
+		        	<td><input type="password" name="user_password"></td>
+		        </tr>
 		        <tr>
-		        	<td>비밀번호 변경</td>
-		        	<td><input type="text" name="user_password"  value="${user_password}"></td>
+		        	<td>변경할 비밀번호</td>
+		        	<td><input type="password" name="update_user_password"></td>
 		        </tr>
 			</table>  
 			<input type="submit" value="Submit">
@@ -32,10 +36,17 @@
 		
 		<%
 			String updateErrMsg = (String) session.getAttribute("updateErrMsg");
+			String passwordErrMsg = (String) session.getAttribute("passwordErrMsg");
 			if(updateErrMsg != null){ %>
 				<span style="color:red;"><%=updateErrMsg%></span>
+				
 		<%	}
+			if(passwordErrMsg != null){ %>
+				<span style="color:red;"><%=passwordErrMsg%></span>
+		
+		<% 	}
 			session.removeAttribute("updateErrMsg");
+			session.removeAttribute("passwordErrMsg");
 		%>
 	
 </body>

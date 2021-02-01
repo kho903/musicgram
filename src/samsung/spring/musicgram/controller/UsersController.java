@@ -1,6 +1,7 @@
 package samsung.spring.musicgram.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 
 import samsung.spring.musicgram.dto.Pic;
 import samsung.spring.musicgram.dto.Users;
@@ -121,16 +120,29 @@ public class UsersController {
 	
 	@PostMapping("/updateProfile")
 	public String updateProfile(@SessionAttribute("session_id") String user_id,
-			@RequestParam("user_password") String user_password, @RequestParam("user_description") String user_description,
-			@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
+			@RequestParam("user_password") String user_password, @RequestParam("user_description") String update_user_description,
+			@RequestParam("update_user_password") String update_user_password,
+			@RequestParam("file") MultipartFile file, HttpSession session,HttpServletResponse response) throws IOException {
 
-		if(("").equals(user_password)) {
+		Users currentUser = userService.getUser(user_id);
+		Users updateUser = currentUser;
+		
+		if(!currentUser.getDescription().equals(update_user_description) && ("").equals(update_user_password) && ("").equals(user_password) ) {
+			updateUser.setDescription(update_user_description);
+			userService.updateUser(updateUser);
+			return "redirect:/user/"+user_id;
+		}
+		else if(!currentUser.getPassword().equals(user_password)) { //현재 비밀번호가 일치하지 않는 경우
+			session.setAttribute("passwordErrMsg", "현재 비밀번호가 알치하지 않습니다.");
+			return "redirect:/user/updateProfileForm";
+		}
+		else if(("").equals(update_user_password)) { //현재 비밀번호는 일치하지만 변경할 비밀번호가 없는 경우.
 			session.setAttribute("updateErrMsg", "변경할 비밀번호를 입력해주세요.");
 			return "redirect:/user/updateProfileForm";
 		}
-		Users updateUser = userService.getUser(user_id);
-		updateUser.setPassword(user_password);
-		updateUser.setDescription(user_description);
+		
+		updateUser.setPassword(update_user_password);
+		updateUser.setDescription(update_user_description);
 		userService.updateUser(updateUser);
 		
 		Pic userPic = picService.getPic(user_id);
