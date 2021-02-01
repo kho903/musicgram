@@ -56,14 +56,15 @@
 	<c:if test="${not empty tag}">
 		<p>${tag}으로검색한 결과입니다.</p>
 	</c:if>
-	<c:if test="${empty contentList}">
-		<p>피드가 없습니다.</p>
-	</c:if>
+	
 
 	<div id="mask"></div>
 	<div class="window"></div>
 
 	<div class="container">
+		<c:if test="${empty contentList}">
+			<p>피드가 없습니다.</p>
+		</c:if>
 		<div class="row">
 
 			<div class="col-7">
@@ -77,7 +78,6 @@
 								</a>
 							</div>
 							<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
-
 							<%--
 					<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
 	                	<img class="icon-react icon-more" src="/musicgram/img/more.png"	alt="more" align="right">
@@ -93,11 +93,14 @@
 
 						</div>
 						<div class="card-body">
-							<iframe width="560" height="315"
-								src="https://www.youtube.com/embed/${content.key.youtube_url}"
-								frameborder="0"
-								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-								allowfullscreen> </iframe>
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe width="560" height="315"
+									src="https://www.youtube.com/embed/${content.key.youtube_url}"
+									frameborder="0"
+									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+									allowfullscreen> </iframe>
+							</div>
+								
 							<br>
 							<c:if test="${content.value eq 0}">
 								<a id="likeBtn"
@@ -114,7 +117,7 @@
 								</a>
 							</c:if>
 							<p>
-								좋아요 개수 <span id="countLike${content.key.content_no}">${content.key.like_count}</span>
+								좋아요 <span id="countLike${content.key.content_no}">${content.key.like_count}개</span>
 							</p>
 							<p>${content.key.text}</p>
 							<p>
@@ -281,7 +284,7 @@ function pressLike(content_no, like_count){
 			else {
 				document.getElementById("heart"+content_no).src = "/musicgram/img/heart.png";
 			}
-			$('#countLike'+content_no).html(resultLike);
+			$('#countLike'+content_no).html(resultLike + "개");
 		},
 		error: function(e){
 			console.log(e);
