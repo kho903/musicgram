@@ -36,37 +36,35 @@
 	<!-- nav bar -->
 	<jsp:include page="/nav.jsp" />
 	<div class='container'>
-	<!--  게시물 -->
-	<table>
-		<tr>
-			<!-- <td>${content.content_no}</td>-->
-			<td><div class="content_box" style="background: #ffffff;">
-				<a href="/musicgram/user/${content.user_id}">
-				<img class="profile" src="/musicgram/profile/${content.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
-			</div></td>
-			<td><a href="/musicgram/user/${content.user_id}">${content.user_id }</a></td>
-			<td>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</td>
-			<td>${content.text}</td>
-			<td>#<a href="/musicgram/content/tag?tag=${content.tag}">${content.tag}</a></td>
-		</tr>
-	</table>
-	
-	<!-- 댓글 작성 -->
-		<form action="/musicgram/comments/create" method="post">
-		<label for="comment">
-			<div class="box" style="background: #ffffff;">
-				<img class="profile" src="/musicgram/profile/${session_id}"
-					onerror="this.src='/musicgram/img/default.png'">
+
+		<div class="card">
+			<div class='card-header'>
+				<div class="content_box" style="background: #ffffff;">
+					<img class="profile" src="/musicgram/profile/${content.user_id}"
+						onerror="this.src='/musicgram/img/default.png'">
+				</div>
+				${content.user_id}
 			</div>
-			<input id="comment" type="text" placeholder="댓글을 입력하세요" name="comment_text">
-		</label>
+			<div class='card-body'>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<p>${content.text}</p>
+
+			</div>
+		</div>
+		
+		
+		<form action="/musicgram/comments/create" method="post">
+			<label for="comment">
+				<div class="box" style="background: #ffffff;">
+					<img class="profile" src="/musicgram/profile/${user_id}"
+						onerror="this.src='/musicgram/img/default.png'">
+				</div>
+				<input id="comment" type="text" placeholder="댓글을 입력하세요" name="comment_text">
+			</label>
 			<input type="submit" value="작성">
 			<input type="hidden" name="content_no" value="${content.content_no}">
 			<input type="hidden" name="user_id" value="${session_id}">
 		</form>
-
 	<!-- 댓글 리스트 -->
 	<ul>
 		<c:forEach items="${comments}" var="comments">
@@ -87,5 +85,4 @@
 		</c:forEach>
 	</ul>
 	</div>
-</body>
 </html>
