@@ -47,6 +47,19 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
+	@GetMapping("/test")
+	@ResponseBody
+	public Contents getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
+		int contentNo = maxContNo;
+		Contents cont = new Contents();
+		do {
+			cont = contentsService.getContentLoad(contentNo);
+			contentNo--;
+		} while (cont == null);
+		session.setAttribute("maxContNo", contentNo);
+		return cont;
+	}
+	
 	@GetMapping("/tag")
 	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
 		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);
@@ -82,9 +95,10 @@ public class ContentsController {
 	}
 	
 	@GetMapping()
-	public String getContents(ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id) {
+	public String getContents(ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id, HttpSession session) {
 		try {
 			model.addAttribute("contentList", contentsService.getContents(user_id));
+			session.setAttribute("maxContNo", contentsService.getMaxContentNo());
 		} catch (Exception e) {
 			return "redirect:user/loginForm";
 		}
@@ -100,14 +114,9 @@ public class ContentsController {
 	
 	@PostMapping("/upload")
 	public String createContent(Contents content, HttpSession session) {
-		try {
 			String res = "";
 			res = contentsService.createContent(content) == 1 ? "redirect:/content" : "redirect:/upload";
 			return res;			
-		}catch (DataIntegrityViolationException e) {
-			session.setAttribute("errMsg", "빈칸을 채워주세요.");
-			return "redirect:/upload.jsp";
-		}
 	}
 	
 	@GetMapping("/update/{content_no}")

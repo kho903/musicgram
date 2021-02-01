@@ -29,4 +29,8 @@
 		set password = #{password}
 		where user_id=#{user_id} and email=#{email}
 	</update>
+	
+	<delete id="deleteUser">
+		delete users where user_id = #{user_id}
+	</delete>
 </mapper>
