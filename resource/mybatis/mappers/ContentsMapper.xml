@@ -47,10 +47,7 @@
 	</select>
 
 	<select id="getContents" resultType="contents">
-		select * from (
-			select ROW_NUMBER() over (order by content_no desc) num, C.*
-			from contents C
-		) where num between 0 and 3
+		select * from contents order by content_no desc
  	</select>
 
 	<delete id="deleteContent" parameterType="java.lang.Integer">
