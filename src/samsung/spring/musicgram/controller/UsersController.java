@@ -152,8 +152,22 @@ public class UsersController {
 	}
 	
 	@PostMapping("/find-pw")
-	public String findPW(@ModelAttribute Users user, HttpServletResponse response) {
-		return userService.findpw(response, user);
+	public String findPW(@ModelAttribute Users user, @RequestParam(name="user_id")String user_id, @RequestParam(name="email") String email, 
+			HttpSession session, HttpServletResponse response) {
+		try {
+			if(userService.getUser(user_id).getEmail().equals(email)) {
+				session.setAttribute("session_id", user_id);
+				session.setAttribute("password", email);
+				return userService.findpw(response, user);
+			}else {
+				session.setAttribute("errMsg", "이메일이 틀렸습니다.");
+				return "redirect:/user/find-pw";
+			}
+		} catch(NullPointerException e) {
+			System.out.println(e);
+			session.setAttribute("errMsg", "존재하지 않는 아이디 입니다.");
+			return "redirect:/user/find-pw";
+		}
 	}
 	
 }
