@@ -19,8 +19,10 @@
 <body>
 
 	<h3>비밀번호 찾기</h3>
+	<p> 아래에 가입시 사용한 이메일주소를 입력하시면, <br>
+	 해당 이메일로 임시 비밀번호를 보내드립니다.</p>
 	<form action="/musicgram/user/find-pw" method="post">
-
+ 	
 	<p>
 		<label>아이디</label>
 		<input type="text" id="user_id" name="user_id" placeholder="회원가입한 아이디를 입력하세요" required>
@@ -33,6 +35,7 @@
 		<input type="submit" value="찾기">
 	</p>
 	</form>
+	<input type="button" onclick="history.go(-1);" value="취소">
 	<div id="errMsg" style="color:red;"><%=errMsg %></div>
 
 </body>

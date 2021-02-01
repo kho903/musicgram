@@ -37,7 +37,7 @@
 			</select><br>
 			tag : <input type="text" name="tag"><br>
 			<input type="submit" value="Submit"/>
-			<input type="button" onclick="history.go(-1);" value="뒤로">
+			<input type="button" onclick="history.go(-1);" value="취소">
 		</form>
 		<div id="errMsg" style="color:red;"><%=errMsg %></div>
 	</div>
