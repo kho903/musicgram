@@ -9,8 +9,7 @@
 <body>
 <jsp:include page="/nav.jsp"/>
 <h3>회원정보 변경</h3>
-
-    
+	<div class='container'>
     	<form action="updateProfilePic" method="post" enctype="multipart/form-data" name="pic" onsubmit="return checkPic()">
     		<table>
 	    		<tr>
@@ -24,9 +23,10 @@
    
    		<form action="deleteProfilePic" onsubmit="return checkDeletePic()">
 		    <input type="submit" value="사진 삭제" />
-		</form>
+		  </form>
     	
 		<form action="updateProfile" method="post" >
+
 			<table>
 		        
 		        <tr>

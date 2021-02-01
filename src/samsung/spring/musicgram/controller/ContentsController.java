@@ -100,14 +100,9 @@ public class ContentsController {
 	
 	@PostMapping("/upload")
 	public String createContent(Contents content, HttpSession session) {
-		try {
 			String res = "";
 			res = contentsService.createContent(content) == 1 ? "redirect:/content" : "redirect:/upload";
 			return res;			
-		}catch (DataIntegrityViolationException e) {
-			session.setAttribute("errMsg", "빈칸을 채워주세요.");
-			return "redirect:/upload.jsp";
-		}
 	}
 	
 	@GetMapping("/update/{content_no}")

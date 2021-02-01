@@ -33,10 +33,7 @@
 </style>
 </head>
 <body>
-	<!-- nav bar -->
-	<jsp:include page="/nav.jsp" />
 	<div class='container'>
-
 		<div class="card">
 			<div class='card-header'>
 				<div class="content_box" style="background: #ffffff;">
