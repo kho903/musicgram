@@ -151,4 +151,9 @@ public class ContentsService {
 		return contentsMapper.countContent(user_id);
 	}
 
+	public List<Contents> infiniteScrollDown(Integer no){
+		return  contentsMapper.infiniteScrollDown(no);
+	}
+	
+
 }
