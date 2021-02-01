@@ -2,7 +2,7 @@
 
 
 .form_container{
-    width: 350px;
+    width: 370px;
     margin: 0 auto
 
 }
@@ -14,10 +14,38 @@
     margin-bottom: 30px;
 }
 
+.form h3{
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 40px;
+}
 
 .form .logo_login {
 	margin: 40px auto;
 	display: block;
+}
+
+.form .logo_join {
+	margin: 40px auto 22px;
+	display: block;
+}
+
+.form .join_msg {
+	text-align: center;
+	margin: 25px auto 20px;
+	font-size: 17px;
+	line-height: 20px;
+	color: #888;
+}
+
+.form .findpw_msg {
+	text-align: center;
+	line-height: 20px;
+	margin: 25px auto;
+	font-weight: bold;
+	font-size: 14px;
+	color: #888;
 }
 
 .form .title {
@@ -45,13 +73,20 @@
     padding: 10px 8px 10px;
 }
 
+.form hr{
+	margin-bottom: 25px;
+	border: 0.3px solid #e6e6e6;
+}
+
 .form p{
     margin-bottom: 8px;
 }
 
+
 .form #errMsg{
 	color: red;
 	font-size:14px;
+	margin-top: 10px;
 }
 
 .form .submit_btn{
@@ -66,7 +101,7 @@
     line-height: 28px;
     outline: none;
     width: 100%;
-    padding: 0;
+    padding: 1px;
     margin-top: 10px;
     margin-bottom:20px;
     cursor: pointer;
@@ -76,7 +111,15 @@
 	text-align: center;
 	color: #262626;
 	font-size: 13px;
-	margin: 0 auto
+	margin: 0 auto;
+}
+
+.agree_msg {
+	text-align: center;
+	font-size: 13px;
+	color: #888;
+	margin: 0 auto;
+	margin-top: 3px;
 }
 
 .bottom_box{

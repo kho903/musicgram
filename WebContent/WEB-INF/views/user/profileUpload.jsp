@@ -9,8 +9,10 @@
 <body>
 <jsp:include page="/nav.jsp"/>
 <h3>회원정보 변경</h3>
-
-    
+	<div class='container'>
+	<div id="main_container">
+		 <div class="form_container">
+		  <div class="form">
 		<form action="updateProfile" method="post" enctype="multipart/form-data">
 			<table>
 		        <tr>
