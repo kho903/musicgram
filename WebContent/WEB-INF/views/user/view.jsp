@@ -60,6 +60,7 @@
                    <div class="top">
                     <div class="user_name">${user.user_id}</div>
 	                	<c:if test="${session_id eq user.user_id }" >
+	                		<a href="/musicgram/profile/delete">사진삭제</a>
 			                        <a href="/musicgram/user/updateProfileForm" class="profile_edit">프로필편집</a>
 			                        <a href="/musicgram/user/logout" class="logout">로그아웃</a>
 	                	</c:if>
