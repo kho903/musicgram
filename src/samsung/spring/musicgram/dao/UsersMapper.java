@@ -19,4 +19,5 @@ public interface UsersMapper {
 	public void sendEmail(Users user);
 	public void findPw(Users user);
 	public int getTempPw(Users user);
+	public int deleteUser(String id);
 }

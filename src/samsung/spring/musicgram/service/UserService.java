@@ -123,4 +123,8 @@ public class UserService {
 		}
 		return result;
 	}
+	
+	public int deleteUser(String id) {
+		return usersMapper.deleteUser(id);
+	}
 }

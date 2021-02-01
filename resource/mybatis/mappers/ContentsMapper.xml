@@ -8,6 +8,11 @@
 		select * from contents where genre=#{genre} order by content_no desc
 	</select>
 
+	<select id="getIndexContent"
+		resultType="samsung.spring.musicgram.dto.Contents">
+		select * from contents where rownum = #{index}
+	</select>
+
 	<select id="getTagContents"
 		resultType="samsung.spring.musicgram.dto.Contents">
 		select content_no, user_id, youtube_url, text, genre, tag, like_count,
