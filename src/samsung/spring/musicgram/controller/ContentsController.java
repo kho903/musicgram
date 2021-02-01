@@ -136,12 +136,4 @@ public class ContentsController {
 		return res;
 	}
 	
-	
-	// 무한스크롤
-	@RequestMapping(value="/infiniteScrollDown", method=RequestMethod.POST)
-	public @ResponseBody List<Contents> infiniteScrollDownPOST(@RequestBody Contents content){
-		Integer con_no_list = content.getContent_no() - 1;
-		return contentsService.infiniteScrollDown(con_no_list);
-		
-	}
 }

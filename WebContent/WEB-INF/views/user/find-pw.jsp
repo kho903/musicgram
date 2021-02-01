@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<%
+	String errMsg = (String) session.getAttribute("errMsg");
+	if(errMsg==null) errMsg = "";
+	session.invalidate();
+%>
 </head>
 
 <body>
@@ -28,6 +33,7 @@
 		<input type="submit" value="찾기">
 	</p>
 	</form>
+	<div id="errMsg" style="color:red;"><%=errMsg %></div>
 
 </body>
 </html>
