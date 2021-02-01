@@ -122,7 +122,7 @@ public class UsersController {
 	public String updateProfile(@SessionAttribute("session_id") String user_id,
 			@RequestParam("user_password") String user_password, @RequestParam("user_description") String update_user_description,
 			@RequestParam("update_user_password") String update_user_password,
-			@RequestParam("file") MultipartFile file, HttpSession session,HttpServletResponse response) throws IOException {
+			HttpSession session,HttpServletResponse response) throws IOException {
 
 		Users currentUser = userService.getUser(user_id);
 		Users updateUser = currentUser;
@@ -145,14 +145,35 @@ public class UsersController {
 		updateUser.setDescription(update_user_description);
 		userService.updateUser(updateUser);
 		
-		Pic userPic = picService.getPic(user_id);
 		
-		if(file.getSize()!=0) {
+		return "redirect:/user/"+user_id;
+	}
+	
+	@PostMapping("/updateProfilePic")
+	public String udpateProfilePic(@SessionAttribute("session_id") String user_id, @RequestParam("file") MultipartFile file) throws IOException {
+		
+		Pic userPic = picService.getPic(user_id);
+	
+		if(file.getSize()!=0) { //변경할 사진을 받았으면
 			userPic.setFile_data(file.getBytes());
 			userPic.setFile_name(file.getOriginalFilename());
 			userPic.setFile_size(file.getSize());
 			picService.updatePic(userPic);
+			return "redirect:/user/"+user_id; //변경 완료 후 user 프로필로 리다이렉트
 		}
+		/*else if(file.getSize() == 0){ //삭제 요청
+			picService.deletePic(user_id);
+			return "redirect:/user/"+user_id; //삭제 후 user 프로필로 리다이렉트
+			
+		}*/
+		return "redirect:/user/updateProfileForm";
+	}
+	
+	@GetMapping("/deleteProfilePic")
+	public String deleteProfilePic(@SessionAttribute("session_id") String user_id) {
+		
+		picService.deletePic(user_id);
+		
 		return "redirect:/user/"+user_id;
 	}
 	
