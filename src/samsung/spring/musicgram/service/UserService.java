@@ -63,6 +63,7 @@ public class UserService {
 		
 		String subject = ""; //메일 제목 
 		String msg = ""; //메일 내용 
+		String toName = user.getUser_id();
 
 
 		subject = "Musicgram 비밀번호찾기 임시비밀번호 안내";
@@ -86,7 +87,7 @@ public class UserService {
 
 			email.setAuthentication(hostSMTPid, hostSMTPpw);
 			email.setTLS(true);
-			email.addTo(mail, charSet);
+			email.addTo(mail, toName, charSet);
 			email.setFrom(fromEmail, fromName, charSet);
 			email.setSubject(subject);
 			email.setHtmlMsg(msg);
