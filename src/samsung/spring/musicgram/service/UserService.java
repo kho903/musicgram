@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -97,6 +98,7 @@ public class UserService {
 
 	//임시 비밀번호 만들어서 보내기  
 	public String findpw(HttpServletResponse response, Users user) {
+
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String result = null;
 		
@@ -113,9 +115,10 @@ public class UserService {
 			
 			getTempPw(user); //임시 비밀번호로 업데이트
 			
-			result = "redirect:/user/loginForm"; 
+			return "redirect:/user/loginForm"; 
 			
 		}  else {
+			
 			result = "commentFail";
 		}
 		return result;
