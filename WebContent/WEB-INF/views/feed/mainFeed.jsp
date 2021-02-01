@@ -311,57 +311,52 @@ function next_load(){
             url:"/musicgram/content/test",
             datatype : 'json',
             success: function(data) {
-                console.log(data.youtube_url);
-                alert(data.youtube_url);
                 /* 이미지 동적 추가 */
-                 var append_node = "";
-                /* append_node += "<iframe width='560' height='315'";
-           		append_node += "src='https://www.youtube.com/embed/"+data.youtude_url+"'";
-				append_node += " frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'";
-				append_node += " allowfullscreen></iframe>"; */
-				append_node += "<div class='card scrolling' data-bno='" + data.content_no + "'>"
-	                + "<div class='card-header'>"
-	                + "<div class='box' style='background: #ffffff;'>"
-	                + "<img class='profile' src='/musicgram/profile/"+data.user_id+"'"
-	                +   "onerror=\"data.src='/musicgram/img/default.png'\">"
-		          + "</div>"
-		          + "<span>" + data.user_id + "</span> <a"
-		          +   "href=\"content/"+data.content_no+"\" class=\"card-link\"> <img"
-		          +   "class=\"icon-react icon-more\" src=\"/musicgram/img/more.png\""
-		          +   "alt=\"more\" align=\"right\">"
-		          + "</a>"
-		          + "</div>"
-		          + "<div class=\"card-body\">"
-		          +   "<iframe width=\"560\" height=\"315\""
-		          +   "   src=\"https://www.youtube.com/embed/"+data.youtube_url+"\""
-		          +   "   frameborder=\"0\""
-		          +   "   allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\""
-		          +   "   allowfullscreen></iframe>"
-		          +   "<p>"
-		          +   "   <a href=\"content/pressLike/"+data.content_no+"\""
-		          +   "      class=\"card-link\">좋아요</a>"
-		          +   "</p>"
-		          +   "<button onclick=\"pressLike("+data.content_no + data.like_count + ")\">좋아요</button>"
-		          +   "<p>"
-		          +   "   <a href=\"content/cancelLike/"+data.content_no+"\""
-		          +   "      class=\"card-link\">좋아요 취소</a>"
-		          +   "</p>"
-		          +   "<button onclick=\"cancelLike"+data.content_no+","+data.like_count+"\">좋아요 취소</button>";
-		          /*
+                var append_node = "";
+               	append_node += "<div class='card' data-bno='"+data.content_no+"'>"
+	            + "<div class='card-header'>"
+	            
+	            + "<div class='box' style='background: #ffffff;'>"
+	            + "<img class='profile' src='/musicgram/profile/"+data.user_id+"'"
+	            +   "onerror=\"data.src='/musicgram/img/default.png'\">"
+		        + "</div>"
+		        + "<span>" + data.user_id + "</span> <a"
+				+   "href=\"content/"+data.content_no+"\" class=\"card-link\"> <img"
+				+   "class=\"icon-react icon-more\" src=\"/musicgram/img/more.png\""
+				+   "alt=\"more\" align=\"right\">"
+				+ "</a>"
+				+ "</div>"
+				+ "<div class=\"card-body\">"
+				+   "<iframe width=\"560\" height=\"315\""
+				+   "   src=\"https://www.youtube.com/embed/"+data.youtube_url+"\""
+				+   "   frameborder=\"0\""
+				+   "   allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\""
+				+   "   allowfullscreen></iframe>"
+				+   "<p>"
+				+   "   <a href=\"content/pressLike/"+data.content_no+"\""
+				+   "      class=\"card-link\">좋아요</a>"
+				+   "</p>"
+				+   "<button onclick=\"pressLike("+data.content_no + data.like_count + ")\">좋아요</button>"
+				+   "<p>"
+				+   "   <a href=\"content/cancelLike/"+data.content_no+"\""
+				+   "      class=\"card-link\">좋아요 취소</a>"
+				+   "</p>"
+				+   "<button onclick=\"cancelLike/"+data.content_no+","+data.like_count+"\">좋아요 취소</button>";
+  /*
 		          +   "<p>좋아요 개수 <span id=\"countLike"+data.content_no+"\">"+data.like_count}+"</span></p>"
 		          +   "<p>" + data.text +"</p>"
 		          + "</div>"
 		       + "</div>"
 		       + "<br>"
 		       + "<br>"
-		       + "<br></div>"; */
+		       + "<br></div>"; */ 
 		
                 $('.col-7').append(append_node);
                 loading = false;    //실행 가능 상태로 변경
             }
             ,error: function(xhr, status, error) 
             {
-                alert(error);
+                alert("마지막 게시물입니다.");
             }
         });
 }

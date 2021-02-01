@@ -49,12 +49,15 @@ public class ContentsController {
 	
 	@GetMapping("/test")
 	@ResponseBody
-	public Contents test(Model model, @SessionAttribute("index") int index, HttpSession session) {
-		System.out.println(index);
-		model.addAttribute("contentAjax", contentsService.getIndexContent(index));
-		System.out.println(contentsService.getIndexContent(index));
-		session.setAttribute("index", index+1);
-		return contentsService.getIndexContent(index);
+	public Contents getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
+		int contentNo = maxContNo;
+		Contents cont = new Contents();
+		do {
+			cont = contentsService.getContentLoad(contentNo);
+			contentNo--;
+		} while (cont == null);
+		session.setAttribute("maxContNo", contentNo);
+		return cont;
 	}
 	
 	@GetMapping("/tag")
@@ -92,9 +95,10 @@ public class ContentsController {
 	}
 	
 	@GetMapping()
-	public String getContents(ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id) {
+	public String getContents(ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id, HttpSession session) {
 		try {
 			model.addAttribute("contentList", contentsService.getContents(user_id));
+			session.setAttribute("maxContNo", contentsService.getMaxContentNo());
 		} catch (Exception e) {
 			return "redirect:user/loginForm";
 		}

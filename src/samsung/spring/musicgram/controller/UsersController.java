@@ -91,7 +91,6 @@ public class UsersController {
 				String[] genreList = {"Ballad", "Dance", "Pop", "Acoustic", "Hiphop", "RnB",
 						"Electronic", "Rock", "Jazz", "Indie", "Trot", "CCM"};
 				session.setAttribute("genreList", genreList);
-				session.setAttribute("index", 0);
 				return "redirect:/content";
 			}else {
 				session.setAttribute("errMsg", "비밀번호가 틀렸습니다.");
