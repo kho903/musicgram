@@ -149,10 +149,10 @@ public class ContentsService {
 
 	public int countContent(String user_id) {
 		return contentsMapper.countContent(user_id);
+	}
 
 	public List<Contents> infiniteScrollDown(Integer no){
 		return  contentsMapper.infiniteScrollDown(no);
-
 	}
 
 }
