@@ -8,6 +8,15 @@
 		select * from contents where genre=#{genre} order by content_no desc
 	</select>
 
+	<select id="getContentLoad"
+		resultType="samsung.spring.musicgram.dto.Contents">
+		select * from contents where content_no = #{content_no}
+	</select>
+
+	<select id="getMaxContentNo" resultType="java.lang.Integer">
+		select Max(content_no) from contents
+	</select>
+
 	<select id="getTagContents"
 		resultType="samsung.spring.musicgram.dto.Contents">
 		select content_no, user_id, youtube_url, text, genre, tag, like_count,

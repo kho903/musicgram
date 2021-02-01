@@ -203,4 +203,10 @@ public class UsersController {
 		}
 	}
 	
+	@GetMapping("/delete")
+	public String deleteUser(@SessionAttribute("session_id") String user_id, HttpSession session) {
+		userService.deleteUser(user_id);
+		session.invalidate();
+		return "redirect:/";
+	}
 }
