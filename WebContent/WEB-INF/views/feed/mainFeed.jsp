@@ -11,7 +11,6 @@
 
 <html>
 <head>
-<script type="text/javascript" src="/musicgram/js/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -48,6 +47,8 @@
 
 </head>
 <body>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<jsp:include page="/nav.jsp" />
 	<!-- 게시글 영역 -->
 	<c:if test="${not empty tag}">
@@ -150,7 +151,6 @@
 
     
 %> 
-
 								</span> --%>
 							</div>
 						</div>
@@ -170,8 +170,8 @@
 				</c:forEach>
 			</div>
 		</div>
-		<jsp:include page="/footer.jsp" />
 		
+		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 ﻿
@@ -290,15 +290,18 @@ function isPressLike(content_no){
 	})
 }
 
+
+/*
 var lastScrollTop = 0;
 var easeEffect = 'easeInQuint';
+
 
 // 1. 스크롤 이벤트 발생
 $(window).scroll(function(){
 	var currentScrollTop = $(window).scrollTop();
-	/*
-		=======다운 스크롤인 상태=======
-	*/
+	
+		// =======다운 스크롤인 상태=======
+
 	if (currentScrollTop - lastScrollTop > 0){
 		// down-scroll : 현재 게시글 다음의 글을 불러온다.
 		consol.log("다운 스크롤");
@@ -386,6 +389,10 @@ $(window).scroll(function(){
 		lastScrollTop = currentScrollTop;
 	}// 다운스크롤인 상태
 })
+*/
+
 
 </script>
+
+
 </html>
