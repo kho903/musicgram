@@ -3,6 +3,7 @@ package samsung.spring.musicgram.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -52,7 +55,7 @@ public class UsersController {
 	public String join(@ModelAttribute Users user, HttpSession session, HttpServletRequest request) {
 		try {
 			userService.userJoin(user);
-			System.out.println(user);
+			//System.out.println(user);
 			return "redirect:/user/loginForm";
 		}catch(DuplicateKeyException e) {
 			session.setAttribute("errMsg", "이미 존재하는 아이디 입니다.");
@@ -101,11 +104,13 @@ public class UsersController {
 		}
 	}
 	
+	// 로그아웃 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Users user, Model model, HttpSession session) {
 		session.invalidate();
 		return "redirect:/user/loginForm";
 	}
+	
 	
 	@GetMapping("/updateProfileForm")
 	public String updateProfileForm(@SessionAttribute("session_id") String user_id , Model model) {
@@ -115,7 +120,7 @@ public class UsersController {
 	}
 	
 	@PostMapping("/updateProfile")
-	public String updateProfile(@SessionAttribute("user_id") String user_id,
+	public String updateProfile(@SessionAttribute("session_id") String user_id,
 			@RequestParam("user_password") String user_password, @RequestParam("user_description") String user_description,
 			@RequestParam("file") MultipartFile file, HttpSession session) throws IOException {
 
@@ -137,6 +142,18 @@ public class UsersController {
 			picService.updatePic(userPic);
 		}
 		return "redirect:/user/"+user_id;
+	}
+	
+	
+	//메일 비밀번호 찾기
+	@GetMapping("/find-pw")
+	public ModelAndView find() {
+		return new ModelAndView("user/find-pw");
+	}
+	
+	@PostMapping("/find-pw")
+	public String findPW(@ModelAttribute Users user, HttpServletResponse response) {
+		return userService.findpw(response, user);
 	}
 	
 }

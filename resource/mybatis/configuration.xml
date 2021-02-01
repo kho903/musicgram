@@ -8,3 +8,4 @@
  		<typeAlias alias="pic" type="samsung.spring.musicgram.dto.Pic"/>
  	</typeAliases>
 </configuration>
+

@@ -31,7 +31,8 @@
 		<input type="submit" value="Submit">
 	</form>
 	<div id="errMsg" style="color:red;"><%=errMsg %></div>
-	<a href="/musicgram/user/joinForm">회원가입</a>
+	<a href="/musicgram/user/joinForm">회원가입</a><br>
+	<a href="/musicgram/user/find-pw">비밀번호 찾기</a>
 </div>
 	
 </body>
