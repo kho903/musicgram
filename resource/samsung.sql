@@ -55,6 +55,15 @@ create table likes (
 create sequence like_seq;
 
 
+create or replace trigger pic_add_trigger
+after insert on users
+for each row
+begin
+	insert into pic values(pic_seq.nextval, :NEW.user_id, 'default.png', 0, 'a');
+end;
+/
+
+
 insert into users values('test', '1234', 'test@naver.com','안녕하세요');
 insert into users values('test2', '5678', 'test2@naver.com','안녕하세요~!');
 

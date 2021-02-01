@@ -47,6 +47,16 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
+	@GetMapping("/test")
+	@ResponseBody
+	public Contents test(Model model, @SessionAttribute("index") int index, HttpSession session) {
+		System.out.println(index);
+		model.addAttribute("contentAjax", contentsService.getIndexContent(index));
+		System.out.println(contentsService.getIndexContent(index));
+		session.setAttribute("index", index+1);
+		return contentsService.getIndexContent(index);
+	}
+	
 	@GetMapping("/tag")
 	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
 		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);

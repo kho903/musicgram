@@ -24,5 +24,5 @@ public interface ContentsMapper {
 
 	public int countContent(String user_id);
 	public List<Contents> infiniteScrollDown(Integer no);
-
+	public Contents getIndexContent(int index);
 }

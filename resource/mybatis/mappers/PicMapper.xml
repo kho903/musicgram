@@ -6,16 +6,6 @@
 		select * from pic where user_id = #{user_id}
 	</select>
 
-	<insert id="addPic" parameterType="pic">
-		insert into pic
-		values(
-		pic_seq.nextval,
-		#{user_id},
-		#{file_name},
-		#{file_size},
-		#{file_data})
-	</insert>
-
 	<update id="updatePic" parameterType="pic">
 		update pic set
 		file_name = #{file_name},
@@ -24,11 +14,11 @@
 		where user_pic_no = #{user_pic_no}
 	</update>
 
-	<update id="deletePic">
+	<update id="deletePic" parameterType="java.lang.String">
 		update pic set
-		file_name = "default.png"
-		file_size = ""
-		file_data = ""
-		where user_pic_no = #{user_pic_no}
+		file_name = 'default.png',
+		file_size = 0,
+		file_data = 'a'
+		where user_id = #{user_id}
 	</update>
 </mapper>
