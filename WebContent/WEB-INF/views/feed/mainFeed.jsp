@@ -62,14 +62,13 @@
 
 			<div class="col-7 scrollLocation">
 				<c:forEach var="content" items="${contentList}">
-					<div class="card scrolling" data-bno = "${content.content_no }">
+					<div class="card scrolling" data-bno = "${content.key.content_no }">
 						<div class="card-header ">
-							<!-- <td>${content.content_no}</td> -->
-
 							<div class="box" style="background: #ffffff;">
-                <a href="/musicgram/user/${content.key.user_id}">
+                				<a href="/musicgram/user/${content.key.user_id}">
 								<img class="profile" src="/musicgram/profile/${content.key.user_id}"
-                     onerror="this.src='/musicgram/img/default.png'"> </a>
+                     					onerror="this.src='/musicgram/img/default.png'"> 
+                     			</a>
 							</div>
               <a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
 
@@ -171,6 +170,8 @@
 				</c:forEach>
 			</div>
 		</div>
+		<jsp:include page="/footer.jsp" />
+		
 	</div>
 </body>
 ﻿

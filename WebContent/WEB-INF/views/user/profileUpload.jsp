@@ -27,6 +27,7 @@
 		        </tr>
 			</table>  
 			<input type="submit" value="Submit">
+			<input type="button" onclick="history.go(-1);" value="변경 취소">
 		</form>
 		
 		<%

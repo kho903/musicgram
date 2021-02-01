@@ -19,4 +19,14 @@
 		set password = #{password}, description = #{description}
 		where user_id=#{user_id}
 	</update>
+	
+	<select id ="findPw" resultType="samsung.spring.musicgram.dto.Users">
+		select * from users where user_id = #{user_id} and email = #{email}
+	</select>
+	
+	<update id="getTempPw" parameterType="samsung.spring.musicgram.dto.Users">
+		update users 
+		set password = #{password}
+		where user_id=#{user_id} and email=#{email}
+	</update>
 </mapper>

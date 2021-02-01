@@ -16,6 +16,7 @@
 </head>
 <body>
 <div class='container'>	
+	<a href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px></a>
 	<h1>로그인 폼이에용</h1>
 	<form action="login" method="post">
 		<table class="table">
@@ -31,7 +32,8 @@
 		<input type="submit" value="Submit">
 	</form>
 	<div id="errMsg" style="color:red;"><%=errMsg %></div>
-	<a href="/musicgram/user/joinForm">회원가입</a>
+	<a href="/musicgram/user/joinForm">회원가입</a><br>
+	<a href="/musicgram/user/find-pw">비밀번호 찾기</a>
 </div>
 	
 </body>
