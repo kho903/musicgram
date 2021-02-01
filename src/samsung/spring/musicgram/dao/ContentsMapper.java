@@ -22,4 +22,7 @@ public interface ContentsMapper {
 	public int cancelLike(int content_no);
 	public List<Contents> getUserContent(String user_id);
 
+	public int countContent(String user_id);
+	public List<Contents> infiniteScrollDown(Integer no);
+
 }

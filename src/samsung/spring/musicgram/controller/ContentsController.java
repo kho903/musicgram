@@ -17,10 +17,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import samsung.spring.musicgram.dto.Contents;
 import samsung.spring.musicgram.service.CommentsService;
@@ -60,10 +63,8 @@ public class ContentsController {
 	
 	@PostMapping("/pressLike") // 좋아요 ajax
 	@ResponseBody
-
 	public HashMap<Integer, Integer> pressLike(@SessionAttribute("session_id") String user_id, HttpServletRequest request) {
 		int content_no = Integer.parseInt(request.getParameter("content_no"));
-		
 		return contentsService.pressLike(content_no, user_id);
 	}
 	
@@ -81,8 +82,12 @@ public class ContentsController {
 	}
 	
 	@GetMapping()
-	public String getContents(ModelMap model, @SessionAttribute("session_id") String user_id) {
-		model.addAttribute("contentList", contentsService.getContents(user_id));
+	public String getContents(ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id) {
+		try {
+			model.addAttribute("contentList", contentsService.getContents(user_id));
+		} catch (Exception e) {
+			return "redirect:user/loginForm";
+		}
 		return "feed/mainFeed";
 	}
 	
@@ -131,4 +136,12 @@ public class ContentsController {
 		return res;
 	}
 	
+	
+	// 무한스크롤
+	@RequestMapping(value="/infiniteScrollDown", method=RequestMethod.POST)
+	public @ResponseBody List<Contents> infiniteScrollDownPOST(@RequestBody Contents content){
+		Integer con_no_list = content.getContent_no() - 1;
+		return contentsService.infiniteScrollDown(con_no_list);
+		
+	}
 }

@@ -37,14 +37,21 @@
 		content_no = #{content_no}
 	</select>
 
+	<select id="countContent" resultType="java.lang.Integer">
+		select count(*) from contents where user_id = #{user_id}
+	</select>
+
 	<select id="getUserContent" resultType="contents">
 		select * from contents where
 		user_id = #{user_id} order by content_no desc
 	</select>
 
 	<select id="getContents" resultType="contents">
-		select * from contents order by content_no desc
-	</select>
+		select * from (
+			select ROW_NUMBER() over (order by content_no desc) num, C.*
+			from contents C
+		) where num between 0 and 3
+ 	</select>
 
 	<delete id="deleteContent" parameterType="java.lang.Integer">
 		delete from contents
