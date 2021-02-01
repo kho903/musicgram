@@ -63,42 +63,43 @@
 
 	<div class="container">
 		<c:if test="${empty contentList}">
-			<p>피드가 없습니다.</p>
+			<p>해당 장르의 피드가 없습니다.</p>
 		</c:if>
 		<div class="row">
 
 			<div class="col-7">
 				<c:forEach var="content" items="${contentList}">
 					<div class="card" data-bno="${content.key.content_no }">
-						<div class="card-header ">
-							<div class="box" style="background: #ffffff;">
-								<a href="/musicgram/user/${content.key.user_id}"> <img
-									class="profile" src="/musicgram/profile/${content.key.user_id}"
-									onerror="this.src='/musicgram/img/default.png'">
-								</a>
+						<div class="card-header">
+							<div class="d-flex align-items-center">
+								<div class="p-2 box" style="background: #ffffff;">
+									<a href="/musicgram/user/${content.key.user_id}"> <img
+										class="profile" src="/musicgram/profile/${content.key.user_id}"
+										onerror="this.src='/musicgram/img/default.png'">
+									</a>
+								</div>
+								<div class='p-2' style="font-size:18px;">
+									<a style='color:black;' href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+								</div>
+													<%--
+											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
+							                	<img class="icon-react icon-more" src="/musicgram/img/more.png"	alt="more" align="right">
+											</a>
+									--%>
+								<div class="ml-auto p-2">
+									<a href="#" onclick="openChild(${content.key.content_no})"
+										class="card-link openMask"> <img
+										class="icon-react icon-more float-right" src="/musicgram/img/more.png"
+										alt="more" align="right">
+									</a>
+								</div>
 							</div>
-							<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
-							<%--
-					<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
-	                	<img class="icon-react icon-more" src="/musicgram/img/more.png"	alt="more" align="right">
-					</a>
-				--%>
-
-							<a href="#" onclick="openChild(${content.key.content_no})"
-								class="card-link openMask"> <img
-								class="icon-react icon-more" src="/musicgram/img/more.png"
-								alt="more" align="right">
-							</a>
-
-
 						</div>
 						<div class="card-body">
 							<div class="embed-responsive embed-responsive-16by9">
 								<iframe width="560" height="315"
-									src="https://www.youtube.com/embed/${content.key.youtube_url}"
-									frameborder="0"
-									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-									allowfullscreen> </iframe>
+									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
+									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
 								
 							<br>
@@ -116,12 +117,13 @@
 									id="heart${content.key.content_no}">
 								</a>
 							</c:if>
+							<br>
 							<p>
 								좋아요 <span id="countLike${content.key.content_no}">${content.key.like_count}개</span>
 							</p>
 							<p>${content.key.text}</p>
 							<p>
-								#<a href="/musicgram/content/tag?tag=${content.key.tag}">${content.key.tag}</a>
+								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
 
 							<div class="time-log">
@@ -173,11 +175,12 @@
 						<ul>
 
 							<c:if test="${content.key.user_id eq session_id}">
+								<div class="float-right">
 								<a href="/musicgram/content/update/${content.key.content_no}"
-									class="card-link">수정</a>
+									class="card-link"><img src="/musicgram/img/update.png"</a>
 								<a href="/musicgram/content/delete/${content.key.content_no}"
-									class="card-link">삭제</a>
-
+									class="card-link"><img src="/musicgram/img/delete.png"</a>
+								</div>
 							</c:if>
 						</ul>
 
