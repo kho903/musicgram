@@ -132,7 +132,7 @@ width: 280px;}
 
 
 .navbar.navbar-expand-md{
-margin-top: 20px;
+margin-top: 10px;
 padding: 0;
 }
 
@@ -158,8 +158,8 @@ padding: 0;
 .swiper-container {
 	width: 100%;
 	height: 100%;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-bottom: 5px;
 	border: 1px solid silver;
 	border-radius: 5px;
 	

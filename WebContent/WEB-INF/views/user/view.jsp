@@ -21,7 +21,6 @@
 <jsp:include page="/nav.jsp"/>
 
 <div id="container">
-
     <div id="main_container" style='padding-top:200px;'>
         <section class="b_inner">
 
@@ -77,6 +76,5 @@
             </div>
         </section>
     </div>
-</section>
 </body>
 </html>

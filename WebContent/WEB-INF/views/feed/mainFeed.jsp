@@ -75,20 +75,12 @@
 
 .my-box{
 	padding:10px;
+	line-height:40px;
 }
 
-/* 최지유가 추 */
-#toc-content {
-display: none;
-  }
-#toc-toggle {
-cursor: pointer;
-color: #2962ff;
-  }
-#toc-toggle:hover {
-text-decoration: underline;
-  }
-
+.search_re{
+	font-weight: bold;
+}
 
 </style>
 
@@ -106,10 +98,10 @@ text-decoration: underline;
 		<div class="row" style="padding-top:200px;">
 			<div class="col-7">
 				<c:if test="${not empty tag}">
-					<p>${tag}으로검색한 결과입니다.</p>
+					<p class="search_re">${tag}(으)로 검색한 결과입니다.</p>
 				</c:if>
 				<c:if test="${empty contentList}">
-					<p>해당 장르의 피드가 없습니다.</p>
+					<p class="search_re">해당 피드가 없습니다.</p>
 				</c:if>
 				<c:forEach begin="0" end="2" var="content" items="${contentList}">
 					<div class="card" data-bno="${content.key.content_no }">
@@ -197,18 +189,10 @@ text-decoration: underline;
 					<h1 class='font-italic'>Musicgram</h1>
 					<br>
 					<div class='my-box'>
-						<p>
-						본 서비스는 유튜브 url을 이용하여 동영상을 첨부할 수 있습니다.
-						</p>
-						<p>
-						당신이 좋아하는 음악을 추천하고 다른 사람들의 추천을 볼 수 있습니다.
-						</p>
-						<p>
-						또한 당신이 보고 싶은 장르를 모아 볼 수 있습니다.
-						</p>
-						<p>
-						지금 바로 다른 사람들과 의견을 나눠보세요!
-						</p>
+						본 서비스는 유튜브 url을 이용하여 동영상을 첨부할 수 있습니다.<br>
+						당신이 좋아하는 음악을 추천하고 다른 사람들의 추천을 볼 수 있습니다.<br>
+						또한 당신이 보고 싶은 장르를 모아 볼 수 있습니다.<br>
+						지금 바로 다른 사람들과 의견을 나눠보세요!<br>
 					</div>
 					<br><br>
 					<jsp:include page="/footer.jsp" />
