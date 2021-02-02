@@ -45,12 +45,16 @@
 	height: 100%;
 	object-fit: cover;
 }
+
+#show {
+	color: #262626;
+	font-size: 15px;
+}
 </style>
 
 </head>
 <body>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
 	<jsp:include page="/nav.jsp" />
 	<!-- 게시글 영역 -->
 	<c:if test="${not empty tag}">
@@ -72,7 +76,7 @@
 					<div class="card" data-bno="${content.key.content_no }">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
-								<div class="p-2 box" style="background: #ffffff;">
+								<div class="box" style="background: #ffffff;">
 									<a href="/musicgram/user/${content.key.user_id}"> <img
 										class="profile" src="/musicgram/profile/${content.key.user_id}"
 										onerror="this.src='/musicgram/img/default.png'">
@@ -127,54 +131,37 @@
 								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
 
-							<div class="time-log">
-
-								<%-- <span id="diffTime">
-									<%
-    DecimalFormat    capa        = new DecimalFormat("#");
-    SimpleDateFormat df          = new SimpleDateFormat("yyyy-MM-dd E");
-    SimpleDateFormat dfv         = new SimpleDateFormat("yyyyMMdd");
-    SimpleDateFormat dfh         = new SimpleDateFormat("yyyyMMddHH");
-    SimpleDateFormat dfhm        = new SimpleDateFormat("yyyyMMddHHmm");
-    Calendar cal = Calendar.getInstance();
- 
-    int yyyy     = cal.get(Calendar.YEAR);    //현재 년도
-    int MM        = cal.get(Calendar.MONTH);   //현재 달
-    int dd        = cal.get(Calendar.DATE);    //현재 날짜
-    int hh        = cal.get(Calendar.HOUR);    //현재 시간
-    cal.set(yyyy, MM, dd); //현재 날짜 세팅
-    
-    /* 시,분까지 계산 */
-    String resdate = "${content.create_date}";    //기준일
-    String today = dfhm.format(cal.getTime());
-    Date beginDate = null;
-    Date endDate = null;
-    
-    long diff = 0;
-    long diffDays = 0;
-    long diffTime = 0;
-    
-  /*   beginDate = dfhm.parse(resdate);  */   //parse: 문자형 날짜 -> Date 형태로 변환
-    endDate = dfhm.parse(today);
- 
-	diff = endDate.getTime() - beginDate.getTime(); //밀리세컨단위로 계산됨
-    diffDays = diff / (24 * 60 * 60 * 1000);
-    diffTime = diff / (60 * 60 * 1000);
-    
-    //out.println(beginDate+"/");
-    //out.println(endDate+"/");
-    out.println("기준일로부터"+ diffDays +"일 경과<br/>");
-    out.println("기준일로부터"+ diffTime +"시간 경과");
-    
-    
-
-    
-%> 
-								</span> --%>
+						</div>
+						
+						<div class='card-footer'>
+							<!-- 댓글 접기 펼치기  -->	
+							<div >
+								<a href=#none id="show" onclick="if(comment_list.style.display=='none')
+								{comment_list.style.display='';show.innerText='▲ 댓글 접기'}
+								else {comment_list.style.display='none';show.innerText='▶ 댓글 보기'}">▶ 댓글 보기 </a>
+								<div id="comment_list" style="display: none;">
+									<!-- 댓글 리스트 -->
+									<ul>
+										<c:forEach items="${comments}" var="comments">
+											<div class="user_info line_no">
+												<div class="box" style="background: #ffffff;">
+													<a href="/musicgram/user/${comments.user_id}">
+														<img class="profile" src="/musicgram/profile/${comments.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
+												</div>
+												<div class="comment_info"><a href="/musicgram/user/${comments.user_id}"><span>${comments.user_id}</span></a> ${comments.comment_text}
+													<c:if test="${comments.user_id eq session_id}">
+														<a href="/musicgram/comments/delete/${comments.comment_no}&${comments.content_no}" class="del">X</a>
+													</c:if>
+												</div>
+											</div>
+										</c:forEach>
+									</ul>
+								</div>
 							</div>
 						</div>
+						
+						<!-- 
 						<ul>
-
 							<c:if test="${content.key.user_id eq session_id}">
 								<div class="float-right">
 								<a href="/musicgram/content/update/${content.key.content_no}"
@@ -184,6 +171,7 @@
 								</div>
 							</c:if>
 						</ul>
+						 -->
 
 					</div>
 					<br>
@@ -196,8 +184,8 @@
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
-﻿
-<!-- <script type="text/javascript" src="/musicgram/js/jquery-ui.min.js"></script> -->
+﻿<script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
 function wrapWindowByMask(){
     //화면의 높이와 너비를 구한다.
@@ -379,6 +367,8 @@ $(function(){
 		}
 	});
 });
+
+
 
 </script>
 
