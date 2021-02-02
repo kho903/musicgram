@@ -75,11 +75,12 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
+	/*
 	@GetMapping("/pressLike/{content_no}") //메인 피드에서 좋아요 누를 경우
 	public String pressLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("session_id") String user_id) {
 		contentsService.pressLike(content_no, user_id);
 		return "redirect:/content";
-	}
+	}*/
 	
 	@PostMapping("/pressLike") // 좋아요 ajax
 	@ResponseBody
@@ -88,11 +89,12 @@ public class ContentsController {
 		return contentsService.pressLike(content_no, user_id);
 	}
 	
+	/*
 	@GetMapping("pressLikeDetail/{content_no}") //상세 페이지에서 좋아요 누를 경우
 	public String pressLikeDetail(@PathVariable(name="content_no") int content_no, @SessionAttribute("session_id") String user_id) {
 		contentsService.pressLike(content_no, user_id);
 		return "feed/detailFeed";
-	}
+	}*/
 	
 	@GetMapping("/getLike/{content_no}")
 	public String getLike(@PathVariable(name="content_no") int content_no, Model model) {
@@ -111,11 +113,13 @@ public class ContentsController {
 		}
 		return "feed/mainFeed";
 	}
-	
-	@GetMapping("/{content_no}")
-	public String getContent(@PathVariable(name="content_no") int content_no, ModelMap model) {
+	//@GetMapping("/{content_no}")
+	@RequestMapping(value="/{content_no}" , method = {RequestMethod.GET, RequestMethod.POST})
+	public String getContent(@PathVariable(name="content_no") int content_no, ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id) {
 		model.addAttribute("content", contentsService.getContent(content_no));
 		model.addAttribute("comments", commentsService.getComments(content_no));
+		model.addAttribute("checkPressLike", contentsService.isPressLike(content_no, user_id));
+		
 		return "feed/detailFeed";
 	}
 	
