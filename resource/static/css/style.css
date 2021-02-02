@@ -140,7 +140,6 @@ body{
 
 
 #main_container{
-    padding-top: 90px;
     display: flex;
     justify-content: center;
 }

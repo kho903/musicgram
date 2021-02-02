@@ -108,8 +108,8 @@
 </script>
 
 <style>
-<
-style>body {
+<style>
+body {
 	background: #eee;
 	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 14px;

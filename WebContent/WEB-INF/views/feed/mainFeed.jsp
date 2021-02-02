@@ -49,6 +49,33 @@
 	color: #262626;
 	font-size: 15px;
 }
+
+#contentIdHover a{
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+}
+
+#contentIdHover a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
+#sessionIdHover a{
+	text-decoration: none;
+	font-size: 19px;
+	color: black;
+}
+
+#sessionIdHover a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
+.my-box{
+	padding:10px;
+}
+
 </style>
 
 </head>
@@ -80,8 +107,8 @@
 										onerror="this.src='/musicgram/img/default.png'">
 									</a>
 								</div>
-								<div class='p-2' style="font-size:18px;">
-									<a style='color:black;' href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+								<div class='p-2' id='contentIdHover'>
+									<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
 								</div>
 													<%--
 											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
@@ -100,7 +127,7 @@
 						</div>
 						<div class="card-body">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe width="560" height="315"
+								<iframe 
 									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
 									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
@@ -182,24 +209,30 @@
 								onerror="this.src='/musicgram/img/default.png'">
 							</a>
 						</div>
-						<div class='p-2' style="font-size:18px;">
-							<a style='color:black;' href="/musicgram/user/${session_id}">${session_id}</a>
+						<div class='p-2' id="sessionIdHover">
+							<a href="/musicgram/user/${session_id}">${session_id}</a>
 						</div>
 					</div>
 					<br>
+					
 					<h1 class='font-italic'>Musicgram</h1>
-					<div>
-					본 서비스는 유튜브 url을 이용하여 동영상을 첨부할 수 있습니다.
+					<br>
+					<div class='my-box'>
+						<p>
+						본 서비스는 유튜브 url을 이용하여 동영상을 첨부할 수 있습니다.
+						</p>
+						<p>
+						당신이 좋아하는 음악을 추천하고 다른 사람들의 추천을 볼 수 있습니다.
+						</p>
+						<p>
+						또한 당신이 보고 싶은 장르를 모아 볼 수 있습니다.
+						</p>
+						<p>
+						지금 바로 다른 사람들과 의견을 나눠보세요!
+						</p>
 					</div>
-					<div>
-					당신이 좋아하는 음악을 추천하고 다른 사람들의 추천을 볼 수 있습니다.
-					</div>
-					<div>
-					또한 당신이 보고 싶은 장르를 모아 볼 수 있습니다.
-					</div>
-					<div>
-					지금 바로 다른 사람들과 의견을 나눠보세요!
-					</div>
+					<br><br>
+					<jsp:include page="/footer.jsp" />
 				</div>
 			</div>
 			
@@ -207,7 +240,6 @@
 
 	</div>
 </body>
-		<jsp:include page="/footer.jsp" />
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
