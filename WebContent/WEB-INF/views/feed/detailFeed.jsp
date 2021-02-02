@@ -61,12 +61,7 @@
 					</form>
 					
 					
-					<!-- 댓글 접기 펼치기  -->	
-					<div class="comment_fold">
-						<a href=#none id="show" onclick="if(hide.style.display=='none')
-						{hide.style.display='';show.innerText='▲ 댓글 접기'}
-						else {hide.style.display='none';show.innerText='▶ 댓글 보기'}">▶ 댓글 보기 </a>
-						<div id="hide" style="display: none">
+
 			
 					<!-- 댓글 리스트 -->
 					<ul>
@@ -84,11 +79,8 @@
 							</div>
 						</c:forEach>
 					</ul>
-					</div>
-					</div>
 			</div>
 	<!-- // feed information -->
 			</div>
-		</div>
 	</body>
 </html>

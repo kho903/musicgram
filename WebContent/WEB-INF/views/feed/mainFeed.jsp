@@ -128,7 +128,6 @@
 							<p>
 								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
-
 						</div>
 						
 						<div class='card-footer'>
