@@ -11,8 +11,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
 
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
-<link rel="stylesheet"
-	href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -20,47 +19,44 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div id="wraper">
 	<div class='container fixed-top' style="background-color: white;">
 		<div class="navbar-wrapper">
-			<nav class="navbar navbar-expand-md">
-				<div
-					class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-					<a href="/musicgram/content"> <img src="/musicgram/img/logo.png"
-						alt="instagram-type" border="0" width=200px>
-					</a>
-				</div>
-	
-				<div class="mx-auto order-0">
-					<form class="form-inline" action="/musicgram/content/tag"
-						method="get">
-						<input class="form-control mr-sm-2" type="text"
-							placeholder="tag를 검색하세요." name="tag">
-					</form>
-				</div>
-				<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-					<ul class="navbar-nav ml-auto">
-						<%
-							if (session.getAttribute("session_id") == null) {
-						%>
-						<li><a href="/musicgram/user/loginForm">로그인</a></li>
-						<%
-							} else {
-							String session_id = (String) session.getAttribute("session_id");
-						%>
-						<li><span class="navbar-text">${session_id}님 반갑습니다</span></li>
-						<li><a class="nav-link" href="#"
-							onclick="location.href='/musicgram/upload.jsp'">upload</a></li>
-						<li><a class="nav-link" href="#"
-							onclick="location.href='/musicgram/user/${session_id}'">my
-								page</a></li>
-						<li><a class="nav-link" href="#"
-							onclick="location.href='/musicgram/user/logout'">로그아웃</a>
-						<%
-	 					}
-						%>
-					</ul>
-				</div>
-			</nav>
+      <nav class="navbar navbar-expand-md" id="nav-top">
+        <a href="/musicgram/content"> <img src="/musicgram/img/logo.png"
+            alt="instagram-type" border="0" width=200px id="main-logo">
+        </a>
+        <div class="mx-auto order-0">
+          <form class="form-inline" action="/musicgram/content/tag"
+            method="get">
+            <input class="form-control mr-sm-2" type="text"
+              placeholder="tag를 검색하세요." name="tag">
+          </form>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+            <%
+              if (session.getAttribute("session_id") == null) {
+            %>
+            <li><a href="/musicgram/user/loginForm">로그인</a></li>
+            <%
+              } else {
+              String session_id = (String) session.getAttribute("session_id");
+            %>
+            <li><span class="navbar-text">${session_id}님 반갑습니다</span></li>
+            <li><a class="nav-link" href="#"
+              onclick="location.href='/musicgram/upload.jsp'">Upload</a></li>
+            <li><a class="nav-link" href="#"
+              onclick="location.href='/musicgram/user/${session_id}'">My
+                page</a></li>
+            <li><a class="nav-link" href="#"
+              onclick="location.href='/musicgram/user/logout'">Logout</a>
+            <%
+            }
+            %>
+          </ul>
+        </div>
+      </nav>
 		</div>
 		<div class="swiper-container">
 			<div class="swiper-button-next"></div>
@@ -79,6 +75,7 @@
 		</div>
 		<!--  -->
 	</div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script>
@@ -120,6 +117,42 @@ style>body {
 	margin: 0;
 	padding: 0;
 }
+
+#wraper {
+margin-bottom:35px;
+}
+
+#main-logo{
+padding-top:10px;
+margin-right: 30px;
+}
+
+.form-control.mr-sm-2{
+width: 280px;}
+
+.navbar.navbar-expand-md{
+margin-top: 20px;
+padding: 0;
+}
+
+.navbar-text {
+  margin-right: 20px;
+  font-size: 17px;
+  line-height: 40px;
+}
+
+
+.navbar-nav li a{
+	text-decoration: none;
+	color:  #282828;
+	font-size: 16px;
+  	line-height: 40px;
+}
+.navbar-nav li a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
 
 .swiper-container {
 	width: 100%;
