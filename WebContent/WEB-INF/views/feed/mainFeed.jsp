@@ -177,9 +177,9 @@
 							<c:if test="${content.key.user_id eq session_id}">
 								<div class="float-right">
 								<a href="/musicgram/content/update/${content.key.content_no}"
-									class="card-link"><img src="/musicgram/img/update.png"</a>
+									class="card-link"><img src="/musicgram/img/update.png"></a>
 								<a href="/musicgram/content/delete/${content.key.content_no}"
-									class="card-link"><img src="/musicgram/img/delete.png"</a>
+									class="card-link"><img src="/musicgram/img/delete.png"></a>
 								</div>
 							</c:if>
 						</ul>
