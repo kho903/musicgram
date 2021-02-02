@@ -26,7 +26,7 @@
 		 <div class="form_container">
 		  <div class="form">
 			<a  href="/musicgram/content"><img src="/musicgram/img/logo.png" alt="instagram-type" border="0" width=200px class="logo_join"></a>
-			<div class="join_msg">사람들과 동영상을 공유하려면 가입하세요.</div>
+			<div class="join_msg">동영상을 공유하려면 가입하세요.</div>
 			<!-- 폼 부분 -->
 			<form action="join" method="post">
 			<p class="join_user_id">

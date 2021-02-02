@@ -16,12 +16,12 @@
     <link rel="stylesheet" href="/musicgram/css/profile.css">
 
 </head>
-<body>
 
+<body>
 <jsp:include page="/nav.jsp"/>
 
 <div id="container">
-    <div id="main_container" style='padding-top:200px;'>
+    <div id="main_container" style='padding-top:130px;'>
         <section class="b_inner">
 
             <div class="hori_cont" style='margin-bottom:70px;'>
@@ -50,15 +50,15 @@
                         </li>
                         <li>
                             <span>팔로워</span>
-                            3
+                            1.3K
                         </li>
                         <li>
                             <span>팔로우</span>
-                            3
+                            1
                         </li>
                     </ul>
                     <p class="about">
-                        <span class="nick_name">${user.email}</span>
+                        <%-- <span class="nick_name">${user.email}</span> --%>
                         <span class="book_mark">${user.description }</span>
                     </p>
 

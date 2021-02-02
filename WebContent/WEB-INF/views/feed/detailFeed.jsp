@@ -17,7 +17,7 @@
 <body>
 	<div class='container'>
 	<div class='main-container'>
-		<iframe width="800" height="450" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="800" height="450" src="https://www.youtube.com/embed/${content.youtube_url}?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<!-- feed_infomation 시작 -->
 			<div class="feed_info">
 				<!-- 가장 위에 프로필과 아이디 -->
@@ -73,7 +73,7 @@
 					</form>
 
 					<!-- 댓글 리스트 -->
-					
+	
 					<div id="commentsWrapper">
 						<c:forEach items="${comments}" var="comments"  >
 							<div class="user_info line_no" id="commentsList${comments.comment_no}">
