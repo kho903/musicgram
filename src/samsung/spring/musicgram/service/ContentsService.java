@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import samsung.spring.musicgram.dao.ContentsMapper;
 import samsung.spring.musicgram.dao.LikesMapper;
 import samsung.spring.musicgram.dto.Contents;
+import samsung.spring.musicgram.dto.Likes;
 
 @Service
 public class ContentsService {
@@ -164,4 +165,7 @@ public class ContentsService {
 		return contentsMapper.getMaxContentNo();
 	}
 
+	public int isLikeOn(Likes like) {
+		return likesMapper.isLikeOn(like) > 0 ? 1 : 0;
+	}
 }
