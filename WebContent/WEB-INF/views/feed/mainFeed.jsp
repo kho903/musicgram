@@ -127,6 +127,9 @@
 								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
 
+
+
+
 							<div class="time-log">
 
 								<%-- <span id="diffTime">
