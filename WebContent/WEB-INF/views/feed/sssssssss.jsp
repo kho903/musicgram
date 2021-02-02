@@ -8,51 +8,49 @@
 </head>
 <body>
 			
-			<div class='card-body'>
-				<iframe width='560' height='315'
-					src='https://www.youtube.com/embed/data.youtube_url'
-					frameborder='0'
-					allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-					allowfullscreen> </iframe>
-				<br>
-				<c:if test='content.value eq 0'>
-					<a id='likeBtn'
-						onclick='pressLike(data.content_no,data.like_count)'>
-						<img src='/musicgram/img/heart.png'
-						id='heartdata.content_no'>
-					</a>
-				</c:if>
-				<c:if test='content.value eq 1'>
-					<a id='cancelLikeBtn'
-						onclick='pressLike(data.content_no,data.like_count)'>
-						<img src='/musicgram/img/red_heart.png'
-						id='heartdata.content_no'>
-					</a>
-				</c:if>
-				<p>
-					좋아요 개수 <span id='countLikedata.content_no'>data.like_count</span>
-				</p>
-				<p>data.text</p>
-				<p>
-					#<a href='/musicgram/content/tag?tag=data.tag'>data.tag</a>
-				</p>
+								<div class="ml-auto p-2">
+									<a href="#" onclick="openChild(${content.key.content_no})"
+										class="card-link openMask"> <img
+										class="icon-react icon-more float-right" src="/musicgram/img/more.png"
+										alt="more" align="right">
+									</a>
+								</div>
+							</div>
+						</div>
+						
+						
+						
+						<div class="card-body">
+							<div class="embed-responsive embed-responsive-16by9">
+								<iframe width="560" height="315"
+									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
+									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+								
+							<br>
+							<c:if test="${content.value eq 0}">
+								<a id="likeBtn"
+									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
+									<img src="/musicgram/img/heart.png"
+									id="heart${content.key.content_no}">
+								</a>
+							</c:if>
+							<c:if test="${content.value eq 1}">
+								<a id="cancelLikeBtn"
+									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
+									<img src="/musicgram/img/red_heart.png"
+									id="heart${content.key.content_no}">
+								</a>
+							</c:if>
+							<br>
+							<p>
+								좋아요 <span id="countLike${content.key.content_no}">${content.key.like_count}개</span>
+							</p>
+							<p>${content.key.text}</p>
+							<p>
+								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
+							</p>
 
-				<div class='time-log'></div>
-			</div>
-			<ul>
-
-				<c:if test='data.user_id eq session_id'>
-					<a href='/musicgram/content/update/data.content_no'
-						class='card-link'>수정</a>
-					<a href='/musicgram/content/delete/data.content_no'
-						class='card-link'>삭제</a>
-
-				</c:if>
-			</ul>
-
-		</div>
-		<br>
-		<br>
-		<br>
+						</div>
 </body>
 </html>
