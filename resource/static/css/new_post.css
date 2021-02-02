@@ -78,6 +78,11 @@
     margin-bottom: 20px;
 }
 
+.post_form .req_list{
+	font-weight:bold;
+	color: #262626;
+}
+
 .post_form input{
     width: 100%;
     background: 0 0;
@@ -123,9 +128,9 @@
     border-width: 1px;
     font-size: 14px;
     font-weight: 600;
-    line-height: 28px;
+    line-height: 30px;
     outline: none;
     width: 100%;
-    padding: 3px;
+    padding: 0;
     margin-top: 10px;
 }

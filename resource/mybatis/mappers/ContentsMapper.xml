@@ -14,7 +14,9 @@
 	</select>
 
 	<select id="getMaxContentNo" resultType="java.lang.Integer">
-		select Max(content_no) from contents
+		select content_no from 
+			(select rownum rn, content_no from contents <![CDATA[where rownum <= 4]]>  order by 2 desc)
+		where rn = 4
 	</select>
 
 	<select id="getTagContents"

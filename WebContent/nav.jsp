@@ -29,6 +29,7 @@
 					alt="instagram-type" border="0" width=200px>
 				</a>
 			</div>
+
 			<div class="mx-auto order-0">
 				<form class="form-inline" action="/musicgram/content/tag"
 					method="get">
@@ -61,7 +62,6 @@
 			</div>
 		</nav>
 		</div>
-
 		<div class="swiper-container">
 			<div class="swiper-button-next"></div>
 			<div class="swiper-wrapper">

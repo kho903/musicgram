@@ -69,10 +69,10 @@ public class UserService {
 		subject = "Musicgram 비밀번호찾기 임시비밀번호 안내";
 		
 		msg += "<div align='center' style='border:1px solid black; font-family:verdana'>";
-		msg += "<h3 style='color: blue;'>";
+		msg += "<h3 style='color: #3897f0;'>";
 		msg += user.getUser_id() + "님의 임시 비밀번호 입니다.</h3>";
 		msg += "해당 임시비밀 번호를 입력해 로그인하시고<br> 마이페이지에서 비밀번호를 변경하여 사용하세요.";
-		msg += "<p>임시 비밀번호 : " + user.getPassword() + "</p></div>";
+		msg += "<h4>임시 비밀번호 : " + user.getPassword() + "</h4></div>";
 
 
 		// 받는 사람 E-Mail 주소
