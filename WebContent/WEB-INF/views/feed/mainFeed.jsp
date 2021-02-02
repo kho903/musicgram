@@ -49,27 +49,68 @@
 	color: #262626;
 	font-size: 15px;
 }
+
+
+#contentIdHover a{
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+}
+
+#contentIdHover a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
+#sessionIdHover a{
+	text-decoration: none;
+	font-size: 19px;
+	color: black;
+}
+
+#sessionIdHover a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
+.my-box{
+	padding:10px;
+}
+
+/* 최지유가 추 */
+#toc-content {
+display: none;
+  }
+#toc-toggle {
+cursor: pointer;
+color: #2962ff;
+  }
+#toc-toggle:hover {
+text-decoration: underline;
+  }
+
+
 </style>
 
 </head>
 <body>
-	
 	<jsp:include page="/nav.jsp" />
 	<!-- 게시글 영역 -->
-	<c:if test="${not empty tag}">
-		<p>${tag}으로검색한 결과입니다.</p>
-	</c:if>
+
 
 	<div id="mask"></div>
 	<div class="window"></div>
 
 	<div class="container">
-		<c:if test="${empty contentList}">
-			<p>해당 장르의 피드가 없습니다.</p>
-		</c:if>
-		<div class="row">
-
+	<div class="container-body">
+		<div class="row" style="padding-top:200px;">
 			<div class="col-7">
+				<c:if test="${not empty tag}">
+					<p>${tag}으로검색한 결과입니다.</p>
+				</c:if>
+				<c:if test="${empty contentList}">
+					<p>해당 장르의 피드가 없습니다.</p>
+				</c:if>
 				<c:forEach begin="0" end="2" var="content" items="${contentList}">
 					<div class="card" data-bno="${content.key.content_no }">
 						<div class="card-header">
@@ -80,8 +121,10 @@
 										onerror="this.src='/musicgram/img/default.png'">
 									</a>
 								</div>
-								<div class='p-2' style="font-size:18px;">
-									<a style='color:black;' href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+
+								<div class='p-2' id='contentIdHover'>
+									<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+
 								</div>
 													<%--
 											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
@@ -98,14 +141,15 @@
 							</div>
 
 						</div>
-						<div class="card-body">
+						<div class="card-body" style="padding:0 0 20px;">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe width="560" height="315"
+								<iframe 
 									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
 									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
 								
-							<br>
+							<div style='padding:20px;'>
+							
 							<c:if test="${content.value eq 0}">
 								<a id="likeBtn"
 									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
@@ -128,54 +172,54 @@
 							<p>
 								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
-						</div>
-						
-						<div class='card-footer'>
-							<!-- 댓글 접기 펼치기  -->	
-							<div >
-								<a href=#none id="show" onclick="if(comment_list.style.display=='none')
-								{comment_list.style.display='';show.innerText='▲ 댓글 접기'}
-								else {comment_list.style.display='none';show.innerText='▶ 댓글 보기'}">▶ 댓글 보기 </a>
-								<div id="comment_list" style="display: none;">
-									<!-- 댓글 리스트 -->
-									<ul>
-										<c:forEach items="${comments}" var="comments">
-											<div class="user_info line_no">
-												<div class="box" style="background: #ffffff;">
-													<a href="/musicgram/user/${comments.user_id}">
-														<img class="profile" src="/musicgram/profile/${comments.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
-												</div>
-												<div class="comment_info"><a href="/musicgram/user/${comments.user_id}"><span>${comments.user_id}</span></a> ${comments.comment_text}
-													<c:if test="${comments.user_id eq session_id}">
-														<a href="/musicgram/comments/delete/${comments.comment_no}&${comments.content_no}" class="del">X</a>
-													</c:if>
-												</div>
-											</div>
-										</c:forEach>
-									</ul>
-								</div>
 							</div>
 						</div>
-						
-							<c:if test="${content.key.user_id eq session_id}">
-								<div class="float-right">
-								<a href="/musicgram/content/update/${content.key.content_no}"
-									class="card-link"><img src="/musicgram/img/update.png"></a>
-								<a href="/musicgram/content/delete/${content.key.content_no}"
-									class="card-link"><img src="/musicgram/img/delete.png"></a>
-								</div>
-							</c:if>
-						</ul>
-
 					</div>
-					<br>
 					<br>
 					<br>
 				</c:forEach>
 			</div>
+			<div class="col-5" >
+				<div style="position:fixed">
+					<div class="d-flex align-items-center">
+						<div class="box" style="background: #ffffff;">
+							<a href="/musicgram/user/${session_id}"> <img
+								class="profile" src="/musicgram/profile/${session_id}"
+								onerror="this.src='/musicgram/img/default.png'">
+							</a>
+						</div>
+						<div class='p-2' id="sessionIdHover">
+							<a href="/musicgram/user/${session_id}">${session_id}</a>
+						</div>
+					</div>
+					<br>
+					
+					<h1 class='font-italic'>Musicgram</h1>
+					<br>
+					<div class='my-box'>
+						<p>
+						본 서비스는 유튜브 url을 이용하여 동영상을 첨부할 수 있습니다.
+						</p>
+						<p>
+						당신이 좋아하는 음악을 추천하고 다른 사람들의 추천을 볼 수 있습니다.
+						</p>
+						<p>
+						또한 당신이 보고 싶은 장르를 모아 볼 수 있습니다.
+						</p>
+						<p>
+						지금 바로 다른 사람들과 의견을 나눠보세요!
+						</p>
+					</div>
+					<br><br>
+					<jsp:include page="/footer.jsp" />
+				</div>
+			</div>
+			
 		</div>
 
-		<jsp:include page="/footer.jsp" />
+		<div id="noContent" style="display: none; font-size: large;">
+			마지막 게시물입니다.
+		</div>
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
@@ -197,9 +241,10 @@ function wrapWindowByMask(){
     $('.window').show();
 }
 
+
 $(document).ready(function(){
     //검은 막 띄우기
-    $('.openMask').click(function(e){
+    $(document).on("click",".openMask",function(e){
         e.preventDefault();
         wrapWindowByMask();
     });
@@ -223,11 +268,10 @@ var openWin;
 function openChild(content_no) { 
 	// window.name = "부모창 이름"; 
 	window.name = "mainFeed"; 
-	// window.open("open할 window", "자식창 이름", "팝업창 옵션"); 
+	// window.open("open할 window", "자식창 이름", "팝업창 옵션");
 	openWin = window.open("/musicgram/content/"+content_no, "detailFeed",
 			"width=1000, height=600, resizable = no, scrollbars = no, location=no");
 } 
-
 
 function diffDate(create){
 	var now = new Date();
@@ -301,54 +345,46 @@ function next_load(){
             datatype : 'json',
             success: function(data) {
                 /* 이미지 동적 추가 */
+                var if_like = "";
+                if(data.isLike+0 == 0){
+					if_like += "<a id='likeBtn' onclick='pressLike("+data.content.content_no+","+data.content.like_count+")'>"
+					+ "<img src='/musicgram/img/heart.png' id='heart"+data.content.content_no+"'> </a>"
+				}else{
+					if_like += "<a id='cancelLikeBtn' onclick='pressLike("+data.content.content_no+","+data.content.like_count+")'>"
+					+ "<img src='/musicgram/img/red_heart.png' id='heart"+data.content.content_no+"'> </a> <br>"
+				};
                 var append_node = "";
-               	append_node += "<div class='card' data-bno='"+data.content_no+"'>"
+               	append_node += "<div class='card' data-bno='"+data.content.content_no+"'>"
 	            + "<div class='card-header'>"
 	            + "<div class='d-flex align-items-center'>"
 	            + "<div class='box' style='background: #ffffff;'>"
-	            + "<a href='/musicgram/user/"+data.user_id+"'> <img class='profile'"
-	            + "src='/musicgram/profile/"+data.user_id
+	            + "<a href='/musicgram/user/"+data.content.user_id+"'> <img class='profile'"
+	            + "src='/musicgram/profile/"+data.content.user_id
 	            + "' onerror='this.src=\"/musicgram/img/default.png\"'> </a> </div>"
 	            + "<div class='p-2' style='font-size:18px;'>"
-	            + "<a style='color:black;' href='/musicgram/user/"+data.user_id+"'>"+data.user_id+"</a> </div>"
-	            
+	            + "<a style='color:black;' href='/musicgram/user/"+data.content.user_id+"'>"+data.content.user_id+"</a> </div>"
 	            + "<div class='ml-auto p-2'>"
-	            + "<a href='#' onclick='openChild("+data.content_no+")'"
+	            + "<a href='#' onclick='openChild("+data.content.content_no+")'"
 				+ "class='card-link openMask'> <img class='icon-react icon-more float-right'"
 				+ "src='/musicgram/img/more.png' alt='more' align='right'> </a> </div> </div> </div>"
-				
-				
 				+ "<div class='card-body'>"
-				+ "<iframe width=\"560\" height=\"315\""
-				+   "   src=\"https://www.youtube.com/embed/"+data.youtube_url+"\""
-				+   "   frameborder=\"0\""
-				+   "   allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\""
-				+   "   allowfullscreen></iframe>"
-				+   "<p>"
-				+   "   <a href=\"content/pressLike/"+data.content_no+"\""
-				+   "      class=\"card-link\">좋아요</a>"
-				+   "</p>"
-				+   "<button onclick=\"pressLike("+data.content_no + data.like_count + ")\">좋아요</button>"
-				+   "<p>"
-				+   "   <a href=\"content/cancelLike/"+data.content_no+"\""
-				+   "      class=\"card-link\">좋아요 취소</a>"
-				+   "</p>"
-				+   "<button onclick=\"cancelLike/"+data.content_no+","+data.like_count+"\">좋아요 취소</button>";
-  /*
-		          +   "<p>좋아요 개수 <span id=\"countLike"+data.content_no+"\">"+data.like_count}+"</span></p>"
-		          +   "<p>" + data.text +"</p>"
-		          + "</div>"
-		       + "</div>"
-		       + "<br>"
-		       + "<br>"
-		       + "<br></div>"; */ 
+				+ "<div class='embed-responsive embed-responsive-16by9'>"
+				+ "<iframe width='560' height='315'"
+				+ "src='https://www.youtube.com/embed/"+data.content.youtube_url+"'"
+				+ " frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'"
+				+ " allowfullscreen></iframe> </div> <br>"
+				+ if_like
+				+ "<p> 좋아요 <span id='countLike"+data.content.content_no+"'>"+data.content.like_count+"개</span> </p>"
+				+ "<p>"+data.content.text+"</p>"
+				+ "<p> <a style='color: #0061bd;' href='/musicgram/content/tag?tag="
+				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> <br><br>"
+				;
 		
                 $('.col-7').append(append_node);
                 loading = false;    //실행 가능 상태로 변경
-            }
-            ,error: function(xhr, status, error) 
+            }, error: function(xhr, status, error) 
             {
-            	$('.col-7').append("마지막 게시물입니다.");
+            	$('#noContent').show();
             }
         });
 }
@@ -366,9 +402,5 @@ $(function(){
 	});
 });
 
-
-
 </script>
-
-
 </html>

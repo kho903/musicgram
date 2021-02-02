@@ -16,9 +16,9 @@
 	session.removeAttribute("errMsg");
 %>
 </head>
-<body>
+<body style="background-color: #f8f8f8;">
 	<jsp:include page="/nav.jsp" />
-	<div class='container'>
+	<div class='container'  style="padding-top:150px;">
 		<div id="main_container">
         <div class="post_form_container">
         <!-- class: post_form-->
