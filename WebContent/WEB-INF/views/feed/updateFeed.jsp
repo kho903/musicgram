@@ -8,11 +8,10 @@
 <html>
 <head>
 	<!-- 업로드 css 추가 -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/new_post.css">
-    <link rel="shortcut icon" href="imgs/instagram.png">
+    <link rel="stylesheet" href="/musicgram/css/reset.css">
+    <link rel="stylesheet" href="/musicgram/css/common.css">
+    <link rel="stylesheet" href="/musicgram/css/style.css">
+    <link rel="stylesheet" href="/musicgram/css/new_post.css">
 <meta charset="UTF-8">
 <title>피드 수정</title>
 <%
@@ -28,18 +27,22 @@
         <div class="post_form_container">
         <!-- class: post_form-->
 		<form action="/musicgram/content/update" method="post" class="post_form">
-			<input type="hidden" name="content_no" value="${content.content_no}" readonly="readonly"><br>
-			<input type="hidden" name="user_id" value="${content.user_id}" readonly="readonly"><br>
-			<input type="hidden" name="youtube_url" value="${content.youtube_url}"><br>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 			
+			
+			<input type="hidden" name="user_id" value="${content.user_id}" readonly="readonly">
+			<input type="hidden" name="youtube_url" value="${content.youtube_url}"><br>
 			<p>
-			text
-			<textarea type="text" name="text" value="${content.text}" required></textarea>
+			<iframe width="400" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
+			</p>
+			<input type="hidden" name="content_no" value="${content.content_no}" readonly="readonly"><br>
+	
+			<p>
+			<div class="req_list">text</div>
+			<textarea type="text" name="text" required>${content.text}</textarea>
 			</p>
 			
 			<p>
-			genre
+			<div class="req_list">genre</div>
 			<select name="genre" id="genre" required>
 			    <option value="">장르를 선택해 주세요</option>
 			    <option value="Ballad">Ballad</option>
@@ -58,11 +61,10 @@
 			</p>
 			
 			<p>
-			tag
-			<input type="text" name="tag" value="${content.tag}" required><br>
+			<div class="req_list">tag</div>
+			<input type="text" name="tag" value="${content.tag}" required>
 			</p>
-			<div id="errMsg" style="color:red;"><%=errMsg %></div>
-			<input type="submit" value="update" id="submit_btn"/>
+			<input type="submit" value="Update" id="submit_btn"/>
 		</form>
 			
 		</div>
