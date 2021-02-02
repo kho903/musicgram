@@ -47,7 +47,7 @@ public class ContentsController {
 		return "feed/mainFeed";
 	}
 	
-	@GetMapping("/test")
+	@GetMapping("/moreLoad")
 	@ResponseBody
 	public Contents getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
 		int contentNo = maxContNo;

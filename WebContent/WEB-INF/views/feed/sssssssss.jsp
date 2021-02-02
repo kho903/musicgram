@@ -7,27 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-				<div class='box' style='background: #ffffff;'>
-					<a href='/musicgram/user/data.user_id'> <img
-						class='profile' src='/musicgram/profile/data.user_id'
-						onerror='this.src='/musicgram/img/default.png''>
-					</a>
-				</div>
-				<a href='/musicgram/user/data.user_id'>data.user_id</a>
-
-				<%--
-					<a href='/musicgram/content/data.content_no' class='card-link'> 
-	                	<img class='icon-react icon-more' src='/musicgram/img/more.png'	alt='more' align='right'>
-					</a>
-				--%>
-
-				<a href='#' onclick='openChild(data.content_no)'
-					class='card-link openMask'> <img class='icon-react icon-more'
-					src='/musicgram/img/more.png' alt='more' align='right'>
-				</a>
-
-
-			</div>
+			
 			<div class='card-body'>
 				<iframe width='560' height='315'
 					src='https://www.youtube.com/embed/data.youtube_url'
