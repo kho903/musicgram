@@ -110,7 +110,6 @@ public class UsersController {
 		return "redirect:/user/loginForm";
 	}
 	
-	
 	@GetMapping("/updateProfileForm")
 	public String updateProfileForm(@SessionAttribute("session_id") String user_id , Model model) {
 		model.addAttribute("user_description", userService.getUser(user_id).getDescription());
@@ -127,13 +126,16 @@ public class UsersController {
 		Users currentUser = userService.getUser(user_id);
 		Users updateUser = currentUser;
 		
-		if(!currentUser.getDescription().equals(update_user_description) && ("").equals(update_user_password) && ("").equals(user_password) ) {
-			updateUser.setDescription(update_user_description);
+		if(("").equals(update_user_password) && ("").equals(user_password)) { // 자기소개만 변경된 경우
+			if(update_user_description == null) { // Null인경우 공백 넣기..
+				update_user_description = "";
+			}
+			updateUser.setDescription(update_user_description); 
 			userService.updateUser(updateUser);
 			return "redirect:/user/"+user_id;
 		}
 		else if(!currentUser.getPassword().equals(user_password)) { //현재 비밀번호가 일치하지 않는 경우
-			session.setAttribute("passwordErrMsg", "현재 비밀번호가 알치하지 않습니다.");
+			session.setAttribute("passwordErrMsg", "비밀번호가 일치하지 않습니다.");
 			return "redirect:/user/updateProfileForm";
 		}
 		else if(("").equals(update_user_password)) { //현재 비밀번호는 일치하지만 변경할 비밀번호가 없는 경우.
@@ -144,7 +146,6 @@ public class UsersController {
 		updateUser.setPassword(update_user_password);
 		updateUser.setDescription(update_user_description);
 		userService.updateUser(updateUser);
-		
 		
 		return "redirect:/user/"+user_id;
 	}
@@ -169,7 +170,7 @@ public class UsersController {
 		return "redirect:/user/updateProfileForm";
 	}
 	
-	@GetMapping("/deleteProfilePic")
+	@PostMapping("/deleteProfilePic")
 	public String deleteProfilePic(@SessionAttribute("session_id") String user_id) {
 		
 		picService.deletePic(user_id);
