@@ -38,7 +38,7 @@
 	            <%
 	              if (session.getAttribute("session_id") == null) {
 	            %>
-	            <li><a href="/musicgram/user/loginForm">Login</a></li>
+	            <li><a class="nav-link" href="/musicgram/user/loginForm">Login</a></li>
 	            <%
 	              } else {
 	              String session_id = (String) session.getAttribute("session_id");
@@ -46,7 +46,7 @@
 	            <li><span class="navbar-text">${session_id}님 반갑습니다</span></li>
 	            <li><a class="nav-link" href="#"
 	              onclick="location.href='/musicgram/upload.jsp'">Upload</a></li>
-	            <li><a class="nav-link" href="#" onclick="location.href='/musicgram/user/${session_id}'">My page</a></li>
+	            <li><a class="nav-link" href="#" onclick="location.href='/musicgram/user/${session_id}'">Mypage</a></li>
 	            <li><a class="nav-link" href="#"
 	              onclick="location.href='/musicgram/user/logout'">Logout</a>
 	            <%
@@ -146,10 +146,10 @@ padding: 0;
 
 .navbar-nav li a{
 	text-decoration: none;
-	color:  #282828;
+	color: #282828;
 	font-size: 16px;
   	line-height: 40px;
-  	font-weight:700;
+  	font-weight: 600;
 }
 .navbar-nav li a:hover{
 	text-decoration: none;

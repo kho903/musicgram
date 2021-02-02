@@ -91,10 +91,18 @@ padding-bottom: 4.5px;
 font-weight: normal;
 }
 
+/*검색 결과 없음 메세지*/
 .search_re{
-	font-weight: bold;
+	font-weight: 500;
+	font-size: 16px;
+	text-align: center;
 }
 
+.search_re.noexist{
+	margin-top: 33%;
+	font-size: 21px;
+	color: #666;
+}
 
 /* 왼쪽 고정  */
 .col-5 .right_fix{
@@ -128,41 +136,43 @@ text-decoration: none;
 color:#0061bd;
 }
 
-
-
 </style>
-
 </head>
+
 <body style="background-color: #fafafa;">
 	<!-- nav 영역 -->
 	<jsp:include page="/nav.jsp" />
 	
-	<!-- 게시글 영역 -->
+	
 	<div id="mask"></div>
 	<div class="window"></div>
 	<div class="container">
+	<!-- 게시글 영역 -->
 	<div class="container-body">
-		<div class="row" style="padding-top:200px;">
+		<div class="row" style="padding-top:190px;">
+		<!--검색결과 나타내는 부분 -->
 			<div class="col-7">
 				<c:if test="${not empty tag}">
 					<p class="search_re">${tag}(으)로 검색한 결과입니다.</p>
 				</c:if>
 				<c:if test="${empty contentList}">
-					<p class="search_re">해당 피드가 없습니다.</p>
+					<p class="search_re noexist">해당 피드가 존재하지 않습니다.</p>
 				</c:if>
+				
+				<!-- 피드 리스트 부분 -->
 				<c:forEach begin="0" end="2" var="content" items="${contentList}">
 					<div class="card" data-bno="${content.key.content_no }">
 						<div class="card-header">
+						<!-- 피드 header 부분 -->
 							<div class="d-flex align-items-center">
 								<div class="box" style="background: #ffffff;">
 									<a href="/musicgram/user/${content.key.user_id}"> <img class="profile" src="/musicgram/profile/${content.key.user_id}" onerror="this.src='/musicgram/img/default.png'">
 									</a>
 								</div>
-
 								<div class='p-2' id='contentIdHover'>
 									<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
 								</div>
-													<%--
+									<%--
 											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
 							                	<img class="icon-react icon-more" src="/musicgram/img/more.png"	alt="more" align="right">
 											</a>
@@ -175,17 +185,17 @@ color:#0061bd;
 									</a>
 								</div>
 							</div>
-
 						</div>
+						<!--피드 body 부분 -->
 						<div class="card-body" style="padding:0 0 20px;">
 							<div class="embed-responsive embed-responsive-16by9">
 								<iframe 
 									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
 									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
-								
-							<div class="content-body">
 							
+							<!-- 피드 body 내용 부분  -->
+							<div class="content-body">
 							<c:if test="${content.value eq 0}">
 								<a id="likeBtn"
 									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
@@ -212,11 +222,10 @@ color:#0061bd;
 						</div>
 					</div>
 					<br>
-					<br>
 				</c:forEach>
 			</div>
 			
-			<!-- 오른쪽 고정 부분 -->
+			<!-- 오른쪽 서비스 소개 부분 -->
 			<div class="col-5" >
 				<div class="right_fix">
 					<!--  유저 정보 -->
@@ -228,11 +237,11 @@ color:#0061bd;
 							<a href="/musicgram/user/${session_id}">${session_id}</a>
 						</div>
 					</div>
-					
+					<!-- 뮤직그램 설명 -->
 					<div class="fix_title">Musicgram</div>
 						<div class='my-box'>
 							Musicgram은 음악 동영상 공유 네트워크 서비스입니다.<br>
-							본 서비스는 유튜브 url을 이용해 동영상을 첨부하고 피드를 만들 수 있습니다.<br>
+							이 서비스는 유튜브 url을 이용해 동영상을 첨부하고 피드를 만들 수 있습니다.<br>
 							<br>
 							당신이 좋아하는 음악으로 피드를 채우고 사람들과 의견을 나눠보세요.<br>
 							또한, 당신이 보고 싶은 장르의 음악을 모아 볼 수 있습니다.<br>
@@ -405,7 +414,7 @@ function next_load(){
 				+ "<p> 좋아요 <span id='countLike"+data.content.content_no+"'>"+data.content.like_count+"개</span> </p>"
 				+ "<p><span>"+data.content.user_id+"</span> <span class='slim'>"+data.content.text+"</span></p>"
 				+ "<p> <a class='slim' style='color: #0061bd;' href='/musicgram/content/tag?tag="
-				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> </div> <br><br>"
+				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> </div> <br>"
 				;
 		
                 $('.col-7').append(append_node);
