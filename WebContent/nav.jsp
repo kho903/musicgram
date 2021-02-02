@@ -20,47 +20,47 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class='container'>
+	<div class='container fixed-top' style="background-color: white;">
 		<div class="navbar-wrapper">
-		<nav class="navbar navbar-expand-md">
-			<div
-				class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-				<a href="/musicgram/content"> <img src="/musicgram/img/logo.png"
-					alt="instagram-type" border="0" width=200px>
-				</a>
-			</div>
-
-			<div class="mx-auto order-0">
-				<form class="form-inline" action="/musicgram/content/tag"
-					method="get">
-					<input class="form-control mr-sm-2" type="text"
-						placeholder="tag를 검색하세요." name="tag">
-				</form>
-			</div>
-			<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-				<ul class="navbar-nav ml-auto">
-					<%
-						if (session.getAttribute("session_id") == null) {
-					%>
-					<li><a href="/musicgram/user/loginForm">로그인</a></li>
-					<%
-						} else {
-						String session_id = (String) session.getAttribute("session_id");
-					%>
-					<li><span class="navbar-text">${session_id}님 반갑습니다</span></li>
-					<li><a class="nav-link" href="#"
-						onclick="location.href='/musicgram/upload.jsp'">upload</a></li>
-					<li><a class="nav-link" href="#"
-						onclick="location.href='/musicgram/user/${session_id}'">my
-							page</a></li>
-					<li><a class="nav-link" href="#"
-						onclick="location.href='/musicgram/user/logout'">로그아웃</a>
-					<%
- 					}
-					%>
-				</ul>
-			</div>
-		</nav>
+			<nav class="navbar navbar-expand-md">
+				<div
+					class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+					<a href="/musicgram/content"> <img src="/musicgram/img/logo.png"
+						alt="instagram-type" border="0" width=200px>
+					</a>
+				</div>
+	
+				<div class="mx-auto order-0">
+					<form class="form-inline" action="/musicgram/content/tag"
+						method="get">
+						<input class="form-control mr-sm-2" type="text"
+							placeholder="tag를 검색하세요." name="tag">
+					</form>
+				</div>
+				<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+					<ul class="navbar-nav ml-auto">
+						<%
+							if (session.getAttribute("session_id") == null) {
+						%>
+						<li><a href="/musicgram/user/loginForm">로그인</a></li>
+						<%
+							} else {
+							String session_id = (String) session.getAttribute("session_id");
+						%>
+						<li><span class="navbar-text">${session_id}님 반갑습니다</span></li>
+						<li><a class="nav-link" href="#"
+							onclick="location.href='/musicgram/upload.jsp'">upload</a></li>
+						<li><a class="nav-link" href="#"
+							onclick="location.href='/musicgram/user/${session_id}'">my
+								page</a></li>
+						<li><a class="nav-link" href="#"
+							onclick="location.href='/musicgram/user/logout'">로그아웃</a>
+						<%
+	 					}
+						%>
+					</ul>
+				</div>
+			</nav>
 		</div>
 		<div class="swiper-container">
 			<div class="swiper-button-next"></div>

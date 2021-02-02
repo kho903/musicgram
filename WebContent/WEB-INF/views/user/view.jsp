@@ -16,7 +16,7 @@
     <meta property="og:title" content="instagram">
     <meta property="og:description" content="instagram clone">
     <meta property="og:image" content="http://kindtiger.dothome.co.kr/insta/imgs/instagram.jpeg">
-    .
+    
     <!-- Twitter Meta Tags / 트위터 -->
     <meta name="twitter:card" content="instagram clone">
     <meta name="twitter:title" content="instagram">
@@ -43,7 +43,7 @@
 
 <section id="container">
 
-    <div id="main_container">
+    <div id="main_container"  style="padding-top:300px;">
 
         <section class="b_inner">
 
