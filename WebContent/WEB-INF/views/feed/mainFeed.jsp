@@ -116,7 +116,6 @@
 
 								<div class='p-2' id='contentIdHover'>
 									<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
-
 								</div>
 													<%--
 											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
@@ -345,23 +344,24 @@ function next_load(){
 	            + "<a href='/musicgram/user/"+data.content.user_id+"'> <img class='profile'"
 	            + "src='/musicgram/profile/"+data.content.user_id
 	            + "' onerror='this.src=\"/musicgram/img/default.png\"'> </a> </div>"
-	            + "<div class='p-2' style='font-size:18px;'>"
-	            + "<a style='color:black;' href='/musicgram/user/"+data.content.user_id+"'>"+data.content.user_id+"</a> </div>"
+	            + "<div class='p-2' id='contentIdHover'>"
+	            + "<a href='/musicgram/user/"+data.content.user_id+"'>"+data.content.user_id+"</a> </div>"
 	            + "<div class='ml-auto p-2'>"
 	            + "<a href='#' onclick='openChild("+data.content.content_no+")'"
 				+ "class='card-link openMask'> <img class='icon-react icon-more float-right'"
 				+ "src='/musicgram/img/more.png' alt='more' align='right'> </a> </div> </div> </div>"
-				+ "<div class='card-body'>"
+				+ "<div class='card-body' style='padding:0 0 20px;'>"
 				+ "<div class='embed-responsive embed-responsive-16by9'>"
-				+ "<iframe width='560' height='315'"
-				+ "src='https://www.youtube.com/embed/"+data.content.youtube_url+"'"
-				+ " frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'"
-				+ " allowfullscreen></iframe> </div> <br>"
+				+ "<iframe "
+				+ "src='https://www.youtube.com/embed/"+ data.content.youtube_url + "' frameborder='0' "
+				+ "	allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>"
+				+ "</div> <br>"
+				+ "<div style='padding:20px;'>"
 				+ if_like
 				+ "<p> 좋아요 <span id='countLike"+data.content.content_no+"'>"+data.content.like_count+"개</span> </p>"
 				+ "<p>"+data.content.text+"</p>"
 				+ "<p> <a style='color: #0061bd;' href='/musicgram/content/tag?tag="
-				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> <br><br>"
+				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> </div> <br><br>"
 				;
 		
                 $('.col-7').append(append_node);

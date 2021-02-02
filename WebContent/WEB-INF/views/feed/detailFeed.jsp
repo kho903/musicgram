@@ -117,7 +117,7 @@ function addComment(content_no){
 				"<div class='user_info line_no' id='commentsList"+result.comment_no+"'>"
 				+"<div class='box' style='background: #ffffff;'>"
 				+"<a href='/musicgram/user/"+result.user_id+"'>"
-				+"<img class='profile' src='/musicgram/profile/"+result.user_id+"' onerror='this.src='/musicgram/img/default.png''></a>"
+				+"<img class='profile' src='/musicgram/profile/"+result.user_id+"' onerror=\"this.src='/musicgram/img/default.png'\"></a>"
 				+"</div>"
 				+"<div class='comment_info'>"
 		 		+"<a href='/musicgram/user/"+result.user_id+"'><span>"+result.user_id+"</span></a> "+result.comment_text
