@@ -1,5 +1,7 @@
+@charset "UTF-8";
+
 body {
-    background: #f8f8f8;
+    background-color: #f8f8f8;
 }
 
 .sprite_insta_icon {
@@ -243,7 +245,7 @@ body {
 
 #main_container {
     /*height: 100vh;*/
-    padding-top: 135px;
+    margin: 100px;
     display: flex;
     justify-content: center;
     order: 1;

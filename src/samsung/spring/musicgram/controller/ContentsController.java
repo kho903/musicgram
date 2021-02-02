@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import samsung.spring.musicgram.dto.Contents;
+import samsung.spring.musicgram.dto.Likes;
 import samsung.spring.musicgram.service.CommentsService;
 import samsung.spring.musicgram.service.ContentsService;
 
@@ -49,15 +50,21 @@ public class ContentsController {
 	
 	@GetMapping("/moreLoad")
 	@ResponseBody
-	public Contents getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
+	public HashMap<String, Object> getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
 		int contentNo = maxContNo;
 		Contents cont = new Contents();
 		do {
 			cont = contentsService.getContentLoad(contentNo);
 			contentNo--;
 		} while (cont == null);
+		Likes like = new Likes();
+		like.setContent_no(cont.getContent_no());
+		like.setUser_id((String) session.getAttribute("session_id"));
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("content", cont);
+		map.put("isLike", contentsService.isLikeOn(like));
 		session.setAttribute("maxContNo", contentNo);
-		return cont;
+		return map;
 	}
 	
 	@GetMapping("/tag")

@@ -20,7 +20,7 @@
 	session.removeAttribute("errMsg");
 %>
 </head>
-<body>
+<body style="background-color: #f8f8f8;">
 	<jsp:include page="/nav.jsp" />
 	<div class='container'>
 		<div id="main_container">

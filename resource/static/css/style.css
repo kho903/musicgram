@@ -1,4 +1,4 @@
-
+@charset "UTF-8";
 
 .m_text{
     font-size: 14px;
@@ -140,7 +140,6 @@ body{
 
 
 #main_container{
-    padding-top: 130px;
     display: flex;
     justify-content: center;
 }
@@ -501,6 +500,8 @@ body{
 
     }
 }
+
+
 
 @media screen and (max-width:650px){
 

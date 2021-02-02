@@ -1,3 +1,5 @@
+
+
 .hori_cont{
     display: flex;
     margin-bottom: 30px;
@@ -38,7 +40,6 @@
     font-weight: 200;
     display: inline-block;
     padding-right: 25px;
-    margin-top: 10px;
 }
 
 .detail .top > a{
@@ -135,3 +136,4 @@
         margin:10px;
     }
 }
+
