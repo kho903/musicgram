@@ -60,9 +60,7 @@
 						<input type="hidden" name="user_id" value="${session_id}">
 					</form>
 					
-					
 
-			
 					<!-- 댓글 리스트 -->
 					<ul>
 						<c:forEach items="${comments}" var="comments">

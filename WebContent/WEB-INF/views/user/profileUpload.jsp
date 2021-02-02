@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="background-color: #f8f8f8;">
 	<jsp:include page="/nav.jsp" />
 	<%
 	String updateErrMsg = (String) session.getAttribute("updateErrMsg");
@@ -21,8 +21,10 @@
 	session.removeAttribute("updateErrMsg");
 	session.removeAttribute("passwordErrMsg");
 	%>
-	<div class='container' style='padding-top:100px;'>
-		<div id="main_container">
+  
+	<div class='container'>
+		<div id="main_container" style="padding-top:220px;">
+
 			<div class="post_form_container">
 				<!-- class: post_form-->
 				

@@ -50,6 +50,7 @@
 	font-size: 15px;
 }
 
+
 #contentIdHover a{
 	text-decoration: none;
 	font-size: 18px;
@@ -76,6 +77,19 @@
 	padding:10px;
 }
 
+/* 최지유가 추 */
+#toc-content {
+display: none;
+  }
+#toc-toggle {
+cursor: pointer;
+color: #2962ff;
+  }
+#toc-toggle:hover {
+text-decoration: underline;
+  }
+
+
 </style>
 
 </head>
@@ -88,8 +102,8 @@
 	<div class="window"></div>
 
 	<div class="container">
+	<div class="container-body">
 		<div class="row" style="padding-top:200px;">
-
 			<div class="col-7">
 				<c:if test="${not empty tag}">
 					<p>${tag}으로검색한 결과입니다.</p>
@@ -107,8 +121,10 @@
 										onerror="this.src='/musicgram/img/default.png'">
 									</a>
 								</div>
+
 								<div class='p-2' id='contentIdHover'>
 									<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+
 								</div>
 													<%--
 											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
@@ -125,14 +141,15 @@
 							</div>
 
 						</div>
-						<div class="card-body">
+						<div class="card-body" style="padding:0 0 20px;">
 							<div class="embed-responsive embed-responsive-16by9">
 								<iframe 
 									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
 									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
 								
-							<br>
+							<div style='padding:20px;'>
+							
 							<c:if test="${content.value eq 0}">
 								<a id="likeBtn"
 									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
@@ -155,46 +172,8 @@
 							<p>
 								<a style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
-						</div>
-						
-						<div class='card-footer'>
-							<!-- 댓글 접기 펼치기  -->	
-							<div >
-								<a href=#none id="show" onclick="if(comment_list.style.display=='none')
-								{comment_list.style.display='';show.innerText='▲ 댓글 접기'}
-								else {comment_list.style.display='none';show.innerText='▶ 댓글 보기'}">▶ 댓글 보기 </a>
-								<div id="comment_list" style="display: none;">
-									<!-- 댓글 리스트 -->
-									<ul>
-										<c:forEach items="${comments}" var="comments">
-											<div class="user_info line_no">
-												<div class="box" style="background: #ffffff;">
-													<a href="/musicgram/user/${comments.user_id}">
-														<img class="profile" src="/musicgram/profile/${comments.user_id}" onerror="this.src='/musicgram/img/default.png'"></a>
-												</div>
-												<div class="comment_info"><a href="/musicgram/user/${comments.user_id}"><span>${comments.user_id}</span></a> ${comments.comment_text}
-													<c:if test="${comments.user_id eq session_id}">
-														<a href="/musicgram/comments/delete/${comments.comment_no}&${comments.content_no}" class="del">X</a>
-													</c:if>
-												</div>
-											</div>
-										</c:forEach>
-									</ul>
-								</div>
 							</div>
 						</div>
-						
-						<%-- <ul>
-							<c:if test="${content.key.user_id eq session_id}">
-								<div class="float-right">
-								<a href="/musicgram/content/update/${content.key.content_no}"
-									class="card-link"><img src="/musicgram/img/update.png"></a>
-								<a href="/musicgram/content/delete/${content.key.content_no}"
-									class="card-link"><img src="/musicgram/img/delete.png"></a>
-								</div>
-							</c:if>
-						</ul> --%>
-
 					</div>
 					<br>
 					<br>
@@ -237,6 +216,7 @@
 			</div>
 			
 		</div>
+
 		<div id="noContent" style="display: none; font-size: large;">
 			마지막 게시물입니다.
 		</div>
@@ -421,8 +401,6 @@ $(function(){
 		}
 	});
 });
-
-
 
 </script>
 </html>
