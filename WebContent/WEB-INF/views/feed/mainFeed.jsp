@@ -13,7 +13,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
 <style type="text/css">
 #mask {
 	position: absolute;
@@ -60,7 +59,6 @@
 	<c:if test="${not empty tag}">
 		<p>${tag}으로검색한 결과입니다.</p>
 	</c:if>
-	
 
 	<div id="mask"></div>
 	<div class="window"></div>
@@ -160,8 +158,6 @@
 							</div>
 						</div>
 						
-						<!-- 
-						<ul>
 							<c:if test="${content.key.user_id eq session_id}">
 								<div class="float-right">
 								<a href="/musicgram/content/update/${content.key.content_no}"
@@ -171,7 +167,6 @@
 								</div>
 							</c:if>
 						</ul>
-						 -->
 
 					</div>
 					<br>
@@ -184,7 +179,7 @@
 		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
-﻿<script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 function wrapWindowByMask(){
@@ -213,7 +208,7 @@ $(document).ready(function(){
     //닫기 버튼을 눌렀을 때
     $('.window .close').click(function (e) {  
         //링크 기본동작은 작동하지 않도록 한다.
-        e.preventDefault();  
+        e.preventDefault();
         $('#mask, .window').hide();  
     });       
 
@@ -310,18 +305,22 @@ function next_load(){
                 var append_node = "";
                	append_node += "<div class='card' data-bno='"+data.content_no+"'>"
 	            + "<div class='card-header'>"
+	            + "<div class='d-flex align-items-center'>"
 	            + "<div class='box' style='background: #ffffff;'>"
 	            + "<a href='/musicgram/user/"+data.user_id+"'> <img class='profile'"
 	            + "src='/musicgram/profile/"+data.user_id
 	            + "' onerror='this.src=\"/musicgram/img/default.png\"'> </a> </div>"
-	            + "<a href='/musicgram/user/"+data.user_id+"'>"+data.user_id+"</a>"
+	            + "<div class='p-2' style='font-size:18px;'>"
+	            + "<a style='color:black;' href='/musicgram/user/"+data.user_id+"'>"+data.user_id+"</a> </div>"
 	            
-	            
+	            + "<div class='ml-auto p-2'>"
 	            + "<a href='#' onclick='openChild("+data.content_no+")'"
-				+ "class='card-link openMask'> <img class='icon-react icon-more'"
-				+ "src='/musicgram/img/more.png' alt='more' align='right'> </a> </div>"
-				+ "<div class=\"card-body\">"
-				+   "<iframe width=\"560\" height=\"315\""
+				+ "class='card-link openMask'> <img class='icon-react icon-more float-right'"
+				+ "src='/musicgram/img/more.png' alt='more' align='right'> </a> </div> </div> </div>"
+				
+				
+				+ "<div class='card-body'>"
+				+ "<iframe width=\"560\" height=\"315\""
 				+   "   src=\"https://www.youtube.com/embed/"+data.youtube_url+"\""
 				+   "   frameborder=\"0\""
 				+   "   allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\""
