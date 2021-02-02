@@ -1,0 +1,127 @@
+@charset "UTF-8";	
+	a{
+	text-decoration:none;
+	color:#000;
+	}
+	
+	.container {
+	overflow: hidden;
+	}
+	
+	.main-container {
+	width: 1200px;
+	margin: 0 auto;
+	}
+	
+	.main-container iframe {
+	float:left;
+	}
+	
+	.feed_info{
+	margin-left: 20px;
+	float:left;
+	}
+	
+	.feed_info .user_info{
+	overflow: hidden;
+	
+	}
+	
+	.feed_info .user_info.line_ok{
+	border-bottom: 1px solid #efefef;
+	margin: 10px 0 15px;
+	padding: 10px 0;
+	}
+	
+	.feed_info .user_info.line_no{
+	margin: 13px 0;
+	}
+	
+	.img_box {
+    width: 40px;
+    height: 40px; 
+    border-radius: 70%;
+    overflow: hidden;
+    display: inline-block;
+    float:left;
+	}
+	
+	.feed_info .user_info .user_id {
+	 height: 40px;
+	 line-height: 40px;
+	 font-size: 20px;
+	 margin-left:15px;
+	 float:left;
+	 font-weight: bold;
+	}
+	
+	.feed_info .user_info .up_del{
+	float: right;
+	height: 40px;
+	line-height: 40px;
+	font-size: 12px;
+	}
+	
+	.feed_info .user_info .card-link{
+	margin-right: 10px;
+	color: #262626;
+	}
+	
+	.text_info{
+	clear:both;
+	height: 80px;
+	padding: 10px;
+	
+	}
+	
+	.box {
+    width: 30px;
+    height: 30px; 
+    border-radius: 70%;
+    overflow: hidden;
+    display: inline-block;
+    float:left;
+	}
+	
+	.comment_info {
+	box-sizing: border-box;
+	height: 30px;
+	float: left;
+	margin-left: 8px;
+	font-size:14px;
+	line-height: 30px;
+	}
+	
+	.comment_info span{
+	font-weight: bold;
+	}
+	
+	/* 댓글 접기 펼치 */
+	#show {
+	color: #262626;
+	font-size: 15px;
+	}
+	
+	input {
+	box-sizing: border-box;
+	width: 20em;
+	height: 30px;
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    color: #262626;
+    font-size: 14px;
+    padding: 2px 5px 2px;
+	}
+	
+	.comment_info .del{
+	color: #e32636;
+	margin-left: 15px;
+	font-weight: bold;
+	}
+
+	.profile {
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	}
+	

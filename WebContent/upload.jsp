@@ -4,11 +4,10 @@
 <html>
 <head>
 	<!-- 업로드 css 추가 -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/new_post.css">
-    <link rel="shortcut icon" href="imgs/instagram.png">
+    <link rel="stylesheet" href="/musicgram/css/reset.css">
+    <link rel="stylesheet" href="/musicgram/css/common.css">
+    <link rel="stylesheet" href="/musicgram/css/style.css">
+    <link rel="stylesheet" href="/musicgram/css/new_post.css">
 <meta charset="UTF-8">
 <title>피드 업로드</title>
 <%
@@ -27,17 +26,17 @@
 				<input type="hidden" name="user_id" value="${session_id}">
 				
 				<p>
-				youtube_url
+				<div class="req_list">youtube_url</div>
 				 <input type="text" name="youtube_url" placeholder="youtube url을 입력하세요." required>
 				</p>
 				
 				<p>
-				text 
+				<div class="req_list">text</div>
 				<textarea type="text" name="text" id="text_field" cols="50" rows="5" placeholder="text를 입력하세요." required></textarea>
 				</p>
 				
 				<p>
-				genre
+				<div class="req_list">genre</div>
 				<select name="genre" id="genre" required>
 				    <option value="">장르를 선택해 주세요</option>
 				    <option value="Ballad">Ballad</option>
@@ -56,7 +55,7 @@
 				</p>
 				
 				<p>
-				tag
+				<div class="req_list">tag</div>
 				<input type="text" name="tag" placeholder="tag를 입력하세요." required>
 				</p>
 				
