@@ -18,7 +18,7 @@
 </head>
 <body>
 	<jsp:include page="/nav.jsp" />
-	<div class='container'>
+	<div class='container'  style="padding-top:50px;">
 		<div id="main_container">
         <div class="post_form_container">
         <!-- class: post_form-->

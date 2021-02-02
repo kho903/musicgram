@@ -21,7 +21,7 @@
 	session.removeAttribute("updateErrMsg");
 	session.removeAttribute("passwordErrMsg");
 	%>
-	<div class='container'>
+	<div class='container' style='padding-top:100px;'>
 		<div id="main_container">
 			<div class="post_form_container">
 				<!-- class: post_form-->

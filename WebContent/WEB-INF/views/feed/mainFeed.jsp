@@ -49,27 +49,54 @@
 	color: #262626;
 	font-size: 15px;
 }
+
+#contentIdHover a{
+	text-decoration: none;
+	font-size: 18px;
+	color: black;
+}
+
+#contentIdHover a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
+#sessionIdHover a{
+	text-decoration: none;
+	font-size: 19px;
+	color: black;
+}
+
+#sessionIdHover a:hover{
+	text-decoration: none;
+	color: #888;
+}
+
+.my-box{
+	padding:10px;
+}
+
 </style>
 
 </head>
 <body>
-	
 	<jsp:include page="/nav.jsp" />
 	<!-- 게시글 영역 -->
-	<c:if test="${not empty tag}">
-		<p>${tag}으로검색한 결과입니다.</p>
-	</c:if>
+
 
 	<div id="mask"></div>
 	<div class="window"></div>
 
 	<div class="container">
-		<c:if test="${empty contentList}">
-			<p>해당 장르의 피드가 없습니다.</p>
-		</c:if>
-		<div class="row">
+		<div class="row" style="padding-top:200px;">
 
 			<div class="col-7">
+				<c:if test="${not empty tag}">
+					<p>${tag}으로검색한 결과입니다.</p>
+				</c:if>
+				<c:if test="${empty contentList}">
+					<p>해당 장르의 피드가 없습니다.</p>
+				</c:if>
 				<c:forEach begin="0" end="2" var="content" items="${contentList}">
 					<div class="card" data-bno="${content.key.content_no }">
 						<div class="card-header">
@@ -80,8 +107,8 @@
 										onerror="this.src='/musicgram/img/default.png'">
 									</a>
 								</div>
-								<div class='p-2' style="font-size:18px;">
-									<a style='color:black;' href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
+								<div class='p-2' id='contentIdHover'>
+									<a href="/musicgram/user/${content.key.user_id}">${content.key.user_id}</a>
 								</div>
 													<%--
 											<a href="/musicgram/content/${content.key.content_no}" class="card-link"> 
@@ -100,7 +127,7 @@
 						</div>
 						<div class="card-body">
 							<div class="embed-responsive embed-responsive-16by9">
-								<iframe width="560" height="315"
+								<iframe 
 									src="https://www.youtube.com/embed/${content.key.youtube_url}" frameborder="0" 
 									allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 							</div>
@@ -173,11 +200,46 @@
 					<br>
 				</c:forEach>
 			</div>
+			<div class="col-5" >
+				<div style="position:fixed">
+					<div class="d-flex align-items-center">
+						<div class="box" style="background: #ffffff;">
+							<a href="/musicgram/user/${session_id}"> <img
+								class="profile" src="/musicgram/profile/${session_id}"
+								onerror="this.src='/musicgram/img/default.png'">
+							</a>
+						</div>
+						<div class='p-2' id="sessionIdHover">
+							<a href="/musicgram/user/${session_id}">${session_id}</a>
+						</div>
+					</div>
+					<br>
+					
+					<h1 class='font-italic'>Musicgram</h1>
+					<br>
+					<div class='my-box'>
+						<p>
+						본 서비스는 유튜브 url을 이용하여 동영상을 첨부할 수 있습니다.
+						</p>
+						<p>
+						당신이 좋아하는 음악을 추천하고 다른 사람들의 추천을 볼 수 있습니다.
+						</p>
+						<p>
+						또한 당신이 보고 싶은 장르를 모아 볼 수 있습니다.
+						</p>
+						<p>
+						지금 바로 다른 사람들과 의견을 나눠보세요!
+						</p>
+					</div>
+					<br><br>
+					<jsp:include page="/footer.jsp" />
+				</div>
+			</div>
+			
 		</div>
 		<div id="noContent" style="display: none; font-size: large;">
 			마지막 게시물입니다.
 		</div>
-		<jsp:include page="/footer.jsp" />
 	</div>
 </body>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
