@@ -63,7 +63,6 @@
 				</div>
 			</c:forEach>
 		</div>-->
-		
 		<div class="swiper-container">
 		    <div class="swiper-wrapper">
 		      <c:forEach var="genre" items="${genreList}">

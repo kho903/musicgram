@@ -68,7 +68,7 @@
 		<div class="row">
 
 			<div class="col-7">
-				<c:forEach var="content" items="${contentList}">
+				<c:forEach begin="0" end="2" var="content" items="${contentList}">
 					<div class="card" data-bno="${content.key.content_no }">
 						<div class="card-header">
 							<div class="d-flex align-items-center">
@@ -94,6 +94,7 @@
 									</a>
 								</div>
 							</div>
+
 						</div>
 						<div class="card-body">
 							<div class="embed-responsive embed-responsive-16by9">
@@ -314,24 +315,23 @@ function isPressLike(content_no){
 function next_load(){
     $.ajax({
             type:"GET",
-            url:"/musicgram/content/test",
+            url:"/musicgram/content/moreLoad",
             datatype : 'json',
             success: function(data) {
                 /* 이미지 동적 추가 */
                 var append_node = "";
                	append_node += "<div class='card' data-bno='"+data.content_no+"'>"
 	            + "<div class='card-header'>"
-	            
 	            + "<div class='box' style='background: #ffffff;'>"
-	            + "<img class='profile' src='/musicgram/profile/"+data.user_id+"'"
-	            +   "onerror=\"data.src='/musicgram/img/default.png'\">"
-		        + "</div>"
-		        + "<span>" + data.user_id + "</span> <a"
-				+   "href=\"content/"+data.content_no+"\" class=\"card-link\"> <img"
-				+   "class=\"icon-react icon-more\" src=\"/musicgram/img/more.png\""
-				+   "alt=\"more\" align=\"right\">"
-				+ "</a>"
-				+ "</div>"
+	            + "<a href='/musicgram/user/"+data.user_id+"'> <img class='profile'"
+	            + "src='/musicgram/profile/"+data.user_id
+	            + "' onerror='this.src=\"/musicgram/img/default.png\"'> </a> </div>"
+	            + "<a href='/musicgram/user/"+data.user_id+"'>"+data.user_id+"</a>"
+	            
+	            
+	            + "<a href='#' onclick='openChild("+data.content_no+")'"
+				+ "class='card-link openMask'> <img class='icon-react icon-more'"
+				+ "src='/musicgram/img/more.png' alt='more' align='right'> </a> </div>"
 				+ "<div class=\"card-body\">"
 				+   "<iframe width=\"560\" height=\"315\""
 				+   "   src=\"https://www.youtube.com/embed/"+data.youtube_url+"\""
@@ -362,7 +362,7 @@ function next_load(){
             }
             ,error: function(xhr, status, error) 
             {
-                alert("마지막 게시물입니다.");
+            	$('.col-7').append("마지막 게시물입니다.");
             }
         });
 }
