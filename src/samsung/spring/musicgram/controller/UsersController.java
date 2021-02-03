@@ -97,7 +97,6 @@ public class UsersController {
 				return "redirect:/user/loginForm";
 			}
 		} catch(NullPointerException e) {
-			System.out.println(e);
 			session.setAttribute("errMsg", "존재하지 않는 아이디 입니다.");
 			return "redirect:/user/loginForm";
 		}
@@ -140,6 +139,10 @@ public class UsersController {
 		}
 		else if(("").equals(update_user_password)) { //현재 비밀번호는 일치하지만 변경할 비밀번호가 없는 경우.
 			session.setAttribute("updateErrMsg", "변경할 비밀번호를 입력해주세요.");
+			return "redirect:/user/updateProfileForm";
+		}
+		else if(update_user_password.length()>10) {
+			session.setAttribute("updateErrMsg", "비밀번호가 너무 깁니다.");
 			return "redirect:/user/updateProfileForm";
 		}
 		

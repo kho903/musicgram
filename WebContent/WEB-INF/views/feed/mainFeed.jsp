@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Musicgram</title>
 <style type="text/css">
 
 #mask {
@@ -46,6 +46,12 @@
 	object-fit: cover;
 }
 
+#noContent{
+	text-align: center;
+	font-weight: 500;
+	font-size: 16px;
+	margin-top: 16px;
+}
 
 #contentIdHover a{
 	text-decoration: none;
@@ -77,18 +83,18 @@
 }
 
 .content-body{
-font-weight: bold;
-padding: 10px 25px 0;
-font-size: 15px;
+	font-weight: bold;
+	padding: 10px 25px 0;
+	font-size: 15px;
 }
 
 .content-body img{
-width: 4.5%;
-padding-bottom: 4.5px;
+	width: 4.5%;
+	padding-bottom: 4.5px;
 }
 
 .content-body .slim{
-font-weight: normal;
+	font-weight: normal;
 }
 
 /*검색 결과 없음 메세지*/
@@ -106,9 +112,9 @@ font-weight: normal;
 
 /* 왼쪽 고정  */
 .col-5 .right_fix{
- position:fixed;
- padding: 10px 12px 10px 30px;
- width: 475px;;
+	 position:fixed;
+	 padding: 10px 12px 10px 30px;
+	 width: 475px;;
  }
  
  .right_fix .fix_title {
@@ -128,12 +134,12 @@ font-weight: normal;
 }
 
 .my-box a{
-color:black;
+	color:black;
 }
 
 .my-box a:hover{
-text-decoration: none;
-color:#0061bd;
+	text-decoration: none;
+	color:#888;
 }
 
 </style>
@@ -214,7 +220,7 @@ color:#0061bd;
 							<p>
 								좋아요 <span id="countLike${content.key.content_no}">${content.key.like_count}개</span>
 							</p>
-							<p ><span>${content.key.user_id}</span> <span class="slim">${content.key.text}</span></p>
+							<p ><span class="slim">${content.key.text}</span></p>
 							<p>
 								<a class="slim" style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
@@ -257,7 +263,7 @@ color:#0061bd;
 		</div>
 	</div>
 </body>
-
+<!-- js 영역 -->
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -412,7 +418,7 @@ function next_load(){
 				+ "<div class='content-body'>"
 				+ if_like
 				+ "<p> 좋아요 <span id='countLike"+data.content.content_no+"'>"+data.content.like_count+"개</span> </p>"
-				+ "<p><span>"+data.content.user_id+"</span> <span class='slim'>"+data.content.text+"</span></p>"
+				+ "<p><span class='slim'>"+data.content.text+"</span></p>"
 				+ "<p> <a class='slim' style='color: #0061bd;' href='/musicgram/content/tag?tag="
 				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> </div> <br>"
 				;

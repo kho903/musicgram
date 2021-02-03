@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/musicgram/css/style.css">
     <link rel="stylesheet" href="/musicgram/css/new_post.css">
 <meta charset="UTF-8">
-<title>피드 업로드</title>
+<title>Feed Upload</title>
 <%
 	String errMsg = (String) session.getAttribute("errMsg");
 	if(errMsg==null) errMsg = "";
