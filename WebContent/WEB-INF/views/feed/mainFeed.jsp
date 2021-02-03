@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Musicgram</title>
 <style type="text/css">
 
 #mask {
@@ -214,7 +214,7 @@ color:#0061bd;
 							<p>
 								좋아요 <span id="countLike${content.key.content_no}">${content.key.like_count}개</span>
 							</p>
-							<p ><span>${content.key.user_id}</span> <span class="slim">${content.key.text}</span></p>
+							<p ><span class="slim">${content.key.text}</span></p>
 							<p>
 								<a class="slim" style='color: #0061bd;' href="/musicgram/content/tag?tag=${content.key.tag}">#${content.key.tag}</a>
 							</p>
@@ -412,7 +412,7 @@ function next_load(){
 				+ "<div class='content-body'>"
 				+ if_like
 				+ "<p> 좋아요 <span id='countLike"+data.content.content_no+"'>"+data.content.like_count+"개</span> </p>"
-				+ "<p><span>"+data.content.user_id+"</span> <span class='slim'>"+data.content.text+"</span></p>"
+				+ "<p><span class='slim'>"+data.content.text+"</span></p>"
 				+ "<p> <a class='slim' style='color: #0061bd;' href='/musicgram/content/tag?tag="
 				+ data.content.tag+"'> #"+data.content.tag+"</a> </p> </div> </div> </div> <br>"
 				;

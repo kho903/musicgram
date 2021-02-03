@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/musicgram/css/style.css">
 <link rel="stylesheet" href="/musicgram/css/new_post.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Profile Update</title>
 </head>
 <body style="background-color: #f8f8f8;">
 	<jsp:include page="/nav.jsp" />

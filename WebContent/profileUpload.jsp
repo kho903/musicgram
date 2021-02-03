@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include page="nav.jsp"/>
-<h3>pic upload</h3>
+<h3>Profile Picture Upload</h3>
 <form action="profile/upload/${session_id}" method="post" enctype="multipart/form-data">
     <table>
         <tr>

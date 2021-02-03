@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/musicgram/css/style.css">
     <link rel="stylesheet" href="/musicgram/css/new_post.css">
 <meta charset="UTF-8">
-<title>피드 수정</title>
+<title>Udate Feed</title>
 <%
 	String errMsg = (String) session.getAttribute("errMsg");
 	if(errMsg==null) errMsg = "";
@@ -45,7 +45,7 @@
 			<p>
 			<div class="req_list">genre</div>
 			<select name="genre" id="genre" required>
-			    <option value="">장르를 선택해 주세요</option>
+			    <option value="${content.genre }">${content.genre }</option>
 			    <option value="Ballad">Ballad</option>
 			    <option value="Dance">Dance</option>
 			    <option value="Pop">Pop</option>
