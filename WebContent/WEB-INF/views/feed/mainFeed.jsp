@@ -11,138 +11,9 @@
 
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <link rel="stylesheet" href="/musicgram/css/main-feed.css">
 <title>Musicgram</title>
-<style type="text/css">
-
-#mask {
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 9000;
-	background-color: #000;
-	display: none;
-}
-
-.window {
-	display: none;
-	position: absolute;
-	left: 100px;
-	top: 100px;
-	z-index: 10000;
-}
-
-.box {
-	width: 50px;
-	height: 50px;
-	border-radius: 70%;
-	overflow: hidden;
-	display: inline-block;
-}
-
-.profile {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-#noContent{
-	text-align: center;
-	font-weight: 500;
-	font-size: 16px;
-	margin-top: 16px;
-}
-
-#contentIdHover a{
-	text-decoration: none;
-	font-size: 20px;
-	margin-left:10px;
-	color: black;
-	font-weight: 450;
-	display:inline-block;
-	line-height:19px;
-}
-
-#contentIdHover a:hover{
-	text-decoration: none;
-	color: #888;
-}
-
-#sessionIdHover a{
-	text-decoration: none;
-	font-size: 17px;
-	color: black;
-	margin-left:10px;
-	display:inline-block;
-	line-height:17px;
-}
-
-#sessionIdHover a:hover{
-	text-decoration: none;
-	color: #888;
-}
-
-.content-body{
-	font-weight: bold;
-	padding: 10px 25px 0;
-	font-size: 15px;
-}
-
-.content-body img{
-	width: 4.5%;
-	padding-bottom: 4.5px;
-}
-
-.content-body .slim{
-	font-weight: normal;
-}
-
-/*검색 결과 없음 메세지*/
-.search_re{
-	font-weight: 500;
-	font-size: 16px;
-	text-align: center;
-}
-
-.search_re.noexist{
-	margin-top: 33%;
-	font-size: 21px;
-	color: #666;
-}
-
-/* 왼쪽 고정  */
-.col-5 .right_fix{
-	 position:fixed;
-	 padding: 10px 12px 10px 30px;
-	 width: 475px;;
- }
- 
- .right_fix .fix_title {
-	font-size: 22px;
-    font-weight: bold;
-    border-top: 1px solid #e6e6e6;
-    margin-top: 25px;
-    padding: 30px 10px 10px;
- }
- 
-.my-box{
-	line-height:30px;
-	border-bottom: 1px solid #e6e6e6;
-    margin-bottom: 20px;
-    padding-bottom: 30px;
-    padding-left:10px;
-}
-
-.my-box a{
-	color:black;
-}
-
-.my-box a:hover{
-	text-decoration: none;
-	color:#888;
-}
-
-</style>
 </head>
 
 <body style="background-color: #fafafa;">
@@ -318,7 +189,8 @@ function openChild(content_no) {
 
 	openWin = window.open("/musicgram/content/"+content_no, "detailFeed",
 			'resizable = no, scrollbars = no, width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
-} 
+};
+
 
 function diffDate(create){
 	var now = new Date();

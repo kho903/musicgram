@@ -55,6 +55,26 @@
 	 font-weight: bold;
 	}
 	
+	.like_box{
+	margin-bottom: 15px;
+	overflow:hidden;
+	border-bottom: 1px solid #efefef;
+	padding-bottom: 5px;
+	}
+	
+	.like_box img{
+	width: 25px;
+	padding: 8px 10px 4.5px 0 ;
+	float:left;
+	}
+	
+	.like_box .like_count_res{
+	float:left;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 14px;
+	}
+	
 	.feed_info .user_info .up_del{
 	float: right;
 	height: 40px;
@@ -69,8 +89,8 @@
 	
 	.text_info{
 	clear:both;
-	height: 80px;
-	padding: 10px;
+	height: 50px;
+	padding: 5px 10px 10px 0;
 	
 	}
 	

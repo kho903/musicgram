@@ -17,7 +17,7 @@
 <body>
 	<div class='container'>
 	<div class='main-container'>
-		<iframe width="650" height="350" src="https://www.youtube.com/embed/${content.youtube_url}?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="650" height="366" src="https://www.youtube.com/embed/${content.youtube_url}?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<!-- feed_infomation 시작 -->
 			<div class="feed_info">
 				<!-- 가장 위에 프로필과 아이디 -->
@@ -37,8 +37,10 @@
 							</c:if>
 						</div>
 					</div>
-					
+				<!--게시글 내용 부분  -->
+				<div class="text_info">${content.text}</div>
 				<!-- 좋아요  -->
+				<div class= "like_box">
 				<c:if test="${checkPressLike eq 0}">
 					<a id="likeBtn" onclick="pressLike(${content.content_no})">
 						<img src="/musicgram/img/heart.png" id="heart">
@@ -50,11 +52,11 @@
 					</a>
 				</c:if>
 				<br>
-				<p>
+				<p class="like_count_res">
 					좋아요 <span id="countLike">${content.like_count}개</span>
 				</p>
-			<!--게시글 내용 부분  -->
-				<div class="text_info">${content.text}</div>
+				</div>
+
 					
 				<!-- 댓글 창 부분!! -->
 					<form id="commentForm">
@@ -71,7 +73,7 @@
 							</div>
 						<%-- 	<input type="hidden" name="content_no" value="${content.content_no}">
 							<input type="hidden" name="user_id" value="${session_id}"> --%>
-							<input type="button" value="제출" onclick="addComment('${content.content_no}')" id="commentSubmitBtn"> 
+							<input type="button" value="게시" onclick="addComment('${content.content_no}')" id="commentSubmitBtn"> 
 						</div>
 					</form>
 
@@ -115,7 +117,6 @@ function addComment(content_no){
 		data: {"content_no" : content_no, "comment" : comment},
 		async: false,
 		success : function(result){
-			alert("작성이 완료되었습니다.");
 			document.getElementById("comment").value="";
 			var tmp ="";
 			if(result.user_id == session_id){
