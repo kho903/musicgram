@@ -17,7 +17,7 @@
 <body>
 	<div class='container'>
 	<div class='main-container'>
-		<iframe width="650" height="350" src="https://www.youtube.com/embed/${content.youtube_url}?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="650" height="366" src="https://www.youtube.com/embed/${content.youtube_url}?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<!-- feed_infomation 시작 -->
 			<div class="feed_info">
 				<!-- 가장 위에 프로필과 아이디 -->
@@ -115,7 +115,6 @@ function addComment(content_no){
 		data: {"content_no" : content_no, "comment" : comment},
 		async: false,
 		success : function(result){
-			alert("작성이 완료되었습니다.");
 			document.getElementById("comment").value="";
 			var tmp ="";
 			if(result.user_id == session_id){
