@@ -162,7 +162,13 @@ public class ContentsService {
 	}
 
 	public int getMaxContentNo() {
-		return contentsMapper.getMaxContentNo();
+		int res;
+		try {
+			res = contentsMapper.getMaxContentNo();
+		} catch (Exception e) {
+			res = 0;
+		}
+		return res;
 	}
 
 	public int isLikeOn(Likes like) {
