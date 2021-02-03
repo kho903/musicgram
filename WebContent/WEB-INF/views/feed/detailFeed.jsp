@@ -89,6 +89,7 @@
 								</div>
 							</div>
 						</c:forEach>
+						
 					</div>
 			</div>
 	<!-- // feed information -->
@@ -177,8 +178,6 @@ function pressLike(content_no){
 	})
 } 
 
-
-
 $('input[type="text"]').keydown(function() {
     if (event.keyCode === 13) {
     	console.log("Test");
@@ -209,7 +208,10 @@ $('input[type="text"]').keydown(function() {
 	float: left;
 
 }
-
+#commentsWrapper {
+	width:300px;
+	float:left;
+}
 #user_info{
 	display:inline-block; 
 	float:left;
