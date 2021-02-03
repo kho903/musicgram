@@ -90,6 +90,7 @@
 								</div>
 							</div>
 						</c:forEach>
+						
 					</div>
 				</div>
 	<!-- // feed information -->
@@ -207,7 +208,10 @@ $('input[type="text"]').keydown(function() {
 	float: left;
 
 }
-
+#commentsWrapper {
+	width:300px;
+	float:left;
+}
 #user_info{
 	display:inline-block; 
 	float:left;

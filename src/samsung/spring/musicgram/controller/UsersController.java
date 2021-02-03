@@ -141,6 +141,10 @@ public class UsersController {
 			session.setAttribute("updateErrMsg", "변경할 비밀번호를 입력해주세요.");
 			return "redirect:/user/updateProfileForm";
 		}
+		else if(update_user_password.length()>10) {
+			session.setAttribute("updateErrMsg", "비밀번호가 너무 깁니다.");
+			return "redirect:/user/updateProfileForm";
+		}
 		
 		updateUser.setPassword(update_user_password);
 		updateUser.setDescription(update_user_description);

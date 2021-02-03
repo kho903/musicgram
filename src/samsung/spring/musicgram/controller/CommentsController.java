@@ -55,7 +55,6 @@ public class CommentsController {
 			comment.setComment_text(comment_text);
 			comment.setContent_no(content_no);
 			comment.setUser_id(user_id);
-			//res = commentsService.createComment(comment) == 1 ?  "redirect:/content/" + comment.getContent_no(): "feed/commentFail";
 			commentsService.createComment(comment);
 			
 			List<Comments> result = commentsService.getComments(content_no);

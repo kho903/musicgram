@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/musicgram/css/style.css">
 	<link rel="stylesheet" href="/musicgram/css/login.css">
 <meta charset="UTF-8">
-<title>비밀번호 찾기</title>
+<title>Find password</title>
 <%
 	String errMsg = (String) session.getAttribute("errMsg");
 	if(errMsg==null) errMsg = "";
