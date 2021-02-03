@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="/musicgram/css/common.css">
 <link rel="stylesheet" href="/musicgram/css/style.css">
 <link rel="stylesheet" href="/musicgram/css/new_post.css">
-<link rel="shortcut icon" href="imgs/instagram.png">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -23,7 +22,7 @@
 	%>
   
 	<div class='container'>
-		<div id="main_container" style="padding-top:220px;">
+		<div id="main_container" style="padding-top:100px;">
 
 			<div class="post_form_container">
 				<!-- class: post_form-->
@@ -111,11 +110,9 @@ input[type=text] {
 
 form {
 	display: inline-block;
+	box-sizing: border-box;
 }
 
-#main_container {
-	padding-top:80px;
-}
 #inputFile {
 	 width:80%;
 }
@@ -132,9 +129,12 @@ form {
 	margin : 0; 
 	max-width : inherit;
 }
+
 .post_form{
 	display : inline-block;
+	box-sizing: border-box;
 }
+
 #textErrMsg {
 	height:20px;
 	width:100%;

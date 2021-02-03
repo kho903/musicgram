@@ -34,9 +34,10 @@
 .form .join_msg {
 	text-align: center;
 	margin: 25px auto 20px;
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 20px;
 	color: #888;
+	font-weight: 800;
 }
 
 .form .findpw_msg {
