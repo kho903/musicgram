@@ -40,23 +40,41 @@ public class ContentsController {
 	private CommentsService commentsService;
 		
 	@GetMapping("/genre")
-	public String getGenreContents(@RequestParam(name="genre") String genre, Model model, @SessionAttribute("session_id") String user_id) {
+	public String getGenreContents(@RequestParam(name="genre") String genre, Model model, @SessionAttribute("session_id") String user_id, HttpSession session) {
 		//장르별로 검색했을때 메인 피드에 다시 뿌려줌
 		HashMap<Contents, Integer> resultMap = contentsService.getGenreContents(genre, user_id);
-		
+		session.setAttribute("maxContNo", contentsService.getMaxContentNo());
+		session.setAttribute("page", "genre");
+		session.setAttribute("genre", genre);
 		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
 	}
 	
 	@GetMapping("/moreLoad")
 	@ResponseBody
-	public HashMap<String, Object> getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
+	public HashMap<String, Object> getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session,
+			@SessionAttribute("page") String page,
+			@SessionAttribute(value = "genre", required=false) String genre, @SessionAttribute(value = "tag", required=false) String tag) {
 		int contentNo = maxContNo;
 		Contents cont = new Contents();
-		do {
-			cont = contentsService.getContentLoad(contentNo);
-			contentNo--;
-		} while (cont == null);
+		if(page.equals("main")) {
+			do {
+				cont = contentsService.getContentLoad(contentNo);
+				contentNo--;
+			} while (cont == null);
+		}else if(page.equals("genre")) {
+			do {
+				cont = contentsService.getContentLoad(contentNo);
+				System.out.println(cont.getGenre());
+				contentNo--;
+			} while (cont == null || cont.getGenre() != genre);
+		}else if(page.equals("tag")) {
+			do {
+				cont = contentsService.getContentLoad(contentNo);
+				contentNo--;
+			} while (cont == null || cont.getTag() != tag);
+		}
+		
 		Likes like = new Likes();
 		like.setContent_no(cont.getContent_no());
 		like.setUser_id((String) session.getAttribute("session_id"));
@@ -68,19 +86,16 @@ public class ContentsController {
 	}
 	
 	@GetMapping("/tag")
-	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
+	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id, HttpSession session) {
 		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);
+		session.setAttribute("maxContNo", contentsService.getMaxContentNo());
+		session.setAttribute("page", "tag");
+		session.setAttribute("tag", tag);
 		model.addAttribute("tag", tag);
 		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
 	}
-	
-	/*
-	@GetMapping("/pressLike/{content_no}") //메인 피드에서 좋아요 누를 경우
-	public String pressLike(@PathVariable(name="content_no") int content_no, @SessionAttribute("session_id") String user_id) {
-		contentsService.pressLike(content_no, user_id);
-		return "redirect:/content";
-	}*/
+
 	
 	@PostMapping("/pressLike") // 좋아요 ajax
 	@ResponseBody
@@ -88,13 +103,6 @@ public class ContentsController {
 		int content_no = Integer.parseInt(request.getParameter("content_no"));
 		return contentsService.pressLike(content_no, user_id);
 	}
-	
-	/*
-	@GetMapping("pressLikeDetail/{content_no}") //상세 페이지에서 좋아요 누를 경우
-	public String pressLikeDetail(@PathVariable(name="content_no") int content_no, @SessionAttribute("session_id") String user_id) {
-		contentsService.pressLike(content_no, user_id);
-		return "feed/detailFeed";
-	}*/
 	
 	@GetMapping("/getLike/{content_no}")
 	public String getLike(@PathVariable(name="content_no") int content_no, Model model) {
@@ -108,12 +116,13 @@ public class ContentsController {
 		try {
 			model.addAttribute("contentList", contentsService.getContents(user_id));
 			session.setAttribute("maxContNo", contentsService.getMaxContentNo());
+			session.setAttribute("page", "main");
 		} catch (Exception e) {
 			return "redirect:user/loginForm";
 		}
 		return "feed/mainFeed";
 	}
-	//@GetMapping("/{content_no}")
+	
 	@RequestMapping(value="/{content_no}" , method = {RequestMethod.GET, RequestMethod.POST})
 	public String getContent(@PathVariable(name="content_no") int content_no, ModelMap model, @SessionAttribute(value="session_id", required=false) String user_id) {
 		model.addAttribute("content", contentsService.getContent(content_no));

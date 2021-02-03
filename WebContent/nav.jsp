@@ -9,15 +9,16 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="/musicgram/css/nav.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <meta charset="UTF-8">
 <title>Musicgram</title>
 </head>
+
 <body>
 	<div class='fixed-top' style='background-color:white;'>
 		<div class="wrapper" style='width:1140px;margin:0 auto;'>
@@ -32,6 +33,7 @@
 	              placeholder="tag를 검색하세요." name="tag">
 	          </form>
 	        </div>
+	        
 	        <!-- 유저 안내 nav -->
 	        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 	          <ul class="navbar-nav ml-auto">
@@ -77,6 +79,7 @@
 	</div>
 </body>
 
+<!-- js 영역 -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script>
 	var swiper = new Swiper('.swiper-container', {
@@ -106,143 +109,4 @@
 		});
 	});
 </script>
-
-
-<style>
-body {
-	background: #eee;
-	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	color: #000;
-	margin: 0;
-	padding: 0;
-}
-
-#wraper {
-margin-bottom:35px;
-}
-
-#main-logo{
-padding-top:10px;
-margin: 0 160px 0 10px;
-width:170px;
-}
-
-.form-control.mr-sm-2{
-width: 280px;}
-
-
-.navbar.navbar-expand-md{
-margin-top: 10px;
-padding: 0;
-}
-
-.navbar-text {
-  margin-right: 20px;
-  font-size: 17px;
-  line-height: 40px;
-}
-
-
-.navbar-nav li a{
-	text-decoration: none;
-	color: #282828;
-	font-size: 16px;
-  	line-height: 40px;
-  	font-weight: 600;
-}
-.navbar-nav li a:hover{
-	text-decoration: none;
-	color: #888;;
-}
-
-
-.swiper-container {
-	width: 100%;
-	height: 100%;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 1px solid #e6e6e6;
-	border-radius: 5px;
-	
-}
-
-.swiper-wrapper {
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-
-.swiper-slide {
-	cursor: pointer;
-}
-
-.swiper-button-next {
-	background-image: url(/musicgram/img/right-button.png) !important;
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-	background-position: center;
-	filter: drop-shadow(3px 3px 4px gray);
-	
-}
-
-.swiper-button-prev {
-	background-image: url(/musicgram/img/left-button.png) !important;
-	background-repeat: no-repeat;
-	background-size: 100% auto;
-	background-position: center;
-	filter: drop-shadow(3px 3px 4px gray);
-}
-
-.swiper-button-next::after {
-	display: none;
-}
-
-.swiper-button-prev::after {
-	display: none;
-}
-
-#genreText {
-	padding-left: 9px;
-	padding-right: 9px;
-	padding-top: 3px;
-	padding-bottom: 3px;
-	border: 1.5px solid transparent;
-	
-}
-
-.swiper-slide {
-	text-align: center;
-	font-size: 18px;
-	background: #fff;
-	/* Center slide text vertically */
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-box-pack: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	-webkit-box-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-}
-
-.swiper-slide-active {
-	border: 1px black;
-}
-
-/*    @media (max-width: 760px) {
-      .swiper-button-next {
-        right: 20px;
-        transform: rotate(90deg);
-      }
-
-      .swiper-button-prev {
-        left: 20px;
-        transform: rotate(90deg);
-      }
-    } */
-</style>
 </html>

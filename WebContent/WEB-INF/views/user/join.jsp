@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="/musicgram/css/login.css">
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Join</title>
 <%
 	String errMsg = (String) session.getAttribute("errMsg");
 	if(errMsg==null) errMsg = "";
