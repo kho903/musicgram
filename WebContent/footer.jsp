@@ -5,12 +5,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 
+<style>
+
+footer{
+text-align: center;
+font-size: 13px;
+color: #888
+
+
+;
+}
+
+</style>
+
+</head>
 <footer>
-<div class='container'>
-<p>Copyright © 2021 multicampus.co. Team Samsung. All rights reserved.</p>
+
+<address style="margin-bottom: 3px;">Copyright © 2021 multicampus.co. Team 3sung. All rights reserved.</address>
 <p>김지훈	&emsp;&emsp;김혜인 &emsp;&emsp;박성민 &emsp;&emsp;최지유</p>
-</div>
+
 </footer>
 </html>

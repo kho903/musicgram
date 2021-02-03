@@ -23,18 +23,19 @@
 <body style="background-color: #f8f8f8;">
 	<jsp:include page="/nav.jsp" />
 	<div class='container'>
-		<div id="main_container">
+		<div id="main_container" style="padding-top:100px;">
         <div class="post_form_container">
         <!-- class: post_form-->
+        
 		<form action="/musicgram/content/update" method="post" class="post_form">
 			
-			
+			<div class="title">Update Feed</div>
 			<input type="hidden" name="user_id" value="${content.user_id}" readonly="readonly">
 			<input type="hidden" name="youtube_url" value="${content.youtube_url}"><br>
 			<p>
 			<iframe width="400" height="315" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>
 			</p>
-			<input type="hidden" name="content_no" value="${content.content_no}" readonly="readonly"><br>
+			
 	
 			<p>
 			<div class="req_list">text</div>
@@ -64,6 +65,7 @@
 			<div class="req_list">tag</div>
 			<input type="text" name="tag" value="${content.tag}" required>
 			</p>
+			<input type="hidden" name="content_no" value="${content.content_no}" readonly="readonly"><br>
 			<input type="submit" value="Update" id="submit_btn"/>
 		</form>
 			
