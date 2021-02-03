@@ -18,11 +18,13 @@
 </head>
 <body style="background-color: #f8f8f8;">
 	<jsp:include page="/nav.jsp" />
-	<div class='container'  style="padding-top:150px;">
+	<div class='container'  style="padding-top:90px;">
 		<div id="main_container">
         <div class="post_form_container">
+        
         <!-- class: post_form-->
 			<form action="content/upload" method="post" class="post_form">
+				<div class="title">Upload Feed</div>
 				<input type="hidden" name="user_id" value="${session_id}">
 				
 				<p>

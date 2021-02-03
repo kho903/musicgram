@@ -97,7 +97,6 @@ public class UsersController {
 				return "redirect:/user/loginForm";
 			}
 		} catch(NullPointerException e) {
-			System.out.println(e);
 			session.setAttribute("errMsg", "존재하지 않는 아이디 입니다.");
 			return "redirect:/user/loginForm";
 		}

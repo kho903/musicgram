@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import samsung.spring.musicgram.dao.ContentsMapper;
 import samsung.spring.musicgram.dao.LikesMapper;
@@ -58,6 +59,7 @@ public class ContentsService {
 		return contentsMapper.getLike(content_no);
 	}
 
+	@Transactional
 	public HashMap<Contents,Integer> getGenreContents(String genre, String user_id) {
 		
 		List<Contents> genreContents = contentsMapper.getGenreContents(genre);
@@ -162,7 +164,13 @@ public class ContentsService {
 	}
 
 	public int getMaxContentNo() {
-		return contentsMapper.getMaxContentNo();
+		int res;
+		try {
+			res = contentsMapper.getMaxContentNo();
+		} catch (Exception e) {
+			res = 0;
+		}
+		return res;
 	}
 
 	public int isLikeOn(Likes like) {

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User Feed</title>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -14,15 +14,13 @@
     <link rel="stylesheet" href="/musicgram/css/common.css">
     <link rel="stylesheet" href="/musicgram/css/style.css">
     <link rel="stylesheet" href="/musicgram/css/profile.css">
-
 </head>
-<body>
 
+<body>
 <jsp:include page="/nav.jsp"/>
 
 <div id="container">
-
-    <div id="main_container" style='padding-top:200px;'>
+    <div id="main_container" style='padding-top:130px;'>
         <section class="b_inner">
 
             <div class="hori_cont" style='margin-bottom:70px;'>
@@ -51,15 +49,15 @@
                         </li>
                         <li>
                             <span>팔로워</span>
-                            3
+                            1.3K
                         </li>
                         <li>
                             <span>팔로우</span>
-                            3
+                            1
                         </li>
                     </ul>
                     <p class="about">
-                        <span class="nick_name">${user.email}</span>
+                        <%-- <span class="nick_name">${user.email}</span> --%>
                         <span class="book_mark">${user.description }</span>
                     </p>
 
@@ -77,6 +75,5 @@
             </div>
         </section>
     </div>
-</section>
 </body>
 </html>
