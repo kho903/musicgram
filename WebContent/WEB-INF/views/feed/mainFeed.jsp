@@ -305,8 +305,13 @@ function openChild(content_no) {
 	// window.name = "부모창 이름"; 
 	window.name = "mainFeed"; 
 	// window.open("open할 window", "자식창 이름", "팝업창 옵션");
+	var _width = '1000';
+    var _height = '600';
+	var _left = Math.ceil(( window.screen.width - _width )/2);
+    var _top = Math.ceil(( window.screen.width - _height )/2); 
+
 	openWin = window.open("/musicgram/content/"+content_no, "detailFeed",
-			"width=1000, height=600, resizable = no, scrollbars = no, location=no");
+			'resizable = no, scrollbars = no, width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
 } 
 
 function diffDate(create){

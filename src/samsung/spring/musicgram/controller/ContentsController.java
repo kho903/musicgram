@@ -40,23 +40,41 @@ public class ContentsController {
 	private CommentsService commentsService;
 		
 	@GetMapping("/genre")
-	public String getGenreContents(@RequestParam(name="genre") String genre, Model model, @SessionAttribute("session_id") String user_id) {
+	public String getGenreContents(@RequestParam(name="genre") String genre, Model model, @SessionAttribute("session_id") String user_id, HttpSession session) {
 		//장르별로 검색했을때 메인 피드에 다시 뿌려줌
 		HashMap<Contents, Integer> resultMap = contentsService.getGenreContents(genre, user_id);
-		
+		session.setAttribute("maxContNo", contentsService.getMaxContentNo());
+		session.setAttribute("page", "genre");
+		session.setAttribute("genre", genre);
 		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
 	}
 	
 	@GetMapping("/moreLoad")
 	@ResponseBody
-	public HashMap<String, Object> getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session) {
+	public HashMap<String, Object> getContentLoad(@SessionAttribute("maxContNo") int maxContNo, HttpSession session,
+			@SessionAttribute("page") String page,
+			@SessionAttribute(value = "genre", required=false) String genre, @SessionAttribute(value = "tag", required=false) String tag) {
 		int contentNo = maxContNo;
 		Contents cont = new Contents();
-		do {
-			cont = contentsService.getContentLoad(contentNo);
-			contentNo--;
-		} while (cont == null);
+		if(page.equals("main")) {
+			do {
+				cont = contentsService.getContentLoad(contentNo);
+				contentNo--;
+			} while (cont == null);
+		}else if(page.equals("genre")) {
+			do {
+				cont = contentsService.getContentLoad(contentNo);
+				System.out.println(cont.getGenre());
+				contentNo--;
+			} while (cont == null || cont.getGenre() != genre);
+		}else if(page.equals("tag")) {
+			do {
+				cont = contentsService.getContentLoad(contentNo);
+				contentNo--;
+			} while (cont == null || cont.getTag() != tag);
+		}
+		
 		Likes like = new Likes();
 		like.setContent_no(cont.getContent_no());
 		like.setUser_id((String) session.getAttribute("session_id"));
@@ -68,8 +86,11 @@ public class ContentsController {
 	}
 	
 	@GetMapping("/tag")
-	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id) {
+	public String getTagContents(@RequestParam(name="tag") String tag, Model model, @SessionAttribute("session_id") String user_id, HttpSession session) {
 		HashMap<Contents, Integer> resultMap = contentsService.getTagContents(tag, user_id);
+		session.setAttribute("maxContNo", contentsService.getMaxContentNo());
+		session.setAttribute("page", "tag");
+		session.setAttribute("tag", tag);
 		model.addAttribute("tag", tag);
 		model.addAttribute("contentList", resultMap);
 		return "feed/mainFeed";
@@ -108,6 +129,7 @@ public class ContentsController {
 		try {
 			model.addAttribute("contentList", contentsService.getContents(user_id));
 			session.setAttribute("maxContNo", contentsService.getMaxContentNo());
+			session.setAttribute("page", "main");
 		} catch (Exception e) {
 			return "redirect:user/loginForm";
 		}
