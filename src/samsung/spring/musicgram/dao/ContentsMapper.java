@@ -1,10 +1,8 @@
 package samsung.spring.musicgram.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import samsung.spring.musicgram.dto.Contents;
 
@@ -25,4 +23,6 @@ public interface ContentsMapper {
 	public List<Contents> infiniteScrollDown(Integer no);
 	public Contents getContentLoad(int content_no);
 	public int getMaxContentNo();
+	public int getTagMaxContentNo(String tag);
+	public int getGenreMaxContentNo(String genre);
 }

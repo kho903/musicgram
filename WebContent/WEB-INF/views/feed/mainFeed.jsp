@@ -189,7 +189,8 @@ function openChild(content_no) {
 
 	openWin = window.open("/musicgram/content/"+content_no, "detailFeed",
 			'resizable = no, scrollbars = no, width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top);
-} 
+};
+
 
 function diffDate(create){
 	var now = new Date();
