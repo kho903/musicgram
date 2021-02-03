@@ -198,14 +198,14 @@ color:#0061bd;
 							<div class="content-body">
 							<c:if test="${content.value eq 0}">
 								<a id="likeBtn"
-									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
+									onclick="pressLike(${content.key.content_no})">
 									<img src="/musicgram/img/heart.png"
 									id="heart${content.key.content_no}">
 								</a>
 							</c:if>
 							<c:if test="${content.value eq 1}">
 								<a id="cancelLikeBtn"
-									onclick="pressLike(${content.key.content_no},${content.key.like_count})">
+									onclick="pressLike(${content.key.content_no})">
 									<img src="/musicgram/img/red_heart.png"
 									id="heart${content.key.content_no}">
 								</a>
@@ -334,7 +334,7 @@ function filterGenre(genre){
 	})
 } 
 
-function pressLike(content_no, like_count){
+function pressLike(content_no){
 	$.ajax({
 		url:"/musicgram/content/pressLike",
 		type:"post",

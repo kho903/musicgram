@@ -40,12 +40,12 @@
 					
 				<!-- 좋아요  -->
 				<c:if test="${checkPressLike eq 0}">
-					<a id="likeBtn" onclick="pressLike(${content.content_no},${content.like_count})">
+					<a id="likeBtn" onclick="pressLike(${content.content_no})">
 						<img src="/musicgram/img/heart.png" id="heart">
 					</a>
 				</c:if>
 				<c:if test="${checkPressLike eq 1}">
-					<a id="cancelLikeBtn" onclick="pressLike(${content.content_no},${content.like_count})">
+					<a id="cancelLikeBtn" onclick="pressLike(${content.content_no})">
 						<img src="/musicgram/img/red_heart.png" id="heart">
 					</a>
 				</c:if>
@@ -58,19 +58,21 @@
 					
 				<!-- 댓글 창 부분!! -->
 					<form id="commentForm">
-						<div class="user_info line_ok">
-						<label for="comment">
-								<div class="box" style="background: #ffffff;">
-									<img class="profile" src="/musicgram/profile/${user_id}" onerror="this.src='/musicgram/img/default.png'">
-								</div>
-								<div class="comment_info">
-									<input id="comment" type="text" placeholder="댓글 달기..." name="comment_text">
-								</div>
-						</label>
+						<div id="commentFormWrapper">
+							<div class="user_info line_ok" id="user_info">
+							<label for="comment">
+									<div class="box" style="background: #ffffff;">
+										<img class="profile" src="/musicgram/profile/${user_id}" onerror="this.src='/musicgram/img/default.png'">
+									</div>
+									<div class="comment_info">
+										<input id="comment" type="text" placeholder="댓글 달기..." name="comment_text"  >
+									</div>
+							</label>
+							</div>
+						<%-- 	<input type="hidden" name="content_no" value="${content.content_no}">
+							<input type="hidden" name="user_id" value="${session_id}"> --%>
+							<input type="button" value="제출" onclick="addComment('${content.content_no}')" id="commentSubmitBtn"> 
 						</div>
-						<input type="hidden" name="content_no" value="${content.content_no}">
-						<input type="hidden" name="user_id" value="${session_id}">
-						<input type="button" value="제출" onclick="addComment('${content.content_no}')"> 
 					</form>
 
 				<!-- 댓글 리스트 부분  -->
@@ -99,6 +101,11 @@
 
 function addComment(content_no){
 	var comment = $('#comment').val();
+	
+	if(comment.length == 0){
+		alert("댓글을 입력하세요");
+		return false;
+	}
 	
 	var session_id = '<%=(String)session.getAttribute("session_id")%>';
 	$.ajax({
@@ -133,25 +140,6 @@ function addComment(content_no){
 	})
 } 
 
-function getCommentList(content_no){
-	
-	
-	$.ajax({
-		url:"/musicgram/comments/ajax/"+content_no,
-		type:"get",
-		data: {"content_no" : content_no},
-		async: false,
-		success : function(result){
-			console.log("완료");
-			
-		},
-		error: function(e){
-			console.log(e);
-		}
-	})
-	
-}
-
 function deleteComment(comment_no){
 	$.ajax({
 		url:"/musicgram/comments/delete/ajax/"+comment_no,
@@ -159,7 +147,6 @@ function deleteComment(comment_no){
 		data: {"comment_no" : comment_no},
 		async: false,
 		success : function(result){
-			console.log("완료");
 			document.getElementById("commentsList"+comment_no).remove();
 		},
 		error: function(e){
@@ -168,7 +155,7 @@ function deleteComment(comment_no){
 	})
 }
 
-function pressLike(content_no, like_count){
+function pressLike(content_no){
 	$.ajax({
 		url:"/musicgram/content/pressLike",
 		type:"post",
@@ -192,5 +179,41 @@ function pressLike(content_no, like_count){
 	})
 } 
 
+$('input[type="text"]').keydown(function() {
+    if (event.keyCode === 13) {
+    	console.log("Test");
+    	var content_no = ${content.content_no};
+    	addComment(content_no);
+    	return false;
+    }
+});
+
 </script>
+
+<style>
+
+#commentSubmitBtn {
+	width:50px;
+	display: inline-block;
+	float: left;
+}
+
+#comment {
+	width:200px;
+}
+
+#commentFormWrapper {
+	width:300px;
+	float: left;
+
+}
+
+#user_info{
+	display:inline-block; 
+	float:left;
+	margin:0;
+	padding:0;
+
+}
+</style>
 </html>
