@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="/musicgram/css/common.css">
     <link rel="stylesheet" href="/musicgram/css/style.css">
     <link rel="stylesheet" href="/musicgram/css/detail-feed.css">
-<title>DetailFeed</title>
+<title>Detail Feed</title>
 </head>
 <body>
 	<div class='container'>
 	<div class='main-container'>
-		<iframe width="800" height="450" src="https://www.youtube.com/embed/${content.youtube_url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<iframe width="800" height="450" src="https://www.youtube.com/embed/${content.youtube_url}?autoplay=1&mute=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			<!-- feed_infomation 시작 -->
 			<div class="feed_info">
 				<!-- 가장 위에 프로필과 아이디 -->
@@ -27,7 +27,7 @@
 							<img class="profile" src="/musicgram/profile/${content.user_id}"
 								onerror="this.src='/musicgram/img/default.png'"></a></div>
 						<div class="user_id"><a href="/musicgram/user/${content.user_id}">${content.user_id}</a></div>
-						
+						<!-- 수정 삭제 -->
 						<div class="up_del"> 
 							<c:if test="${content.user_id eq session_id}">
 								<a href="/musicgram/content/update/${content.content_no}"
@@ -36,8 +36,9 @@
 									class="card-link">삭제</a>
 							</c:if>
 						</div>
-						
 					</div>
+					
+				<!-- 좋아요  -->
 				<c:if test="${checkPressLike eq 0}">
 					<a id="likeBtn" onclick="pressLike(${content.content_no})">
 						<img src="/musicgram/img/heart.png" id="heart">
@@ -52,10 +53,10 @@
 				<p>
 					좋아요 <span id="countLike">${content.like_count}개</span>
 				</p>
-
+			<!--게시글 내용 부분  -->
 				<div class="text_info">${content.text}</div>
-					<!-- 댓글 창 부분!! -->
 					
+				<!-- 댓글 창 부분!! -->
 					<form id="commentForm">
 						<div id="commentFormWrapper">
 							<div class="user_info line_ok" id="user_info">
@@ -73,8 +74,8 @@
 							<input type="button" value="제출" onclick="addComment('${content.content_no}')" id="commentSubmitBtn"> 
 						</div>
 					</form>
-					<!-- 댓글 리스트 -->
-					
+
+				<!-- 댓글 리스트 부분  -->
 					<div id="commentsWrapper">
 						<c:forEach items="${comments}" var="comments"  >
 							<div class="user_info line_no" id="commentsList${comments.comment_no}">
@@ -91,10 +92,11 @@
 						</c:forEach>
 						
 					</div>
-			</div>
+				</div>
 	<!-- // feed information -->
 			</div>
 	</body>
+	
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" type="text/javascript"></script>	
 <script>
 
@@ -186,8 +188,6 @@ $('input[type="text"]').keydown(function() {
     	return false;
     }
 });
-
-
 
 </script>
 

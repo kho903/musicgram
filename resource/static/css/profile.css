@@ -73,12 +73,8 @@
 }
 .detail .about > span{
     display:inline-block;
-    cursor: pointer;
     position:relative;
-}
-
-.detail .about > span:nth-child(1){
-    margin-right: 50px;
+    font-size: 16px;
 }
 
 
@@ -93,9 +89,6 @@
     background:#dd2d76;
 }
 
-.detail .about > span.on:after{
-    width:100%;
-}
 
 .contents_container{
     /*display: flex;*/
