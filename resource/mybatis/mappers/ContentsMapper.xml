@@ -18,6 +18,16 @@
 			(select rownum rn, content_no from contents <![CDATA[where rownum <= 4]]>  order by 2 desc)
 		where rn = 4
 	</select>
+	<select id="getTagMaxContentNo" parameterType="String" resultType="java.lang.Integer">
+		select content_no from 
+			(select rownum rn, content_no from contents <![CDATA[where rownum <= 4]]> and tag like '%' || #{tag} || '%' order by 2 desc)
+		where rn = 4
+	</select>
+	<select id="getGenreMaxContentNo" parameterType="String" resultType="java.lang.Integer">
+		select content_no from 
+			(select rownum rn, content_no from contents <![CDATA[where rownum <= 4]]> and genre = #{genre}  order by 2 desc)
+		where rn = 4
+	</select>
 
 	<select id="getTagContents"
 		resultType="samsung.spring.musicgram.dto.Contents">
