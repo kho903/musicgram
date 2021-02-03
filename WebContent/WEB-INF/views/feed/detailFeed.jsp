@@ -37,8 +37,10 @@
 							</c:if>
 						</div>
 					</div>
-					
+				<!--게시글 내용 부분  -->
+				<div class="text_info">${content.text}</div>
 				<!-- 좋아요  -->
+				<div class= "like_box">
 				<c:if test="${checkPressLike eq 0}">
 					<a id="likeBtn" onclick="pressLike(${content.content_no})">
 						<img src="/musicgram/img/heart.png" id="heart">
@@ -50,11 +52,11 @@
 					</a>
 				</c:if>
 				<br>
-				<p>
+				<p class="like_count_res">
 					좋아요 <span id="countLike">${content.like_count}개</span>
 				</p>
-			<!--게시글 내용 부분  -->
-				<div class="text_info">${content.text}</div>
+				</div>
+
 					
 				<!-- 댓글 창 부분!! -->
 					<form id="commentForm">
@@ -71,7 +73,7 @@
 							</div>
 						<%-- 	<input type="hidden" name="content_no" value="${content.content_no}">
 							<input type="hidden" name="user_id" value="${session_id}"> --%>
-							<input type="button" value="제출" onclick="addComment('${content.content_no}')" id="commentSubmitBtn"> 
+							<input type="button" value="게시" onclick="addComment('${content.content_no}')" id="commentSubmitBtn"> 
 						</div>
 					</form>
 
