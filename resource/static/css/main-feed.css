@@ -32,7 +32,7 @@
 }
 
 #noContent{
-	margin-left: 80px;
+	margin-left: 120px;
 	font-weight: 500;
 	font-size: 16px;
 	margin-top: 16px;
@@ -116,6 +116,7 @@
     margin-bottom: 20px;
     padding-bottom: 30px;
     padding-left:10px;
+    font-size:12px;
 }
 
 .my-box a{
